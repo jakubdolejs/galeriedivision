@@ -1,0 +1,27 @@
+<?php
+$lang["weekday_1"] = "lundi";
+$lang["weekday_2"] = "mardi";
+$lang["weekday_3"] = "mercredi";
+$lang["weekday_4"] = "jeudi";
+$lang["weekday_5"] = "vendredi";
+$lang["weekday_6"] = "samedi";
+$lang["weekday_7"] = "dimanche";
+$lang["Montreal"] = "Montréal";
+$lang["Toronto"] = "Toronto";
+$lang["Division Gallery"] = "Galerie Division";
+$lang["Staff"] = "Personnel";
+$lang["Exhibitions"] = "Expositions";
+$lang["Artists"] = "Artistes";
+$lang["News"] = "Actualité";
+$lang["Publications"] = "Maison d’édition";
+$lang["Contact"] = "Contact";
+$lang["Address"] = "Adresse";
+$lang["Opening Hours"] = "Heures d'ouverture";
+$lang["About"] = "Historique";
+$lang["Current Exhibitions"] = "Expositions en cours";
+$lang["Upcoming Exhibitions"] = "Expositions à venir";
+$lang["Past Exhibitions"] = "Expositions passées";
+$lang["Opening reception"] = "Vernissage";
+$lang["from"] = "de";
+$lang["to"] = "à";
+$lang["Also showing works by"] = "Oeuvres aussi disponibles";

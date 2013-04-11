@@ -1,0 +1,27 @@
+<?php
+$lang["weekday_1"] = "Monday";
+$lang["weekday_2"] = "Tuesday";
+$lang["weekday_3"] = "Wednesday";
+$lang["weekday_4"] = "Thursday";
+$lang["weekday_5"] = "Friday";
+$lang["weekday_6"] = "Saturday";
+$lang["weekday_7"] = "Sunday";
+$lang["Montreal"] = "Montreal";
+$lang["Toronto"] = "Toronto";
+$lang["Division Gallery"] = "Division Gallery";
+$lang["Staff"] = "Staff";
+$lang["Exhibitions"] = "Exhibitions";
+$lang["Artists"] = "Artists";
+$lang["News"] = "News";
+$lang["Publications"] = "Publications";
+$lang["Contact"] = "Contact";
+$lang["Address"] = "Address";
+$lang["Opening Hours"] = "Opening Hours";
+$lang["About"] = "About";
+$lang["Current Exhibitions"] = "Current Exhibitions";
+$lang["Upcoming Exhibitions"] = "Upcoming Exhibitions";
+$lang["Past Exhibitions"] = "Past Exhibitions";
+$lang["Opening reception"] = "Opening reception";
+$lang["from"] = "from";
+$lang["to"] = "to";
+$lang["Also showing works by"] = "Also showing works by";
