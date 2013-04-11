@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once 'dg_controller.php';
 
-class Welcome extends CI_Controller {
+class Welcome extends Dg_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,7 +20,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+            $header_vars = $this->get_header_vars(NULL);
+            $this->load->view('header',$header_vars);
+            $this->load->view('home');
+            $this->load->view('footer');
 	}
 }
 

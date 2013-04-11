@@ -2,11 +2,13 @@
 $this->lang->load("common");
 $languages = array("en"=>"English","fr"=>"Français");
 $lang = $this->config->item("language");
-$path = parse_url($this->input->server("REQUEST_URI"), PHP_URL_PATH);
-$path_elements = explode("/", trim($path,"/ "));
-$other_city_url = "exhibitions";
-if ($path_elements[0] == $gallery_id && count($path_elements) > 1) {
-    $other_city_url = $path_elements[1];
+if (!empty($gallery_id)) {
+    $path = parse_url($this->input->server("REQUEST_URI"), PHP_URL_PATH);
+    $path_elements = explode("/", trim($path,"/ "));
+    $other_city_url = "exhibitions";
+    if ($path_elements[0] == $gallery_id && count($path_elements) > 1) {
+        $other_city_url = $path_elements[1];
+    }
 }
 /*
 $lang_links = array();
@@ -20,15 +22,16 @@ foreach ($languages as $lang_code=>$lang_name) {
     }
 }
 */
-$nav_links = array(
-    "/exhibitions"=>$this->lang->line("Exhibitions"),
-    "/artists"=>$this->lang->line("Artists"),
-    "/news"=>$this->lang->line("News"),
-    "/contact"=>$this->lang->line("Contact"),
-    "/about"=>$this->lang->line("About")
-);
 $city = "";
+$nav_links = array();
 if (!empty($gallery_id) && !empty($galleries)) {
+    $nav_links = array(
+        "/exhibitions"=>$this->lang->line("Exhibitions"),
+        "/artists"=>$this->lang->line("Artists"),
+        "/news"=>$this->lang->line("News"),
+        "/contact"=>$this->lang->line("Contact"),
+        "/about"=>$this->lang->line("About")
+    );
     $gallery_nav_links = array();
     foreach ($nav_links as $k=>$v) {
         $gallery_nav_links["/".$gallery_id.$k] = $v;
@@ -41,12 +44,12 @@ if (!empty($gallery_id) && !empty($galleries)) {
         }
     }
     $nav_links = $gallery_nav_links;
-}
-foreach ($languages as $lang_code=>$lang_name) {
-    if ($lang_code != $lang) {
-        $getvars = $this->input->get(NULL,TRUE);
-        $getvars["language"] = $lang_code;
-        $nav_links[$path.'?'.http_build_query($getvars)] = $lang_name;
+    foreach ($languages as $lang_code=>$lang_name) {
+        if ($lang_code != $lang) {
+            $getvars = $this->input->get(NULL,TRUE);
+            $getvars["language"] = $lang_code;
+            $nav_links[$path.'?'.http_build_query($getvars)] = $lang_name;
+        }
     }
 }
 ?>
@@ -54,11 +57,17 @@ foreach ($languages as $lang_code=>$lang_name) {
 <html lang="<?php echo $lang; ?>">
     <head>
         <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="/css/style.css" type="text/css" />
+        <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
     </head>
     <body>
+        <div id="content">
         <header>
-            <h1><?php echo $this->lang->line("Division Gallery").$city; ?></h1>
+            <h1><a href="/"><?php echo $this->lang->line("Division Gallery").$city; ?></a></h1>
+            <?php if (!empty($nav_links)) { ?>
+            <a class="button" id="menuButton" href="javascript:void(0)">Menu</a>
             <nav>
                 <ul>
                     <?php
@@ -68,4 +77,5 @@ foreach ($languages as $lang_code=>$lang_name) {
                     ?>
                 </ul>
             </nav>
+            <?php } ?>
         </header>
