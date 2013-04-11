@@ -1,6 +1,58 @@
+@font-face {
+    font-family: "TradeGothic";
+    src: url('/fonts/TRADEGOTBOLCONTWE.TTF');
+    font-weight: normal;
+}
 body {
     margin: 0;
     padding: 0;
+    /*
+    background-image: 
+      -webkit-linear-gradient(0deg, transparent 5em, rgba(0,0,0,0) 0, transparent 5.1em),
+      -webkit-linear-gradient(rgba(0,0,0,.1) 1px, transparent 0);
+    -webkit-background-size: 100% 2em;
+    background-image: 
+      linear-gradient(0deg, transparent 5em, rgba(0,0,0,0) 0, transparent 5.1em), 
+      linear-gradient(rgba(0,0,0,.1) 1px, transparent 0);
+    background-size: 100% 16pt;
+    */
+}
+h1, h1 a {
+    font-size: 24pt;
+    font-family: TradeGothic;
+    font-weight: normal;
+    text-decoration: none;
+    color: #000;
+}
+header {
+    height: 60px;
+}
+header h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 24pt;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 12pt;
+    color: #0af;
+}
+header h1 a {
+    color: #000;
+    font-size: 24pt;
+}
+header nav ul li a {
+    font-family: TradeGothic;
+    font-weight: normal;
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+}
+header nav ul li.selected a {
+    color: #0af;
+}
+#content {
+    position: relative;
+    padding: 30px;
 }
 @media all and (max-width: 599px) {
     #menuButton {
@@ -27,6 +79,11 @@ body {
     }
     #menuButton {
         display: none;
+    }
+    header nav {
+        float: right;
+        line-height: 33pt;
+        font-size: 12pt;
     }
     header nav ul {
         list-style-type: none;
