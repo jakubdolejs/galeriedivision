@@ -40,11 +40,19 @@
 
 $route['(:any)/contact'] = "gallery/index/$1";
 $route['(:any)/exhibitions'] = "exhibition/index/$1";
+$route['(:any)/past_exhibitions'] = "exhibition/past/$1";
 $route['(:any)/exhibition/(:any)'] = "exhibition/view/$1";
 $route['(:any)/artists'] = "artist/index/$1";
 $route['(:any)/artist/(:any)'] = "artist/view/$1";
 $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
+$route['admin/login'] = "admin/login";
+$route['admin/images'] = "image_admin";
+$route['admin/image_upload'] = "image_admin/upload";
+$route['admin/image/(:num)'] = "image_admin/edit/$1";
+$route['api/artists'] = "api/artists";
+$route['api/galleries'] = "api/galleries";
+$route['admin'] = "admin";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

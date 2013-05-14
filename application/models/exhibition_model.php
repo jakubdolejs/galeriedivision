@@ -10,12 +10,11 @@ class Exhibition_model extends CI_Model {
     public function get_exhibitions($type,$lang,$gallery_id=NULL) {
         $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, image_exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
                 ->from("exhibition")
-                ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id")
+                ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id AND exhibition_translation.lang = ".$this->db->escape($lang),"left")
                 ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
                 ->join("space","space.id = space_exhibition.space_id")
                 ->join("image_exhibition","image_exhibition.exhibition_id = exhibition.id AND image_exhibition.cover_image = 1","left")
-                ->join("artist_exhibition","artist_exhibition.exhibition_id = exhibition.id JOIN artist ON (artist_exhibition.artist_id = artist.id)","left")
-                ->where("exhibition_translation.lang",$lang);
+                ->join("artist_exhibition JOIN artist ON artist_exhibition.artist_id = artist.id","artist_exhibition.exhibition_id = exhibition.id","left");
         if ($gallery_id) {
             $this->db->where("space.gallery_id",$gallery_id);
         } else {

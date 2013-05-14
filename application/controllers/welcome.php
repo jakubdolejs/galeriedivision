@@ -20,10 +20,24 @@ class Welcome extends Dg_Controller {
 	 */
 	public function index()
 	{
-            $header_vars = $this->get_header_vars(NULL);
-            $this->load->view('header',$header_vars);
-            $this->load->view('home');
-            $this->load->view('footer');
+        $lang = $this->config->item("language");
+        $this->load->model("exhibition_model");
+        $header_vars = $this->get_header_vars(NULL);
+
+        $exhibitions = array();
+        foreach ($header_vars["galleries"] as $gallery) {
+            $exhibitions[$gallery["id"]] = $this->exhibition_model->get_exhibitions("current", $lang, $gallery["id"]);
+            if (empty($exhibitions[$gallery["id"]])) {
+                $exhibitions[$gallery["id"]] = $this->exhibition_model->get_exhibitions("upcoming", $lang, $gallery["id"]);
+            }
+            if (empty($exhibitions[$gallery["id"]])) {
+                $exhibitions[$gallery["id"]] = $this->exhibition_model->get_exhibitions("past", $lang, $gallery["id"]);
+            }
+        }
+        $this->load->view('header',$header_vars);
+        $header_vars["exhibitions"] = $exhibitions;
+        $this->load->view('home',$header_vars);
+        $this->load->view('footer');
 	}
 }
 

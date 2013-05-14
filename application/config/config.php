@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://test.galeriedivision.com/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -262,7 +262,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '30d0b25fdb8ad1542ad404e7ecf64a1c';
 
 /*
 |--------------------------------------------------------------------------

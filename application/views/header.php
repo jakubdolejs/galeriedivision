@@ -61,6 +61,7 @@ if (!empty($gallery_id)) {
     <body>
         <div id="content">
         <header>
+            <h1><a href="/"><?php echo $this->lang->line("Division Gallery"); ?> </a><?php echo $city; ?></h1>
             <nav>
                 <ul>
                     <?php
@@ -74,7 +75,6 @@ if (!empty($gallery_id)) {
                     ?>
                 </ul>
             </nav>
-            <h1><a href="/"><?php echo $this->lang->line("Division Gallery"); ?> </a><?php echo $city; ?></h1>
             <?php if (!empty($nav_links)) { ?>
             <a class="button" id="menuButton" href="javascript:void(0)">Menu</a>
             <?php } ?>

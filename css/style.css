@@ -1,7 +1,38 @@
 @font-face {
-    font-family: "TradeGothic";
-    src: url('/fonts/TRADEGOTBOLCONTWE.TTF');
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRI_0.TTF');
     font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRIB_0.TTF');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRII_0.TTF');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRIZ_0.TTF');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRIL.TTF');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRILI.TTF');
+    font-weight: 200;
+    font-style: italic;
 }
 body {
     margin: 0;
@@ -17,62 +48,188 @@ body {
     background-size: 100% 16pt;
     */
 }
+a {
+    color: #777;
+    text-decoration: none;
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
+}
+h1 {
+    margin: 20px 0;
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
+    letter-spacing: 0.05em;
+}
 h1, h1 a {
-    font-size: 24pt;
-    font-family: TradeGothic;
-    font-weight: normal;
+    font-size: 18pt;
     text-decoration: none;
     color: #000;
+    text-transform: uppercase;
 }
 header {
-    height: 60px;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 80px;
+    white-space: nowrap;
+    position: relative;
 }
 header h1 {
     margin: 0;
     padding: 0;
-    line-height: 24pt;
     white-space: nowrap;
     text-transform: uppercase;
-    font-size: 12pt;
-    color: #0af;
+    font-size: 11pt;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    color: #777;
+    display: inline-block;
+    width: 300px;
 }
 header h1 a {
     color: #000;
-    font-size: 24pt;
+    font-size: 18pt;
+    font-weight: 200;
 }
 header nav ul li a {
-    font-family: TradeGothic;
-    font-weight: normal;
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
     text-decoration: none;
     color: #000;
     text-transform: uppercase;
+    font-size: 11pt;
+    letter-spacing: 0.1em;
 }
 header nav ul li.selected a {
-    color: #0af;
+    color: #777;
 }
 #content {
     position: relative;
-    padding: 30px;
+    padding: 60px 30px 30px;
 }
-@media all and (max-width: 599px) {
+div.exhibition {
+    font-family: Calibri,sans-serif;
+    font-size: 11pt;
+    font-weight: 200;
+}
+div.exhibition h2 {
+    margin: 20px 0 0;
+    padding: 0;
+}
+div.exhibition p {
+    margin: 0;
+    padding: 0;
+}
+div.large-column {
+    margin-bottom: 60px;
+}
+div.large-column img.feature {
+    width: 100%;
+}
+div.large-column ul.exhibition-listing {
+    margin-right: 20px;
+}
+h2 {
+    font-family: Calibri,sans-serif;
+    font-weight: 200;
+    font-size: 14pt;
+    color: #000;
+    text-transform: uppercase;
+}
+h2 a {
+    color: #000;
+}
+img.thumbnail {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+ul.thumbnails {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.thumbnails li {
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
+    font-size: 11pt;
+    display: inline-block;
+    width: 50%;
+    height: 180px;
+    margin-bottom: 30px;
+    position: relative;
+    vertical-align: middle;
+}
+ul.thumbnails li div {
+    position: relative;
+    height: 128px;
+    margin: 20px 20px 0 20px;
+}
+ul.thumbnails li a.artist {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 0px;
+    text-align: center;
+    background-color: #fff;
+}
+@media all and (max-width: 959px) {
     #menuButton {
-        display: block;
+        font-family: Calibri, sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 8px;
+        right: 0px;
+        font-size: 11pt;
+    }
+    header nav {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        right: 0px;
+        padding-bottom: 30px;
+        background-color: #fff;
+        z-index: 10;
+        display: none;
     }
     header nav ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
-        display: none;
     }
     header nav ul li {
         padding: 5px;
         border-bottom: 1px solid #eee;
     }
+    header nav ul li:hover {
+        background-color: #eee;
+    }
 }
-@media all and (min-width: 600px) {
+@media all and (min-width: 640px) {
+    div.large-column.left {
+        position: absolute;
+        left: 30px;
+        top: 180px;
+        right: 50%;
+        margin-right: 10px;
+    }
+    div.large-column.right {
+        position: absolute;
+        left: 50%;
+        top: 180px;
+        right: 30px;
+        margin-left: 10px;
+    }
+    ul.thumbnails li {
+        width: 33.33%;
+    }
+}
+@media all and (min-width: 960px) {
     #content {
         max-width: 900px;
         margin: 0px auto;
@@ -81,9 +238,10 @@ header nav ul li.selected a {
         display: none;
     }
     header nav {
-        float: right;
-        line-height: 33pt;
-        font-size: 12pt;
+        font-size: 11pt;
+        width: 596px;
+        display: inline-block;
+        text-align: right;
     }
     header nav ul {
         list-style-type: none;
@@ -92,6 +250,37 @@ header nav ul li.selected a {
     }
     header nav ul li {
         display: inline-block;
-        padding-left: 10px;
+        padding: 0 0 0 10px;
+        margin: 0;
     }
+    ul.thumbnails li {
+        width: 25%;
+    }
+}
+a.feature {
+    display: block;
+    position: relative;
+    max-width: 440px;
+    max-height: 235px;
+    width: 100%;
+    height: 235px;
+    overflow: hidden;
+}
+img.feature {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+.artist {
+    color: #999;
+}
+div.exhibitions div.exhibition {
+    margin-bottom: 40px;
+}
+div.exhibitions div.exhibition h2 {
+    margin-top: 10px;
+}
+img.exhibition-feature {
+    width: 100%;
 }

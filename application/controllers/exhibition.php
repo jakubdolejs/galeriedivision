@@ -17,11 +17,25 @@ class Exhibition extends Dg_controller {
         $past = $this->exhibition_model->get_exhibitions("past", $lang, $gallery);
         $header_vars = $this->get_header_vars($gallery);
         $this->load->view("header",$header_vars);
-        $this->load->view("exhibition",array("current"=>$current,"gallery_id"=>$gallery));
+        $this->load->view("exhibitions",array("current"=>$current,"upcoming"=>$upcoming,"past"=>$past,"gallery_id"=>$gallery));
         $this->load->view("footer");
     }
     
     public function view($exhibition) {
         
+    }
+
+    public function past($gallery_id) {
+        $header_vars = $this->get_header_vars($gallery_id);
+        $lang = $this->config->item("language");
+        $this->lang->load("common");
+        $past = $this->exhibition_model->get_exhibitions("past", $lang, $gallery_id);
+        $this->load->view("header",$header_vars);
+        $this->output->append_output('<h1>'.$this->lang->line("Past Exhibitions").'</h1>');
+        if (!empty($past)) {
+            foreach ($past as $exhibition) {
+                $this->load->view("exhibition_listing",array("exhibition"=>$exhibition));
+            }
+        }
     }
 }

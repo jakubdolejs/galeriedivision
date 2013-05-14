@@ -5,20 +5,16 @@
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/config/routes.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/language/en/common_lang.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/language/fr/common_lang.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/migrations/001_add_gallery.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/migrations/002_add_exhibition.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/config/migration.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/artist.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/models/news_model.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/models/artist_model.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/models/exhibition_model.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/views/exhibition.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/exhibition.php</file>
         <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/views/header.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/news.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/migrations/005_add_news.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/views/news.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/views/contact.php</file>
-        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/about.php</file>
+        <file>file:/Users/jakub/Sites/galeriedivision.com/website/css/style.css</file>
+        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/welcome.php</file>
+        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/views/home.php</file>
+        <file>file:/Users/jakub/Sites/galeriedivision.com/website/application/controllers/dg_controller.php</file>
     </open-files>
 </project-private>

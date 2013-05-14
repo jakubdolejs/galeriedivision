@@ -1,0 +1,10 @@
+ul.thumbnails {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+ul.thumbnails li {
+    display: inline-block;
+    width: 185px;
+    padding: 20px;
+}
