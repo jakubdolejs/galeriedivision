@@ -54,6 +54,7 @@ if (!empty($gallery_id)) {
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="/css/style.css" type="text/css" />
         <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
