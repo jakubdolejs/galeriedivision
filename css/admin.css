@@ -8,3 +8,38 @@ ul.thumbnails li {
     width: 185px;
     padding: 20px;
 }
+#imagePicker {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    display: none;
+    background-color: #fff;
+    padding: 30px;
+}
+#menu {
+    float:left;
+    width: 200px;
+}
+#content {
+    margin-left: 220px;
+}
+div.multipicker {
+    border: 1px solid #ccc;
+}
+div.multipicker div.item {
+    padding: 2px 4px;
+    background-color: #2b81af;
+    display: inline-block;
+    margin-right: 5px;
+    color: #fff;
+}
+div.multipicker div.item a.remove {
+    margin-left: 5px;
+    background-color: #000;
+    padding: 0px 3px;
+    cursor: pointer;
+}

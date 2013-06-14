@@ -142,4 +142,95 @@ class Image_model extends CI_Model {
         }
         return null;
     }
+
+    public function get_artist_images($artist_id,$gallery_id=null) {
+        $this->db->select("image.id, artist_id, artist.name")
+            ->from("image")
+            ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left");
+        if ($gallery_id) {
+            $this->db->join("image_gallery","image_gallery.image_id = image.id")
+                ->where("gallery_id",$gallery_id)
+                ->order_by("image_gallery.priority");
+        }
+        $this->db->where("artist_id",$artist_id)
+            ->order_by("image.id","desc");
+        $query = $this->db->get();
+        if ($query->num_rows()) {
+            $images = array();
+            foreach ($query->result_array() as $row) {
+                if (empty($images[$row["id"]])) {
+                    $images[$row["id"]] = array(
+                        "id"=>$row["id"],
+                        "artists"=>array()
+                    );
+                }
+                if ($row["artist_id"]) {
+                    $images[$row["id"]]["artists"][$row["artist_id"]] = $row["name"];
+                }
+            }
+            return array_values($images);
+        }
+        return array();
+    }
+
+    public function set_artist_images($artist_id,$gallery_id,$images) {
+        $this->db->trans_start();
+        $query = "DELETE image_gallery FROM image_gallery JOIN image_artist ON image_artist.image_id = image_gallery.image_id WHERE image_artist.artist_id = ".$this->db->escape($artist_id)." AND image_gallery.gallery_id = ".$this->db->escape($gallery_id);
+        $this->db->query($query,false,false);
+        if (!empty($images)) {
+            $batch = array();
+            $i = 1;
+            foreach ($images as $id) {
+                $batch[] = array("image_id"=>$id,"gallery_id"=>$gallery_id,"priority"=>$i);
+                $i ++;
+            }
+            $this->db->insert_batch("image_gallery",$batch);
+        }
+        $this->db->trans_complete();
+        return $this->db->trans_status() !== FALSE;
+    }
+
+    public function get_exhibition_images($exhibition_id) {
+        $this->db->select("image.id, artist_id, artist.name")
+            ->from("image")
+            ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
+            ->join("image_exhibition","image_exhibition.image_id = image.id")
+            ->where("image_exhibition.exhibition_id",$exhibition_id)
+            ->order_by("image_exhibition.priority")
+            ->order_by("image.id","desc");
+        $query = $this->db->get();
+        if ($query->num_rows()) {
+            $images = array();
+            foreach ($query->result_array() as $row) {
+                if (empty($images[$row["id"]])) {
+                    $images[$row["id"]] = array(
+                        "id"=>$row["id"],
+                        "artists"=>array()
+                    );
+                }
+                if ($row["artist_id"]) {
+                    $images[$row["id"]]["artists"][$row["artist_id"]] = $row["name"];
+                }
+            }
+            return array_values($images);
+        }
+        return array();
+    }
+
+    public function set_exhibition_images($exhibition_id,$images) {
+        $this->db->trans_start();
+        $this->db->where("exhibition_id",$exhibition_id);
+        $this->db->delete("image_exhibition");
+        if (!empty($images)) {
+            $batch = array();
+            $i = 1;
+            foreach ($images as $id) {
+                $batch[] = array("image_id"=>$id,"exhibition_id"=>$exhibition_id,"priority"=>$i);
+                $i ++;
+            }
+            $this->db->insert_batch("image_exhibition",$batch);
+        }
+        $this->db->trans_complete();
+        return $this->db->trans_status() !== FALSE;
+    }
 }

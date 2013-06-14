@@ -38,6 +38,28 @@
 |
 */
 
+$route['admin/login'] = "admin/login";
+$route['admin/images'] = "image_admin";
+$route['admin/image_upload'] = "image_admin/upload";
+$route['admin/image/(:num)'] = "image_admin/edit/$1";
+$route['admin/artists'] = "artist_admin";
+$route['admin/artist/(:any)/images/(:any)'] = "artist_admin/images/$1/$2";
+$route['admin/artist/(:any)/images'] = "artist_admin/images/$1";
+$route['admin/artist/(:any)/delete'] = "artist_admin/delete/$1";
+$route['admin/artist/(:any)'] = "artist_admin/edit/$1";
+$route['admin/exhibitions'] = "exhibition_admin";
+$route['admin/exhibitions/(\d{4})'] = "exhibition_admin/index/$1";
+$route['admin/exhibition/create'] = "exhibition_admin/add";
+$route['admin/exhibition/(:any)/delete'] = "exhibition_admin/delete/$1";
+$route['admin/exhibition/(:any)/images'] = "exhibition_admin/images/$1";
+$route['admin/exhibition/(:any)'] = "exhibition_admin/edit/$1";
+$route['api/artists'] = "api/artists";
+$route['api/artist/(:any)/images/(:any)'] = "api/artist_gallery_images/$1/$2";
+$route['api/artist/(:any)/images'] = "api/artist_images/$1";
+$route['api/exhibition/(:any)/images'] = "api/exhibition_images/$1";
+$route['api/images'] = "api/images";
+$route['api/galleries'] = "api/galleries";
+$route['admin'] = "admin";
 $route['(:any)/contact'] = "gallery/index/$1";
 $route['(:any)/exhibitions'] = "exhibition/index/$1";
 $route['(:any)/past_exhibitions'] = "exhibition/past/$1";
@@ -46,13 +68,6 @@ $route['(:any)/artists'] = "artist/index/$1";
 $route['(:any)/artist/(:any)'] = "artist/view/$1";
 $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
-$route['admin/login'] = "admin/login";
-$route['admin/images'] = "image_admin";
-$route['admin/image_upload'] = "image_admin/upload";
-$route['admin/image/(:num)'] = "image_admin/edit/$1";
-$route['api/artists'] = "api/artists";
-$route['api/galleries'] = "api/galleries";
-$route['admin'] = "admin";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

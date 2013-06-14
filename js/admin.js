@@ -86,5 +86,28 @@ DivisionAdmin = {
             }
         });
         return form;
+    },
+    ImagePicker: function() {
+        this.load = function(container,src,callback) {
+            $.ajax({
+                "url":src,
+                "dataType":"json",
+                "success":function(data) {
+                    $(container).empty().append($('<p></p>').append($('<a href="javascript:void(0)">Cancel</a>').on("click",function(){
+                        callback(null);
+                    })));
+                    if (data.length > 0) {
+                        for (var i=0; i<data.length; i++) {
+                            container.append($('<a href="javascript:void(0)" data-id="'+data[i].id+'" class="image-picker"><img src="/images/185/'+data[i].id+'.jpg" /></a>').on("click",function(){
+                                callback($(this).attr("data-id"));
+                            }));
+                        }
+                    }
+                },
+                "error":function() {
+                    callback(null);
+                }
+            });
+        }
     }
 }

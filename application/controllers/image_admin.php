@@ -41,20 +41,23 @@ class Image_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
+        $this->load->view("admin/header");
         if ($this->input->post("save")) {
             $this->load->library("form_validation");
             $this->form_validation->set_rules('width','trim|callback_float_check');
             $this->form_validation->set_rules('height','trim|callback_float_check');
             $this->form_validation->set_rules('depth','trim|callback_float_check');
             if ($this->form_validation->run() == true) {
-                // Update image
                 $this->image_model->update($image_id,$this->input->post("width"),$this->input->post("height"),$this->input->post("depth"),$this->input->post("year"),$this->input->post("artists"),$this->input->post("title"),$this->input->post("description"));
+                $this->output->append_output('<h1>Success</h1><p>Image updated</p><p><img src="/images/185/'.$image_id.'.jpg" /></p><p><a href="/admin/images">OK</a></p>');
+            } else {
+                $this->output->append_output('<h1>Error</h1><p>Error updating image. Please check that the dimensions are entered as numbers or left blank.</p><p><a href="/admin/image/'.$image_id.'">OK</a></p>');
             }
+        } else {
+            $image = $this->image_model->get($image_id);
+            $artists = $this->artist_model->get_artists();
+            $this->load->view("admin/image",array("image"=>$image,"artists"=>$artists));
         }
-        $image = $this->image_model->get($image_id);
-        $artists = $this->artist_model->get_artists();
-        $this->load->view("admin/header");
-        $this->load->view("admin/image",array("image"=>$image,"artists"=>$artists));
         $this->load->view("admin/footer");
     }
 
@@ -77,12 +80,13 @@ class Image_admin extends Admin {
                 $src_h = $src_w;
             }
         } else if ($max_width && $max_height) {
-            $original_mp = $src_w*$src_h;
-            $target_mp = $max_width*$max_height;
-            if ($original_mp > $target_mp) {
-                $height = floor(sqrt($target_mp/$whratio));
-                $width = round($height*$whratio);
+            if ($src_w/$src_h >= $max_width/$max_height) {
+                $scaleRatio = $max_width/$src_w;
+            } else {
+                $scaleRatio = $max_height/$src_h;
             }
+            $width = $src_w * $scaleRatio;
+            $height = $src_h * $scaleRatio;
         } else if ($max_width && $max_width < $src_w) {
             $width = $max_width;
             $height = round($width/$whratio);

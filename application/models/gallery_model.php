@@ -31,4 +31,17 @@ class Gallery_model extends CI_Model {
         $query = $this->db->get_where("gallery_staff",array("gallery_id"=>$gallery_id,"gallery_staff_translation.lang"=>$lang));
         return $query->result_array();
     }
+
+    public function get_spaces($gallery_ids=null) {
+        $this->db->select("space.id, space.name, gallery.id as 'gallery_id', gallery.city")
+            ->from("space")
+            ->join("gallery","gallery.id = space.gallery_id");
+        if (!empty($gallery_ids)) {
+            $this->db->where_in("gallery.id",$gallery_ids);
+        }
+        $this->db->order_by("gallery.id")
+            ->order_by("space.name");
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }

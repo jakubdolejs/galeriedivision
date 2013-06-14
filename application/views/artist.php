@@ -9,7 +9,7 @@ if (!empty($artists)) {
         }
         echo '<li>';
         if (!empty($artist["galleries"][$gallery_id]["image_id"])) {
-            echo '<div><a href="/'.$gallery_id.'/artist/'.$artist["id"].'"><img class="thumbnail" src="/images/'.$artist["galleries"][$gallery_id]["image_id"].'.jpg" alt="image" /></a></div>';
+            echo '<div><a href="/'.$gallery_id.'/artist/'.$artist["id"].'"><img class="thumbnail" src="/images/185/'.$artist["galleries"][$gallery_id]["image_id"].'.jpg" alt="image" /></a></div>';
         }
         echo '<a class="artist" href="/'.$gallery_id.'/artist/'.$artist["id"].'">'.htmlspecialchars($artist["name"]).'</a></li>';
     }
