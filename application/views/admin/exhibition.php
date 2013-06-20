@@ -7,8 +7,9 @@ $reception_start = new DateTime();
 $reception_end = new DateTime();
 $gallery_options = array();
 $selected_space = array();
-$space_options = array("0"=>"");
+$space_options = array();
 $js_spaces = array();
+$space_ids = array();
 $image_id = "";
 foreach ($spaces as $space) {
     if (!array_key_exists($space["gallery_id"],$gallery_options)) {
@@ -27,9 +28,9 @@ usort($artists,function($a,$b){
     return $a["name"] > $b["name"] ? 1 : -1;
 });
 $artist_ids = array();
-$artist_options = array("0"=>"");
+$artist_options = array();
 foreach ($artists as $artist) {
-    $artist_options[$artist["id"]] = $artist["name"];
+    $artist_options[] = array("id"=>$artist["id"],"text"=>$artist["name"]);
 }
 if (!empty($exhibition)) {
     $url = "/admin/exhibition/".$exhibition["id"];
@@ -47,25 +48,29 @@ if (!empty($exhibition)) {
     $reception_end = DateTime::createFromFormat("Y-m-d H:i:s",$exhibition["reception_end"]);
     if (!empty($exhibition["artists"])) {
         $artist_ids = array_keys($exhibition["artists"]);
-        foreach ($artist_ids as $id) {
-            unset($artist_options[$id]);
-        }
     }
     if (!empty($exhibition["image_id"])) {
         $image_id = $exhibition["image_id"];
     }
     $current_space = current($exhibition["spaces"]);
     $selected_gallery = array($current_space["gallery_id"]);
+    if (!empty($exhibition["spaces"])) {
+        foreach ($exhibition["spaces"] as $space) {
+            if ($space["gallery_id"] == $selected_gallery[0]) {
+                $space_ids[] = $space["id"];
+            }
+        }
+    }
 }
 foreach ($spaces as $space) {
     if ($space["gallery_id"] == $selected_gallery[0]) {
-        $space_options[$space["id"]] = $space["name"];
+        $space_options[] = array("id"=>$space["id"],"text"=>$space["name"]);
     }
 }
 $this->load->helper("form");
 echo form_open($url,array("method"=>"post"));
 if ($image_id) {
-    echo '<div id="image"><p><a class="pick-image" href="javascript:void(0)"><img src="/images/w440/'.$image_id.'.jpg" /></a></p><p><a class="remove-image" href="javascript:void(0)">Remove image</a></p></div>';
+    echo '<div id="image"><p><a class="pick-image" href="javascript:void(0)"><img src="/images/440x235/'.$image_id.'.jpg" /></a></p><p><a class="remove-image" href="javascript:void(0)">Remove image</a></p></div>';
 } else {
     echo '<p id="no-image"><a class="pick-image" href="javascript:void(0)">Add image</a></p>';
 }
@@ -89,25 +94,13 @@ echo '<p>'.form_label("Reception","reception_start").'<br />'.form_input("recept
 if (count($user["galleries"]) > 1) {
     echo '<p>'.form_label("Gallery","gallery_id").'<br />'.form_dropdown("gallery_id",$gallery_options,$selected_gallery).'</p>';
 }
-echo '<p>'.form_label("Space","space_ids[]").'<div id="spaces" class="multipicker">';
-if (!empty($exhibition["spaces"])) {
-    foreach ($exhibition["spaces"] as $space) {
-        if ($space["gallery_id"] == $selected_gallery[0]) {
-            echo '<div class="item" data-id="'.$space["id"].'"><span class="name">'.htmlspecialchars($space["name"]).'</span><a class="remove" data-id="'.$space["id"].'">&times;</a></div>';
-            unset($space_options[$space["id"]]);
-        }
-    }
+echo '<p>'.form_label("Space","space_ids[]").'<div id="spaces"></div></p>';
+foreach ($space_ids as $space_id) {
+    echo '<input type="hidden" name="space_ids[]" value="'.$space_id.'" />';
 }
-echo form_dropdown("space_id",$space_options).'</div></p>';
-echo '<p>'.form_label("Artists","artist_ids[]").'<div id="artists" class="multipicker">';
-if (!empty($exhibition["artists"])) {
-    foreach ($exhibition["artists"] as $id=>$name) {
-        echo '<div class="item" data-id="'.$id.'"><span class="name">'.htmlspecialchars($name).'</span><a class="remove" data-id="'.$id.'">&times;</a></div>';
-    }
-}
-echo form_dropdown("all_artists",$artist_options).'</div></p>';
+echo '<p>'.form_label("Artists","artist_ids[]").'<div id="artists"></div></p>';
 foreach ($artist_ids as $artist_id) {
-    echo form_hidden("artist_ids[]",$artist_id);
+    echo '<input type="hidden" name="artist_ids[]" value="'.$artist_id.'" />';
 }
 echo form_hidden("image_id",$image_id);
 echo '<p>'.form_submit("save","Save").'</p>';
@@ -116,87 +109,6 @@ echo form_close();
 <div id="imagePicker"></div>
 <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript">
-    function updateArtists() {
-        $("input[name='artist_ids[]']").remove();
-        $("#artists div.item").each(function(){
-            $("#artists").after('<input name="artist_ids[]" value="'+$(this).attr("data-id")+'" type="hidden" />');
-        });
-    }
-    function addArtist() {
-        var name = $(this).find("option:selected").text();
-        var id = $(this).val();
-        if (id != "0") {
-            $(this).find("option:selected").remove();
-            $(this).before($('<div class="item" data-id="'+id+'"><span class="name">'+name+'</span></div>').append($('<a class="remove" data-id="'+id+'">&times;</a>').on("click",removeArtist)));
-        }
-        $(this).val("0");
-        updateArtists();
-    }
-    function removeArtist() {
-        var id = $(this).attr("data-id");
-        var name = $(this).parents("div.item").find("span.name").text();
-        $(this).parents("div.item").remove();
-        var names = [];
-        $("select[name='all_artists'] option").each(function(){
-            names.push($(this).text());
-        });
-        names.push(name);
-        names.sort();
-        var options = $("select[name='all_artists'] option");
-        var nameAdded = false;
-        for (var i=0; i<names.length && i<options.length; i++) {
-            if (options.eq(i).text() != names[i]) {
-                options.eq(i).before($('<option></option>').attr("value",id).text(name));
-                nameAdded = true;
-                break;
-            }
-        }
-        if (!nameAdded) {
-            $("select[name='all_artists']").append($('<option></option>').attr("value",id).text(name));
-        }
-        updateArtists();
-    }
-    function updateSpaces() {
-        $("input[name='space_ids[]']").remove();
-        $("#spaces div.item").each(function(){
-            $("#spaces").after('<input name="space_ids[]" value="'+$(this).attr("data-id")+'" type="hidden" />');
-        });
-        $("select[name='space_id']").toggle($("select[name='space_id'] option").length > 1);
-    }
-    function addSpace() {
-        var name = $(this).find("option:selected").text();
-        var id = $(this).val();
-        if (id != "0") {
-            $(this).find("option:selected").remove();
-            $(this).before($('<div class="item" data-id="'+id+'"><span class="name">'+name+'</span></div>').append($('<a class="remove" data-id="'+id+'">&times;</a>').on("click",removeSpace)));
-        }
-        $(this).val("0");
-        updateSpaces();
-    }
-    function removeSpace() {
-        var id = $(this).attr("data-id");
-        var name = $(this).parents("div.item").find("span.name").text();
-        $(this).parents("div.item").remove();
-        var names = [];
-        $("select[name='space_id'] option").each(function(){
-            names.push($(this).text());
-        });
-        names.push(name);
-        names.sort();
-        var options = $("select[name='space_id'] option");
-        var nameAdded = false;
-        for (var i=0; i<names.length && i<options.length; i++) {
-            if (options.eq(i).text() != names[i]) {
-                options.eq(i).before($('<option></option>').attr("value",id).text(name));
-                nameAdded = true;
-                break;
-            }
-        }
-        if (!nameAdded) {
-            $("select[name='space_id']").append($('<option></option>').attr("value",id).text(name));
-        }
-        updateSpaces();
-    }
     <?php
     echo 'var spaces = '.json_encode($js_spaces).';';
     ?>
@@ -208,7 +120,7 @@ echo form_close();
             if (imageId) {
                 $("input[name='image_id'], #image, #no-image").remove();
                 $("form").append('<input name="image_id" type="hidden" value="'+imageId+'" />');
-                $("form").prepend('<div id="image"><p><a class="pick-image" href="javascript:void(0)"><img src="/images/w440/'+imageId+'.jpg" /></a></p><p><a class="remove-image" href="javascript:void(0)">Remove image</a></p></div>');
+                $("form").prepend('<div id="image"><p><a class="pick-image" href="javascript:void(0)"><img src="/images/440x235/'+imageId+'.jpg" /></a></p><p><a class="remove-image" href="javascript:void(0)">Remove image</a></p></div>');
                 $('a.remove-image').on("click",removeImage);
                 $('a.pick-image').on("click",addImage);
             }
@@ -221,19 +133,36 @@ echo form_close();
     $('a.remove-image').on("click",removeImage);
     $('a.pick-image').on("click",addImage);
     $("input.date").datepicker({"dateFormat":"yy-mm-dd"});
-    $("select[name='all_artists']").on("change",addArtist);
-    $("#artists div.item a.remove").on("click",removeArtist);
-    $("select[name='gallery_id']").on("change",function(){
-        $("select[name='space_id']").empty().show().append($('<option value="0"></option>'));
-        $("#spaces div.item").remove();
-        var gallery_id = $(this).val();
-        for (var i=0; i<spaces[gallery_id].length; i++) {
-            $("select[name='space_id']").append($('<option value="'+spaces[gallery_id][i].id+'"></option>').text(spaces[gallery_id][i].name));
+
+    var artistSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($artist_options); ?>,<?php echo json_encode($artist_ids); ?>);
+    artistSelector.changeCallback = function(selectedArtists){
+        $("input[name='artist_ids[]']").remove();
+        for (var i=0; i<selectedArtists.length; i++) {
+            $("#artists").after('<input name="artist_ids[]" value="'+selectedArtists[i].id+'" type="hidden" />');
         }
+    }
+    artistSelector.appendTo($("#artists"));
+
+    var spaceSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($space_options); ?>,<?php echo json_encode($space_ids); ?>);
+    spaceSelector.changeCallback = function(selectedSpaces){
+        $("input[name='space_ids[]']").remove();
+        for (var i=0; i<selectedSpaces.length; i++) {
+            $("#spaces").after('<input name="space_ids[]" value="'+selectedSpaces[i].id+'" type="hidden" />');
+        }
+    }
+    spaceSelector.appendTo($("#spaces"));
+
+    $("select[name='gallery_id']").on("change",function(){
+        $("#spaces").empty();
+        spaceSelector.remove();
+        var gallery_id = $(this).val();
+        var items = [];
+        for (var i=0; i<spaces[gallery_id].length; i++) {
+            items.push({"id":spaces[gallery_id][i].id,"text":spaces[gallery_id][i].name});
+        }
+        spaceSelector = new DivisionAdmin.MultipleItemSelector(items);
+        spaceSelector.appendTo($("#spaces"));
     });
-    $("select[name='space_id']").on("change",addSpace);
-    $("#spaces div.item a.remove").on("click",removeSpace);
-    updateSpaces();
 
     $("form").on("submit",function(){
         console.log($("form").get(0).elements);

@@ -14,7 +14,7 @@ foreach ($galleries as $gallery) {
                 }
             }
             $exhibition_images = array_unique($exhibition_images);
-            echo '<a class="feature" data-image_ids="['.join(",",$exhibition_images).']" href="/'.$gallery["id"].'/exhibitions"><img class="feature" src="/images/w440/'.$first_exhibition["image_id"].'.jpg" alt="image" /></a>';
+            echo '<a class="feature" data-image_ids="['.join(",",$exhibition_images).']" href="/'.$gallery["id"].'/exhibitions"><img class="feature" src="/images/440x235/'.$first_exhibition["image_id"].'.jpg" alt="image" /></a>';
         }
         echo '<h1><a href="/'.$gallery["id"].'/exhibitions">'.$this->lang->line($gallery["city"]).'</a></h1>';
         foreach ($exhibitions[$gallery["id"]] as $exhibition) {

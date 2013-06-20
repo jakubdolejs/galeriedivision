@@ -19,11 +19,12 @@ DivisionAdmin = {
             error: $.Callbacks(),
             abort: $.Callbacks()
         };
-        this.upload = function(files) {
+        this.upload = function(files,sizes) {
             xhr = new XMLHttpRequest();
             var fd = new FormData();
             for (var i=0; i<files.length; i++) {
                 fd.append("file["+i+"]", files[i]);
+                fd.append("crop["+i+"]", sizes[i]);
             }
             xhr.upload.addEventListener("progress", function(event) {
                 if (event.lengthComputable) {
@@ -109,5 +110,77 @@ DivisionAdmin = {
                 }
             });
         }
+    },
+    MultipleItemSelector: function(items,selectedIds) {
+        this.selectedItems = function() {
+            var selected = [];
+            element.find("div.item").each(function(){
+                selected.push({"id":$(this).attr("data-id"),"text":$(this).find("span.name").text()});
+            });
+            return selected;
+        }
+        this.changeCallback = function(){
+
+        }
+        function addItem(id) {
+            for (var i=0; i<availableItems.length; i++) {
+                if (availableItems[i].id == id) {
+                    select.before($('<div class="item" data-id="'+id+'"></div>').append($('<span class="name"></span>').text(availableItems[i].text)).append($('<a class="remove" data-id="'+id+'">&times;</a>').on("click",removeItem)));
+                    availableItems.splice(i,1);
+                    select.find("option:selected").remove();
+                    _this.changeCallback(_this.selectedItems());
+                    select.toggle(availableItems.length > 0);
+                    return;
+                }
+            }
+        }
+        function removeItem() {
+            var id = $(this).attr("data-id");
+            $("div.item[data-id='"+id+"']").remove();
+            for (var i=0; i<items.length; i++) {
+                if (items[i].id == id) {
+                    availableItems.push(items[i]);
+                    break;
+                }
+            }
+            populateSelect();
+            _this.changeCallback(_this.selectedItems());
+        }
+        function sortFunc(a,b) {
+            if (a.text == b.text) {
+                return 0;
+            } else {
+                return a.text > b.text ? 1 : -1;
+            }
+        }
+        function populateSelect() {
+            select.empty().append('<option value=""></option>');
+            availableItems.sort(sortFunc);
+            for (var i=0; i<availableItems.length; i++) {
+                select.append($('<option value="'+availableItems[i].id+'"></option>').text(availableItems[i].text));
+            }
+            select.toggle(availableItems.length > 0);
+        }
+        this.appendTo = function(elmt) {
+            elmt.append(element);
+        }
+        this.remove = function() {
+            element.remove();
+        }
+        var _this = this;
+        var element = $('<div id="artists" class="multipicker"></div>');
+        var select = $('<select></select>').on("change",function(){
+            if ($(this).val()) {
+                addItem($(this).val());
+            }
+        });
+        element.append(select);
+        var availableItems = items.slice();
+        for (var i=0; i<items.length; i++) {
+            if ($.type(selectedIds) === "array" && selectedIds.indexOf(items[i].id) > -1) {
+                addItem(items[i].id);
+            }
+        }
+        populateSelect();
     }
 }

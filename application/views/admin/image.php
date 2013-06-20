@@ -13,13 +13,13 @@ echo form_fieldset_close().'</p>';
 echo '<p>'.form_label("Year","year").'<br />'.form_input("year",$image["creation_year"]).'</p>';
 $options = array();
 foreach ($artists as $artist) {
-    $options[$artist["id"]] = $artist["name"];
+    $options[] = array("id"=>$artist["id"],"text"=>$artist["name"]);
 }
 $selected = array();
 if (!empty($image["artists"])) {
     $selected = array_keys($image["artists"]);
 }
-echo '<p>'.form_label("Artist(s)","artists[]").'<br />'.form_multiselect("artists[]",$options,$selected).'</p>';
+echo '<p>'.form_label("Artist(s)","artists[]").'<div id="artists"></div></p>';
 echo '<p>'.form_fieldset("Title");
 echo '<p>'.form_label("English","title[en]").'<br />'.form_input("title[en]",@$image["title"]["en"],'lang="en"').'</p>';
 echo '<p>'.form_label("French","title[fr]").'<br />'.form_input("title[fr]",@$image["title"]["fr"],'lang="fr"').'</p>';
@@ -44,5 +44,13 @@ echo form_close();
             otherField.val($(this).val());
         }
     });
+    var artistSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($options); ?>,<?php echo json_encode($selected); ?>);
+    artistSelector.changeCallback = function(selectedArtists) {
+        $("input[name='artists[]']").remove();
+        for (var i=0; i<selectedArtists.length; i++) {
+            $('<input type="hidden" name="artists[]" value="'+selectedArtists[i].id+'" />').appendTo($("#artists"));
+        }
+    }
+    artistSelector.appendTo($("#artists"));
     //]]>
 </script>

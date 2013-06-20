@@ -7,13 +7,13 @@ echo '<div class="exhibitions">';
 if (!empty($current)) {
     echo '<h1>'.$this->lang->line("Current Exhibitions").'</h1>';
     foreach ($current as $exhibition) {
-        $this->load->view("exhibition_listing",array("exhibition"=>$exhibition,"image_size"=>"w900"));
+        $this->load->view("exhibition_listing",array("exhibition"=>$exhibition,"image_size"=>"900x480"));
     }
 }
 if (!empty($upcoming)) {
     echo '<h1>'.$this->lang->line("Upcoming Exhibitions").'</h1>';
     foreach ($upcoming as $exhibition) {
-        $this->load->view("exhibition_listing",array("exhibition"=>$exhibition,"image_size"=>"w900"));
+        $this->load->view("exhibition_listing",array("exhibition"=>$exhibition,"image_size"=>"900x480"));
     }
 }
 if (!empty($past)) {

@@ -242,22 +242,43 @@ class Image_admin extends Admin {
                 }
 
                 $target = imagecreatetruecolor($w,$h);
+                $scale = $w/$src_w;
                 if ($w != $src_w) {
                     imagecopyresampled($target, $original, 0, 0, $src_x, $src_y, $w, $h, $src_w, $src_h);
                 } else {
                     imagecopy($target, $original, 0, 0, $src_x, $src_y, $w, $h);
                 }
-                imagedestroy($original);
+
                 if ($rotation != 0) {
                     $target = imagerotate($target, $rotation, 0);
+                    $original = imagerotate($original,$rotation,0);
                 }
                 $large_file = $images_dir."/2mp/".$image_id.".jpg";
                 imagejpeg($target, $large_file, 90);
                 imagedestroy($target);
 
+                if ($this->input->post("crop")) {
+                    $crop = $this->input->post("crop",true);
+                    $crop = $crop[$i];
+                    if (is_string($crop)) {
+                        $crop = explode(",",$crop);
+                    }
+
+                    $w400h235 = imagecreatetruecolor(440,235);
+                    imagecopyresampled($w400h235, $original, 0, 0, $crop[0], $crop[1], 440, 235, $crop[2], $crop[3]);
+                    imagejpeg($w400h235, $images_dir."/440x235/".$image_id.".jpg");
+                    imagedestroy($w400h235);
+
+                    $w900h480 = imagecreatetruecolor(900,480);
+                    imagecopyresampled($w900h480, $original, 0, 0, $crop[0], $crop[1], 900, 480, $crop[2], $crop[3]);
+                    imagejpeg($w900h480, $images_dir."/900x480/".$image_id.".jpg");
+                    imagedestroy($w900h480);
+                }
+                imagedestroy($original);
+
                 $files = array(
-                    $images_dir."/w900/".$image_id.".jpg"=>array(900,null),
-                    $images_dir."/w440/".$image_id.".jpg"=>array(440,null),
+                    /*$images_dir."/w900/".$image_id.".jpg"=>array(900,null),
+                    $images_dir."/w440/".$image_id.".jpg"=>array(440,null),*/
                     $images_dir."/185/".$image_id.".jpg"=>array(185,185)
                 );
 

@@ -18,7 +18,7 @@
                 var currentIndex = 0;
                 var images = [];
                 for (var i=0; i<$(this).data("image_ids").length; i++) {
-                    images.push("/images/w440/"+$(this).data("image_ids")[i]+".jpg");
+                    images.push("/images/440x235/"+$(this).data("image_ids")[i]+".jpg");
                 }
                 var link = $(this);
                 rotateIntervals.push(setInterval(function(){

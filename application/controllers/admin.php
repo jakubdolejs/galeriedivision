@@ -23,7 +23,7 @@ class Admin extends CI_Controller {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $this->load->view("admin/home",array("user"=>$user));
         $this->load->view("admin/footer");
     }
@@ -31,7 +31,17 @@ class Admin extends CI_Controller {
     public function login() {
         if ($this->input->post("email") && $this->input->post("password")) {
             $user = $this->admin_login_model->get_user_by_email($this->input->post("email",true));
-            if (!$user || !bcrypt_check($this->input->post("password"),$user["password_checksum"])) {
+            if (!$user) {
+                $this->output_login_error();
+                return;
+            }
+            if (!$user["password_checksum"]) {
+                $this->load->view("header");
+                $this->output->append_output('<h1>Error</h1><p>The password on your account has not yet been set. Please follow the link sent to you by email to set your password.</p>');
+                $this->load->view("footer");
+                return;
+            }
+            if (!bcrypt_check($this->input->post("password"),$user["password_checksum"])) {
                 $this->output_login_error();
                 return;
             }
