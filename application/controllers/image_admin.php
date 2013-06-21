@@ -24,6 +24,7 @@ class Image_admin extends Admin {
         }
         $this->load->view("admin/header",array("user"=>$user));
         $images = $this->image_model->get_list();
+        $this->output->append_output('<h1>Images</h1>');
         $this->load->view("admin/image_upload",array("images"=>$images));
         $this->load->view("admin/footer");
     }

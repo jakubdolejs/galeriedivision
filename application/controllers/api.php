@@ -8,6 +8,7 @@ require_once "admin.php";
  * @property Gallery_model $gallery_model
  * @property Image_model $image_model
  * @property Exhibition_model $exhibition_model
+ * @property Staff_model $staff_model
  */
 
 class Api extends Admin {
@@ -18,6 +19,7 @@ class Api extends Admin {
         $this->load->model("gallery_model");
         $this->load->model("image_model");
         $this->load->model("exhibition_model");
+        $this->load->model("staff_model");
     }
 
     public function artists() {
@@ -63,7 +65,6 @@ class Api extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
         $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         reset($exhibition["spaces"]);
         $exhibition_gallery_id = current($exhibition["spaces"]);
@@ -77,6 +78,22 @@ class Api extends Admin {
             $updated = $this->image_model->set_exhibition_images($exhibition_id,$images);
             $this->load->view("json",array("data"=>$updated));
         }
+    }
+
+    public function order_staff() {
+        $user = $this->get_logged_in_user();
+        if (!$user) {
+            redirect(site_url("/admin/login"));
+            return;
+        }
+        $priority = $this->input->post("priority",true);
+        if ($priority && !empty($priority)) {
+            if ($this->staff_model->reorder($priority)) {
+                $this->load->view("json",array("data"=>true));
+                return;
+            }
+        }
+        $this->output_error("Error setting order of staff.");
     }
 
     protected function output_login_error() {

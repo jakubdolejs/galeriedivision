@@ -1,5 +1,8 @@
 <?php
 $this->load->helper("form");
+if (!empty($user) && $logged_in_user["id"] == $user["id"]) {
+    echo '<h1>My Account</h1>';
+}
 if ($logged_in_user["superuser"]) {
     echo form_open(empty($user) ? "/admin/user/add" : "/admin/user/edit",array("method"=>"post"));
     echo '<p>'.form_label("Email","id").'<br /><input name="id" type="email" value="'.(!empty($user) ? $user["id"] : "").'" /></p>';
