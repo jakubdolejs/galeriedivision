@@ -57,7 +57,7 @@ if (!empty($images)) {
         return false;
     });
     $("#cancelBtn").on("click",function(){
-        $('.imagePreview').remove();
+        $('.imagePreview, .warning').remove();
         $("#uploadBtn").attr("disabled","disabled");
         $("input[name='file'], #imageList").show();
         $(this).hide();
@@ -78,7 +78,7 @@ if (!empty($images)) {
                             var reader = new FileReader();
                             reader.onload = (function(theFile) {
                                 return function(e) {
-                                    $('.imagePreview').remove();
+                                    $('.imagePreview, .warning').remove();
                                     var img = $('<img style="position:absolute" />');
                                     img.on("load",function(){
                                         $(this).off("load");
@@ -127,8 +127,10 @@ if (!empty($images)) {
                                             }
                                         }
                                         if (originalWidth < 900) {
-                                            $('.imagePreview').remove();
-                                            $('#uploadForm').prepend("<p>The image is too small. Please make sure it's at least 900 pixels wide.</p>");
+                                            $('.imagePreview, .warning').remove();
+                                            $('#uploadForm').prepend('<p class="warning">The image is too small. Please make sure it\'s at least 900 pixels wide.</p>');
+                                            $("#cancelBtn").hide();
+                                            $("input[type='file']").show();
                                         } else {
                                             var imageRatio = originalWidth/originalHeight;
                                             var cropRatio = cropWidth/cropHeight;
@@ -165,12 +167,10 @@ if (!empty($images)) {
                                             $("#croppedImage div").css(imgContainerSize);
                                             $("#croppedImage").css({"overflow":"hidden"});
                                             crop = [Math.round((w-cropWidth-canvas.position().left)/scale),Math.round((h-cropHeight-canvas.position().top)/scale),Math.round(cropWidth/scale),Math.round(cropHeight/scale)];
-                                            $('<input type="hidden" name="crop[440x235]" value="'+canvas.position().left+','+canvas.position().top+'" />').appendTo($("body"));
-                                            $('<input type="hidden" name="scale[440x235]" value="'+scale+'" />').appendTo($("body"));
                                             $("#uploadBtn").removeAttr("disabled");
                                         }
                                     });
-                                    $('.imagePreview').remove();
+                                    $('.imagePreview, .warning').remove();
                                     $("#uploadForm").before('<p class="imagePreview"></p>');
                                     $("p.imagePreview").append('<p>Adjust image cropping for exhibition pages</p>').append('<div style="width:440px;height:235px;position:relative;oveflow:hidden" id="croppedImage"><div style="position:absolute"></div></div>');
                                     var canvas = $('<canvas></canvas>');
