@@ -18,6 +18,7 @@
                     <?php if (!empty($user) && $user["superuser"]): ?>
                         <li><a href="/admin/users">Users</a></li>
                     <?php endif; ?>
+                    <li><a href="/admin/logout">Log out</a></li>
                 </ul>
             </nav>
             <div id="content">

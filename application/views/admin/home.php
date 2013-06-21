@@ -1,11 +1,7 @@
 <h1>Welcome</h1>
-<ul>
-    <li><a href="/admin/exhibitions">Exhibitions</a></li>
-    <li><a href="/admin/artists">Artists</a></li>
-    <li><a href="/admin/images">Images</a></li>
-    <li><a href="/admin/news">News</a></li>
-    <?php if (!empty($user) && $user["superuser"]): ?>
-    <li><a href="/admin/staff">Staff</a></li>
-    <li><a href="/admin/users">Users</a></li>
-    <?php endif; ?>
-</ul>
+<p><a href="/admin/exhibition/create">Add an exhibition</a></p>
+<p><a href="/admin/artists">View and add artists</a></p>
+<p><a href="/admin/images">Upload images</a></p>
+<?php if (!empty($user) && $user["superuser"]): ?>
+<p><a href="/admin/users">Manage users</a></p>
+<?php endif; ?>
