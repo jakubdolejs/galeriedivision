@@ -91,10 +91,10 @@ class Exhibition_model extends CI_Model {
             }
         }
         foreach ($exhibitions as $id=>$exhibition) {
-            $exhibitions[$id]["title"] = count(array_unique($exhibition["titles"])) == 1 ? current($exhibition["titles"]) : join("/",$exhibition["titles"]);
+            $exhibitions[$id]["title"] = join("/",array_unique($exhibition["titles"]));
             if (strlen($exhibitions[$id]["title"]) == 0) {
                 $exhibitions[$id]["title"] = join(", ",$exhibition["artists"]);
-            } else if (count($exhibition["artists"]) < 3) {
+            } else if (count($exhibition["artists"]) < 3 && !empty($exhibition["artists"])) {
                 $exhibitions[$id]["title"] = join(" and ",$exhibition["artists"]).": ".$exhibitions[$id]["title"];
             }
         }

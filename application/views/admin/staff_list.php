@@ -2,7 +2,7 @@
 if (!empty($staff)) {
     echo '<table class="listing"><tbody>';
     foreach ($staff as $person) {
-        $title = count(array_unique($person["title"])) > 1 ? join("/",$person["title"]) : current($person["title"]);
+        $title = join("/",array_unique($person["title"]));
         echo '<tr data-id="'.$person["id"].'" data-gallery_id="'.$person["gallery"]["id"].'"><td><a href="/admin/staff/'.$person["id"].'">'.$person["name"].' – '.$title.' ('.$person["gallery"]["city"].')</a></td>';
         echo '<td><a class="deleteLink button" href="/admin/staff/'.$person["id"].'/delete">delete</a></td>';
         echo '</tr>';
