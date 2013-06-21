@@ -130,6 +130,7 @@ class Exhibition_model extends CI_Model {
                     );
                 }
                 $exhibition["title"][$row["lang"]] = $row["title"];
+                $exhibition["text"][$row["lang"]] = $row["text"];
                 $exhibition["artists"][$row["artist_id"]] = $row["artist_name"];
                 $exhibition["spaces"][$row["space_id"]] = array(
                     "id"=>$row["space_id"],

@@ -76,11 +76,11 @@ if ($image_id) {
 }
 echo form_fieldset("French");
 echo '<p>'.form_label("Title","title[fr]").'<br />'.form_input("title[fr]",$title["fr"]).'</p>';
-echo '<p>'.form_label("Text","text[fr]").'<br />'.form_textarea("text[fr]",$text["fr"]).'</p>';
+echo '<p>'.form_label("Text","text[fr]").'<br />'.form_textarea("text[fr]",$text["fr"],'class="translation"').'</p>';
 echo form_fieldset_close();
 echo form_fieldset("English");
 echo '<p>'.form_label("Title","title[en]").'<br />'.form_input("title[en]",$title["en"]).'</p>';
-echo '<p>'.form_label("Text","text[en]").'<br />'.form_textarea("text[en]",$text["en"]).'</p>';
+echo '<p>'.form_label("Text","text[en]").'<br />'.form_textarea("text[en]",$text["en"],'class="translation"').'</p>';
 echo form_fieldset_close();
 echo '<p>'.form_label("Start date","start_date").'<br />'.form_input("start_date",$start_date->format("Y-m-d"),'class="date"').'</p>';
 echo '<p>'.form_label("End date","end_date").'<br />'.form_input("end_date",$end_date->format("Y-m-d"),'class="date"').'</p>';
@@ -107,8 +107,17 @@ echo '<p>'.form_submit("save","Save").'</p>';
 echo form_close();
 ?>
 <div id="imagePicker"></div>
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript">
+    tinymce.init({
+        selector: "textarea.translation",
+        valid_elements: "a[href|target=_blank],strong/b,em/i,p",
+        menubar: false,
+        plugins: "link autolink",
+        toolbar: "bold italic link unlink",
+        statusbar: false
+    });
     <?php
     echo 'var spaces = '.json_encode($js_spaces).';';
     ?>
