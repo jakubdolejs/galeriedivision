@@ -68,6 +68,24 @@ class Admin extends CI_Controller {
         $this->load->view("admin/footer");
     }
 
+    public function appcache() {
+        header("Content-Type: text/cache-manifest");
+        header("Cache-Control: no-cache");
+        echo "CACHE MANIFEST
+
+#rev ".$this->config->item("svn_revision")."
+
+CACHE:
+/fonts/CALIBRIL.TTF
+/fonts/CALIBRILI.TTF
+
+NETWORK:
+/login
+*.*
+*
+";
+    }
+
     private function delete_access() {
         $this->input->set_cookie(array(
             "name"=>self::ACCESS_TOKEN_COOKIE_NAME,

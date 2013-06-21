@@ -1,9 +1,9 @@
 <?php
 if (!empty($exhibitions)) {
-    echo '<table><tbody>';
+    echo '<table class="listing"><tbody>';
     foreach ($exhibitions as $exhibition) {
         if ($user["superuser"] || in_array($exhibition["gallery_id"],$user["galleries"])) {
-            echo '<tr><td><a href="/admin/exhibition/'.$exhibition["id"].'">'.$exhibition["title"].'</a></td><td><a href="/admin/exhibition/'.$exhibition["id"].'/images">images</a></td><td><a class="deleteLink" href="/admin/exhibition/'.$exhibition["id"].'/delete">delete</a></td></tr>';
+            echo '<tr><td><a href="/admin/exhibition/'.$exhibition["id"].'">'.$exhibition["title"].'</a></td><td><a class="button" href="/admin/exhibition/'.$exhibition["id"].'/images">images</a></td><td><a class="deleteLink button" href="/admin/exhibition/'.$exhibition["id"].'/delete">delete</a></td></tr>';
         }
     }
     echo '</tbody></table>';

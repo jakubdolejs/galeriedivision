@@ -30,7 +30,7 @@ class User_admin extends Admin {
             return;
         }
         $users = $this->admin_login_model->get_all_users();
-        $this->output->append_output('<p><a href="/admin/user/add">Add user</a></p><h1>Users</h1>');
+        $this->output->append_output('<h1>Users</h1><p><a class="button" href="/admin/user/add">Add user</a></p>');
         $this->load->view("admin/user_list",array("users"=>$users,"user"=>$user));
         $this->load->view("admin/footer.php");
     }
@@ -57,7 +57,7 @@ class User_admin extends Admin {
                     $link = site_url("/admin/user/password/".md5($user_id));
                     $msg = "An account has been created for you by the system administrator. Please go to ".$link." to set a password.";
                     mail($user_id,"Your new galeriedivision.com account",$msg);
-                    $this->output->append_output('<h1>Success</h1><p>Created account for '.$user_id.'.</p><p>An email has been sent to the user with instructions on setting the password.</p><p><a href="/admin/users">Ok</a></p>');
+                    $this->output->append_output('<h1>Success</h1><p>Created account for '.$user_id.'.</p><p>An email has been sent to the user with instructions on setting the password.</p><p><a class="button" href="/admin/users">OK</a></p>');
                 } else {
                     $this->output->append_output('<h1>Error</h1><p>Error creating an account for '.$user_id.'. The user may already exist.</p>');
                 }
@@ -97,7 +97,7 @@ class User_admin extends Admin {
                 return;
             }
             $this->admin_login_model->edit_user($this->input->post("id",true),$this->input->post("gallery_ids",true),$this->input->post("superuser",true));
-            $this->output->append_output('<h1>Success</h1><p>'.$user_id.'\'s record has been updated.</p><p><a href="/admin/users">Ok</a></p>');
+            $this->output->append_output('<h1>Success</h1><p>'.$user_id.'\'s record has been updated.</p><p><a class="button" href="/admin/users">OK</a></p>');
         } else {
             $galleries = $this->gallery_model->get_galleries();
             $params = array("user"=>$edited_user,"logged_in_user"=>$user,"galleries"=>array());
@@ -208,7 +208,7 @@ class User_admin extends Admin {
             return;
         }
         $name = $this->artist_model->get_name($artist_id);
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         if (!$this->artist_model->is_deletable_by_user($artist_id,$user)) {
             $this->output->append_output('<h1>Error</h1><p>The artist '.$name.' cannot be deleted. There may be exhibitions, news or images associated with the artist. Please delete them first before attempting to delete the artist.</p>');
         } else {
@@ -218,7 +218,7 @@ class User_admin extends Admin {
                 $this->output->append_output('<h1>Error</h1><p>We were unable to delete the artist '.$name.' at this time.</p>');
             }
         }
-        $this->output->append_output('<p><a href="/admin/artists">OK</a></p>');
+        $this->output->append_output('<p><a class="button" href="/admin/artists">OK</a></p>');
         $this->load->view("admin/footer.php");
     }
 
@@ -228,7 +228,7 @@ class User_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         if ($gallery_id) {
             $gallery_images = $this->image_model->get_artist_images($artist_id,$gallery_id);
             $all_images = $this->image_model->get_artist_images($artist_id);

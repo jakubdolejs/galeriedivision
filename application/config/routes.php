@@ -73,6 +73,7 @@ $route['(:any)/artists'] = "artist/index/$1";
 $route['(:any)/artist/(:any)'] = "artist/view/$1";
 $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
+$route['admin/manifest.appcache'] = "admin/appcache";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

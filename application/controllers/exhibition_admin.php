@@ -26,7 +26,7 @@ class Exhibition_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
 
         if ($this->input->post("save")) {
             if (!$this->exhibition_model->update(null,$this->input->post(null,true),$error)) {
@@ -35,17 +35,17 @@ class Exhibition_admin extends Admin {
                     $this->output->append_output("<p>".$error."</p>");
                 }
             } else {
-                $this->output->append_output('<h1>Success</h1><p>Exhibition added.</p><p><a href="/admin/exhibitions">OK</a></p>');
+                $this->output->append_output('<h1>Success</h1><p>Exhibition added.</p><p><a class="button" href="/admin/exhibitions">OK</a></p>');
             }
         } else {
-            $this->output->append_output('<p><a href="/admin/exhibition/create">Add exhibition</a></p>');
             $exhibitions = $this->exhibition_model->get_all_exhibitions($year);
             $years = $this->exhibition_model->get_years($user["superuser"] ? null : $user["galleries"]);
             if ($year) {
                 $this->output->append_output('<h1>'.$year.' Exhibitions</h1>');
             } else {
-                $this->output->append_output('<h1>Recent Exhibitions</h1>');
+                $this->output->append_output('<h1>Exhibitions</h1>');
             }
+            $this->output->append_output('<p><a class="button" href="/admin/exhibition/create">Add an exhibition</a></p>');
             $this->load->view("admin/exhibition_list",array("exhibitions"=>$exhibitions,"years"=>$years,"user"=>$user));
         }
         $this->load->view("admin/footer.php");
@@ -57,7 +57,7 @@ class Exhibition_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         reset($exhibition["spaces"]);
         $exhibition_gallery_id = current($exhibition["spaces"]);
@@ -79,7 +79,7 @@ class Exhibition_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $spaces = $this->gallery_model->get_spaces($user["superuser"] ? null : $user["galleries"]);
         $artists = $this->artist_model->get_artists();
         $this->load->view("admin/exhibition",array("spaces"=>$spaces,"artists"=>$artists,"user"=>$user));
@@ -92,7 +92,7 @@ class Exhibition_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         reset($exhibition["spaces"]);
         $exhibition_gallery_id = current($exhibition["spaces"]);
@@ -107,7 +107,7 @@ class Exhibition_admin extends Admin {
                         $this->output->append_output("<p>".$error."</p>");
                     }
                 } else {
-                    $this->output->append_output('<h1>Success</h1><p>Exhibition saved.</p><p><a href="/admin/exhibitions">OK</a></p>');
+                    $this->output->append_output('<h1>Success</h1><p>Exhibition saved.</p><p><a class="button" href="/admin/exhibitions">OK</a></p>');
                 }
             } else {
                 $spaces = $this->gallery_model->get_spaces($user["superuser"] ? null : $user["galleries"]);
@@ -124,7 +124,7 @@ class Exhibition_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         reset($exhibition["spaces"]);
         $exhibition_gallery_id = current($exhibition["spaces"]);
@@ -135,7 +135,7 @@ class Exhibition_admin extends Admin {
             if (!$this->exhibition_model->delete($exhibition_id)) {
                 $this->output->append_output("<h1>Error</h1><p>Error deleting exhibition.</p>");
             } else {
-                $this->output->append_output('<h1>Success</h1><p>Exhibition deleted.</p><p><a href="/admin/exhibitions">OK</a></p>');
+                $this->output->append_output('<h1>Success</h1><p>Exhibition deleted.</p><p><a class="button" href="/admin/exhibitions">OK</a></p>');
             }
         }
     }

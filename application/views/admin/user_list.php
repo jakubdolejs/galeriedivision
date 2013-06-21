@@ -1,10 +1,10 @@
 <?php
 if (!empty($users)) {
-    echo '<table><tbody>';
+    echo '<table class="listing"><tbody>';
     foreach ($users as $usr) {
         echo '<tr><td><form action="/admin/user/edit" method="post"><input type="hidden" name="id" value="'.$usr["id"].'" /><a href="javascript:void(0);" class="editLink">'.$usr["id"].'</a></form></td>';
         if (!$usr["superuser"]) {
-            echo '<td><form action="/admin/user/delete" method="post"><input type="hidden" name="id" value="'.$usr["id"].'" /><a class="deleteLink" href="javascript:void(0)">delete</a></form></td>';
+            echo '<td><form action="/admin/user/delete" method="post"><input type="hidden" name="id" value="'.$usr["id"].'" /><a class="button deleteLink" href="javascript:void(0)">delete</a></form></td>';
         } else {
             echo '<td></td>';
         }

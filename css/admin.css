@@ -1,3 +1,45 @@
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRIL.TTF');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Calibri";
+    src: url('/fonts/CALIBRILI.TTF');
+    font-weight: 200;
+    font-style: italic;
+}
+html * {
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
+}
+body {
+    margin: 10px 30px;
+}
+a {
+    color: #000;
+}
+input, select {
+    font-size: 16px;
+}
+button, input[type='submit'] {
+    font-size: 20px;
+    background-color: #999;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+button:hover, input[type='submit']:hover {
+    background-color: #666;
+}
+button[disabled], input[type='submit'][disabled] {
+    background-color: #ccc;
+}
 ul.thumbnails {
     list-style-type: none;
     padding: 0;
@@ -28,18 +70,61 @@ ul.thumbnails li {
     margin-left: 220px;
 }
 div.multipicker {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
 }
 div.multipicker div.item {
     padding: 2px 4px;
-    background-color: #2b81af;
+    background-color: #999;
     display: inline-block;
     margin-right: 5px;
     color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 div.multipicker div.item a.remove {
     margin-left: 5px;
-    background-color: #000;
+    background-color: #333;
     padding: 0px 3px;
     cursor: pointer;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+table.listing {
+    border-collapse: collapse;
+    width: 100%;
+}
+table.listing td:first-child {
+    width: 100%;
+}
+table.listing td {
+    padding: 6px;
+    white-space: nowrap;
+}
+table.listing tbody tr:nth-child(odd) td {
+    background-color: #eee;
+}
+a.button {
+    background-color: #999;
+    color: #fff;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+a.button:hover {
+    background-color: #666;
+}
+table.listing td a.button {
+    font-size: 13px;
+}
+table.listing tbody tr:hover td {
+    background-color: #ccc;
+}
+fieldset {
+    border: 1px solid #ddd;
+    margin: 20px 0;
 }

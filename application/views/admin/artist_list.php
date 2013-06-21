@@ -6,7 +6,7 @@ if (!empty($artists)) {
         }
         return $a["name"] > $b["name"] ? 1 : -1;
     });
-    echo '<table><tbody>';
+    echo '<table class="listing"><tbody>';
     foreach ($artists as $artist) {
         echo '<tr><td><a href="/admin/artist/'.$artist["id"].'">'.$artist["name"].'</a></td>';
         if (!empty($artist["galleries"]) && !$user["superuser"]) {
@@ -17,7 +17,7 @@ if (!empty($artists)) {
                 }
             }
         }
-        echo '<td><a class="deleteLink" href="/admin/artist/'.$artist["id"].'/delete">delete</a></td>';
+        echo '<td><a class="deleteLink button" href="/admin/artist/'.$artist["id"].'/delete">delete</a></td>';
         echo '</tr>';
     }
     echo '</tbody></table>';

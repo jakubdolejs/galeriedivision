@@ -24,16 +24,19 @@ class Artist_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         if ($this->input->post("name")) {
             $name = $this->input->post("name",true);
-            if (!$this->artist_model->add($name)) {
+            $id = $this->artist_model->add($name);
+            if (!$id) {
                 $this->output->append_output('<script type="text/javascript">alert("Error adding '.$name.'");</script>');
+            } else {
+                $this->output->append_output('<script type="text/javascript">location.href="/admin/artist/'.$id.'";</script>');
             }
         }
         $artists = $this->artist_model->get_artists();
-        $this->load->view("admin/artist_add");
         $this->output->append_output('<h1>Artists</h1>');
+        $this->load->view("admin/artist_add");
         $this->load->view("admin/artist_list",array("artists"=>$artists,"user"=>$user));
         $this->load->view("admin/footer.php");
     }
@@ -44,7 +47,7 @@ class Artist_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         $artist = $this->artist_model->get_artist($artist_id);
         if ($this->input->post("save")) {
             $name = $this->input->post("name",true);
@@ -59,7 +62,7 @@ class Artist_admin extends Admin {
                 $image = !empty($image_id[$id]) ? $image_id[$id] : null;
                 $this->artist_model->update_gallery_info($artist_id,$id,!empty($listed[$id]),!empty($represented[$id]),$image);
             }
-            $this->output->append_output('<h1>Success</h1><p>'.$name.'\'s record has been updated.</p><p><a href="/admin/artists">Ok</a></p>');
+            $this->output->append_output('<h1>Success</h1><p>'.$name.'\'s record has been updated.</p><p><a class="button" href="/admin/artists">OK</a></p>');
         } else {
             $images = $this->image_model->get_artist_images($artist_id);
             $this->load->view("admin/artist",array("artist"=>$artist,"user"=>$user,"images"=>$images));
@@ -74,7 +77,7 @@ class Artist_admin extends Admin {
             return;
         }
         $name = $this->artist_model->get_name($artist_id);
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         if (!$this->artist_model->is_deletable_by_user($artist_id,$user)) {
             $this->output->append_output('<h1>Error</h1><p>The artist '.$name.' cannot be deleted. There may be exhibitions, news or images associated with the artist. Please delete them first before attempting to delete the artist.</p>');
         } else {
@@ -84,7 +87,7 @@ class Artist_admin extends Admin {
                 $this->output->append_output('<h1>Error</h1><p>We were unable to delete the artist '.$name.' at this time.</p>');
             }
         }
-        $this->output->append_output('<p><a href="/admin/artists">OK</a></p>');
+        $this->output->append_output('<p><a class="button" href="/admin/artists">OK</a></p>');
         $this->load->view("admin/footer.php");
     }
 
@@ -94,7 +97,7 @@ class Artist_admin extends Admin {
             redirect(site_url("/admin/login"));
             return;
         }
-        $this->load->view("admin/header");
+        $this->load->view("admin/header",array("user"=>$user));
         if ($gallery_id) {
             $gallery_images = $this->image_model->get_artist_images($artist_id,$gallery_id);
             $all_images = $this->image_model->get_artist_images($artist_id);
