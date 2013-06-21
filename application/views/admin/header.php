@@ -11,15 +11,15 @@
         <body>
             <nav id="menu">
                 <ul>
-                    <li><a href="/admin/user/edit">My account</a></li>
+                    <li><a href="/admin/user/edit">My Account</a></li>
                     <li><a href="/admin/exhibitions">Exhibitions</a></li>
                     <li><a href="/admin/artists">Artists</a></li>
                     <li><a href="/admin/images">Images</a></li>
-                    <li><a href="/admin/staff">Gallery staff</a></li>
+                    <li><a href="/admin/staff">Gallery Staff</a></li>
                     <?php if (!empty($user) && $user["superuser"]): ?>
                         <li><a href="/admin/users">Users</a></li>
                     <?php endif; ?>
-                    <li><a href="/admin/logout">Log out</a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
                 </ul>
             </nav>
             <div id="content">

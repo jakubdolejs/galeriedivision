@@ -90,6 +90,7 @@ div.multipicker div.item a.remove {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
+    color: #fff;
 }
 table.listing {
     border-collapse: collapse;

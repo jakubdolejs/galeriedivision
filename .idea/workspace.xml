@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/admin/staff.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/staff_admin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/admin/staff_list.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/staff_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/api.php" afterPath="$PROJECT_DIR$/application/controllers/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/admin.css" afterPath="$PROJECT_DIR$/css/admin.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/header.php" afterPath="$PROJECT_DIR$/application/views/admin/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/image_admin.php" afterPath="$PROJECT_DIR$/application/controllers/image_admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/user.php" afterPath="$PROJECT_DIR$/application/views/admin/user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +31,7 @@
     <file path="/admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371806489643" ignored="false" />
     <file path="/admin_login_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371732126680" ignored="false" />
     <file path="/007_add_access_token.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368553563756" ignored="false" />
-    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371823001048" ignored="false" />
+    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371823559579" ignored="false" />
     <file path="/login.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368518545021" ignored="false" />
     <file path="/javascript_redirect.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368523387986" ignored="false" />
     <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371823070451" ignored="false" />
@@ -51,7 +43,7 @@
     <file path="/api.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371822864069" ignored="false" />
     <file path="/artist_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371054114120" ignored="false" />
     <file path="/image_list.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1370611113166" ignored="false" />
-    <file path="/admin.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371813497927" ignored="false" />
+    <file path="/admin.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371823521678" ignored="false" />
     <file path="/*.regexp" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1369054939139" ignored="false" />
     <file path="/a.dummy" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1371821651487" ignored="false" />
     <file path="$PROJECT_DIR$/../../sync-audio.com/application/views/upload.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1370457250299" ignored="false" />
@@ -106,10 +98,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="user.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/user.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="18" selection-start="114" selection-end="114" vertical-scroll-proportion="0.08737864">
+            <state line="3" column="18" selection-start="114" selection-end="114" vertical-scroll-proportion="-1.875">
               <folding />
             </state>
           </provider>
@@ -118,7 +110,7 @@
       <file leaf-file-name="staff_admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/staff_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="2190" selection-end="2190" vertical-scroll-proportion="-16.25">
+            <state line="53" column="0" selection-start="2190" selection-end="2190" vertical-scroll-proportion="-25.0">
               <folding />
             </state>
           </provider>
@@ -133,10 +125,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exhibition_images.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/exhibition_images.php">
+      <file leaf-file-name="admin.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="9.916667">
+            <state line="92" column="16" selection-start="1793" selection-end="1793" vertical-scroll-proportion="0.8274021">
               <folding />
             </state>
           </provider>
@@ -175,7 +167,7 @@
       <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="45" selection-start="929" selection-end="929" vertical-scroll-proportion="-10.625">
+            <state line="21" column="52" selection-start="1179" selection-end="1179" vertical-scroll-proportion="-13.125">
               <folding />
             </state>
           </provider>
@@ -208,7 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/css/admin.css" />
         <option value="$PROJECT_DIR$/application/views/admin/user_list.php" />
         <option value="$PROJECT_DIR$/application/controllers/artist_admin.php" />
         <option value="$PROJECT_DIR$/application/controllers/exhibition_admin.php" />
@@ -221,9 +212,10 @@
         <option value="$PROJECT_DIR$/application/models/staff_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/api.php" />
         <option value="$PROJECT_DIR$/application/views/admin/staff_list.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/header.php" />
         <option value="$PROJECT_DIR$/application/controllers/image_admin.php" />
         <option value="$PROJECT_DIR$/application/views/admin/user.php" />
+        <option value="$PROJECT_DIR$/css/admin.css" />
+        <option value="$PROJECT_DIR$/application/views/admin/header.php" />
       </list>
     </option>
   </component>
@@ -652,13 +644,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/artist_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="9" selection-start="663" selection-end="727" vertical-scroll-proportion="-15.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/artist_list.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -722,13 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/staff_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="2190" selection-end="2190" vertical-scroll-proportion="-16.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="23" selection-start="3364" selection-end="3364" vertical-scroll-proportion="-16.791666">
@@ -746,13 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="45" selection-start="929" selection-end="929" vertical-scroll-proportion="-10.625">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/image_admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="48" selection-start="738" selection-end="738" vertical-scroll-proportion="-5.0">
@@ -762,7 +733,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/user.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="18" selection-start="114" selection-end="114" vertical-scroll-proportion="0.08737864">
+        <state line="3" column="18" selection-start="114" selection-end="114" vertical-scroll-proportion="-1.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/staff_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="2190" selection-end="2190" vertical-scroll-proportion="-25.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="52" selection-start="1179" selection-end="1179" vertical-scroll-proportion="-13.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="16" selection-start="1793" selection-end="1793" vertical-scroll-proportion="0.8274021">
           <folding />
         </state>
       </provider>
