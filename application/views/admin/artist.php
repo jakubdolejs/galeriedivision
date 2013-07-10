@@ -3,6 +3,8 @@ if (!empty($artist)) {
     $this->load->helper("form");
     echo form_open("/admin/artist/".$artist["id"],array("method"=>"post"));
     echo '<p>'.form_label("Name","name").'<br />'.form_input("name",$artist["name"]).'</p>';
+    echo form_fieldset("French").'<p>'.form_label("CV","cv[fr]").'<br />'.form_textarea("cv[fr]",@$artist["cv"]["fr"],'class="cv"').'</p>'.form_fieldset_close();
+    echo form_fieldset("English").'<p>'.form_label("CV","cv[en]").'<br />'.form_textarea("cv[en]",@$artist["cv"]["en"],'class="cv"').'</p>'.form_fieldset_close();
     foreach ($artist["galleries"] as $id=>$gallery) {
         if (!$user["superuser"] && !in_array($id,$user["galleries"])) {
            continue;
@@ -15,15 +17,36 @@ if (!empty($artist)) {
         } else {
             echo '<p><a class="add-image" data-gallery_id="'.$id.'" href="javascript:void(0)">Add image</a></p>';
         }
-        echo '</div><p>'.form_checkbox("available[".$id."]",1,$gallery["available"]).form_label("Listed","available[".$id."]").'<br />
-        '.form_checkbox("represented[".$id."]",1,$gallery["represented"]).form_label("Represented","represented[".$id."]").'</p>
+        $status_options = array(
+            "unlisted"=>"Unlisted",
+            "listed"=>"Listed",
+            "represented"=>"Represented"
+        );
+        if ($gallery["represented"]) {
+            $status = "represented";
+        } else if ($gallery["available"]) {
+            $status = "listed";
+        } else {
+            $status = "unlisted";
+        }
+        echo '</div><p>'.form_label("Status","status[".$id."]").'<br />'.form_dropdown("status[".$id."]",$status_options,$status).'</p>
         <p><a href="/admin/artist/'.$artist["id"].'/images/'.$id.'">Images</a></p>';
     }
     echo '<p>'.form_submit("save","Save").'</p>';
     echo form_close();
 ?>
 <div id="imagePicker"></div>
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript">
+    tinymce.init({
+        selector: "textarea.cv",
+        valid_elements: "a[href|target=_blank],strong/b,em/i,p",
+        menubar: false,
+        plugins: "link autolink",
+        toolbar: "bold italic link unlink",
+        statusbar: false
+    });
     var imagePicker = new DivisionAdmin.ImagePicker();
     $('a.pick-image, a.add-image').on("click",addImage);
     function addImage() {

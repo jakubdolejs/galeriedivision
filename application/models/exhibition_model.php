@@ -101,6 +101,37 @@ class Exhibition_model extends CI_Model {
         return $exhibitions;
     }
 
+    public function get_artist_exhibitions($artist_id,$gallery_id) {
+        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+            ->from("exhibition")
+            ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id","left")
+            ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
+            ->join("space","space.id = space_exhibition.space_id")
+            ->join("artist_exhibition JOIN artist ON artist_exhibition.artist_id = artist.id","artist_exhibition.exhibition_id = exhibition.id","left")
+            ->where("exists (select 1 from artist_exhibition where artist_exhibition.exhibition_id = exhibition.id and artist_exhibition.artist_id = ".$this->db->escape($artist_id)." group by exhibition.id)",null,false);
+        if ($gallery_id) {
+            $this->db->where("space.gallery_id",$gallery_id);
+        }
+        $this->db->order_by("start_date <= NOW() AND end_date >= NOW()","DESC")
+            ->order_by("start_date > NOW()","DESC")
+            ->order_by("start_date","DESC");
+        $query = $this->db->get();
+        $exhibitions = array();
+        foreach ($query->result_array() as $exhibition) {
+            if (!array_key_exists($exhibition["id"], $exhibitions)) {
+                $exhibitions[$exhibition["id"]] = $exhibition;
+                if (isset($exhibitions[$exhibition["id"]]["artist_name"])) {
+                    unset($exhibitions[$exhibition["id"]]["artist_name"]);
+                }
+                $exhibitions[$exhibition["id"]]["artists"] = array();
+            }
+            if (!empty($exhibition["artist_id"])) {
+                $exhibitions[$exhibition["id"]]["artists"][$exhibition["artist_id"]] = $exhibition["artist_name"];
+            }
+        }
+        return $exhibitions;
+    }
+
     public function get_exhibition($exhibition_id) {
         $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.lang, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.id as 'space_id', space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
             ->from("exhibition")

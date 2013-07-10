@@ -25,3 +25,6 @@ $lang["Opening reception"] = "Opening reception";
 $lang["from"] = "from";
 $lang["to"] = "to";
 $lang["Also showing works by"] = "Also showing works by";
+$lang["Works in the exhibition"] = "Works in the exhibition";
+$lang["Works"] = "Works";
+$lang["CV"] = "CV";

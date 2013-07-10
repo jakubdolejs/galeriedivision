@@ -31,6 +31,10 @@ if (!empty($images)) {
                     $('<div id="progressBarContainer"><div id="progressBar"></div></div>').appendTo($("#content"));
                 }
                 $("#progressBar").width(data.loaded/data.total*$("#progressBarContainer").width());
+                if (data.loaded == data.total && data.loaded > 0) {
+                    $("#progressBarContainer").remove();
+                    $("#uploading").text("Resizing images. This may take a little while. Please be patient.");
+                }
             }
             function onComplete(response) {
                 $("#progressBarContainer, #uploading").remove();

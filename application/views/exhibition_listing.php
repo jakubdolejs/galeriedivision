@@ -14,10 +14,10 @@ if (!empty($exhibition)) {
             }
             $artists = '<p>'.join(", ",$artists).'</p>';
         } else {
-            $title = '<a class="artist exhibition-link" data-exhibition_id="'.$exhibition["id"].'" href="/'.$exhibition["gallery_id"].'/exhibition/'.$exhibition["id"].'">'.current($exhibition["artists"])."</a> ".$title;
+            $title = '<a class="artist exhibition-link" data-exhibition_id="'.$exhibition["id"].'" href="/'.$exhibition["gallery_id"].'/exhibition/'.$exhibition["id"].'">'.htmlspecialchars(current($exhibition["artists"]))."</a> ".$title;
         }
     }
-    echo '<h2>'.$title.'</a></h2>'.$artists;
+    echo '<h2>'.$title.'</h2>'.$artists;
     $start = DateTime::createFromFormat("Y-m-d", $exhibition["start_date"]);
     $end = DateTime::createFromFormat("Y-m-d", $exhibition["end_date"]);
     $this->load->helper("date_formatter");

@@ -50,6 +50,10 @@ body {
     background-size: 100% 16pt;
     */
 }
+p, span, div {
+    font-family: Calibri, sans-serif;
+    font-weight: 200;
+}
 a {
     color: #777;
     text-decoration: none;
@@ -140,6 +144,11 @@ h2 {
 h2 a {
     color: #000;
 }
+h3 {
+    font-family: Calibri,sans-serif;
+    font-weight: 200;
+    font-size: 14pt;
+}
 img.thumbnail {
     max-width: 100%;
     max-height: 100%;
@@ -178,6 +187,9 @@ ul.thumbnails li a.artist {
     bottom: 0px;
     text-align: center;
     background-color: #fff;
+}
+ul.thumbnails li p {
+    text-align: center;
 }
 @media all and (max-width: 959px) {
     #menuButton {
@@ -285,4 +297,70 @@ div.exhibitions div.exhibition h2 {
 }
 img.exhibition-feature {
     width: 100%;
+}
+.linkGroup a.selected {
+    color: #000;
+}
+div.imageInfo {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 90px;
+    padding: 5px 10px;
+    height: 20px;
+}
+div.previous {
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    padding-top: 5px;
+}
+div.next {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    padding-top: 5px;
+}
+div.close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    padding-top: 5px;
+}
+div.slide, div.tempSlide {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+div.slide img, div.tempSlide img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+div.previous.disabled a, div.next.disabled a {
+    color: #ccc;
+}
+div.imageViewer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
 }

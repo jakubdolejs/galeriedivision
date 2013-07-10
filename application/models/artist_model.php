@@ -54,8 +54,9 @@ class Artist_model extends CI_Model {
     }
 
     public function get_artist($artist_id) {
-        $this->db->select("artist.id, artist.name, gallery.id as 'gid', city, artist_id is not null as 'available', represented is not null and represented > 0 as 'represented', image_id")
+        $this->db->select("artist.id, artist.name, gallery.id as 'gid', city, artist_gallery.artist_id is not null as 'available', represented is not null and represented > 0 as 'represented', image_id, cv, lang")
             ->from("artist")
+            ->join("artist_translation","artist_translation.artist_id = artist.id","left")
             ->join("gallery","1","left")
             ->join("artist_gallery","artist_gallery.gallery_id = gallery.id AND artist_gallery.artist_id = artist.id","left")
             ->where("artist.id",$artist_id);
@@ -76,6 +77,9 @@ class Artist_model extends CI_Model {
                     "available"=>(bool)$row["available"],
                     "represented"=>(bool)$row["represented"]
                 );
+                if (!empty($row["cv"])) {
+                    $artist["cv"][$row["lang"]] = $row["cv"];
+                }
             }
             return $artist;
         }
@@ -102,6 +106,43 @@ class Artist_model extends CI_Model {
         }
         $this->db->trans_complete();
         return $this->db->trans_status() !== false;
+    }
+
+    public function update_cv($artist_id,$lang,$cv) {
+        $this->db->trans_start();
+        $this->db->where("artist_id",$artist_id)
+            ->where("lang",$lang);
+        $this->db->delete("artist_translation");
+        $this->db->set("artist_id",$artist_id)
+            ->set("lang",$lang)
+            ->set("cv",$cv);
+        $this->db->insert("artist_translation");
+        $this->db->trans_complete();
+        return $this->db->trans_status() !== false;
+    }
+
+    public function get_artist_sections($artist_id,$gallery_id) {
+        $this->db->from("image_artist")
+            ->join("image_gallery","image_gallery.image_id = image_artist.image_id")
+            ->where("artist_id",$artist_id)
+            ->where("gallery_id",$gallery_id);
+        $has_images = $this->db->count_all_results() > 0;
+        $this->db->from("artist_exhibition")
+            ->where("artist_id",$artist_id);
+        $has_exhibitions = $this->db->count_all_results() > 0;
+        $this->db->from("news_artist")
+            ->where("artist_id",$artist_id);
+        $has_news = $this->db->count_all_results() > 0;
+        if (!$has_news && $has_exhibitions) {
+            $this->db->from("artist_exhibition")
+                ->join("news_exhibition","news_exhibition.exhibition_id = artist_exhibition.exhibition_id")
+                ->where("artist_id",$artist_id);
+            $has_news = $this->db->count_all_results() > 0;
+        }
+        $this->db->from("artist_translation")
+            ->where("artist_id",$artist_id);
+        $has_cv = $this->db->count_all_results() > 0;
+        return array("images"=>$has_images,"exhibitions"=>$has_exhibitions,"news"=>$has_news,"cv"=>$has_cv);
     }
 
     private function artist_id_exists($id) {

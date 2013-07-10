@@ -1,0 +1,6 @@
+[submodule "js/hammer"]
+	path = js/hammer
+	url = https://github.com/EightMedia/hammer.js.git
+[submodule "ctct"]
+	path = ctct
+	url = https://github.com/constantcontact/php-sdk.git

@@ -52,8 +52,26 @@ class Artist_admin extends Admin {
         if ($this->input->post("save")) {
             $name = $this->input->post("name",true);
             $this->artist_model->update_name($artist_id,$name);
-            $listed = $this->input->post("available");
-            $represented = $this->input->post("represented");
+            $listed = array();
+            $represented = array();
+            if ($this->input->post("status")) {
+                foreach ($this->input->post("status",true) as $id=>$status) {
+                    switch ($status) {
+                        case "listed":
+                            $listed[$id] = 1;
+                            $represented[$id] = 0;
+                            break;
+                        case "represented":
+                            $listed[$id] = 1;
+                            $represented[$id] = 1;
+                            break;
+                        default:
+                            $listed[$id] = 0;
+                            $represented[$id] = 0;
+                    }
+
+                }
+            }
             $image_id = $this->input->post("image_id");
             foreach ($artist["galleries"] as $id=>$gallery) {
                 if (!$user["superuser"] && !in_array($id,$user["galleries"])) {
@@ -61,6 +79,12 @@ class Artist_admin extends Admin {
                 }
                 $image = !empty($image_id[$id]) ? $image_id[$id] : null;
                 $this->artist_model->update_gallery_info($artist_id,$id,!empty($listed[$id]),!empty($represented[$id]),$image);
+            }
+            if ($this->input->post("cv")) {
+                $cv = $this->input->post("cv",true);
+                foreach ($cv as $lang=>$text) {
+                    $this->artist_model->update_cv($artist_id,$lang,$text);
+                }
             }
             $this->output->append_output('<h1>Success</h1><p>'.$name.'\'s record has been updated.</p><p><a class="button" href="/admin/artists">OK</a></p>');
         } else {

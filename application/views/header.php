@@ -17,7 +17,7 @@ if (!empty($gallery_id)) {
             "/artists"=>$this->lang->line("Artists"),
             "/news"=>$this->lang->line("News"),
             "/contact"=>$this->lang->line("Contact"),
-            "/about"=>$this->lang->line("About")
+            //"/about"=>$this->lang->line("About")
         );
         $gallery_nav_links = array();
         foreach ($nav_links as $k=>$v) {
@@ -48,11 +48,12 @@ if (!empty($gallery_id)) {
         }
     }
 }
+$title = $this->lang->line("Division Gallery");
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">
     <head>
-        <title></title>
+        <title><?php echo $title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="/css/style.css" type="text/css" />

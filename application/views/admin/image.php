@@ -5,10 +5,10 @@ if (empty($image) || empty($artists)) {
 $this->load->helper("form");
 echo form_open("/admin/image/".$image["id"],array("method"=>"post","id"=>"imageForm".$image["id"]));
 echo '<p><img src="/images/185/'.$image["id"].'.jpg" alt="image" /></p>';
-echo '<p>'.form_fieldset("Dimensions (inches)");
-echo '<p>'.form_label("Width","width").'<br />'.form_input("width",$image["width"]).'</p>';
-echo '<p>'.form_label("Height","height").'<br />'.form_input("height",$image["height"]).'</p>';
-echo '<p>'.form_label("Depth","depth").'<br />'.form_input("depth",$image["depth"]).'</p>';
+echo '<p>'.form_fieldset("Dimensions");
+echo '<p>'.form_label("Height (inches)","height").'<br />'.form_input("height",$image["height"]).'</p>';
+echo '<p>'.form_label("Width (inches)","width").'<br />'.form_input("width",$image["width"]).'</p>';
+echo '<p>'.form_label("Depth (inches)","depth").'<br />'.form_input("depth",$image["depth"]).'</p>';
 echo form_fieldset_close().'</p>';
 echo '<p>'.form_label("Year","year").'<br />'.form_input("year",$image["creation_year"]).'</p>';
 $options = array();
@@ -18,6 +18,9 @@ foreach ($artists as $artist) {
 $selected = array();
 if (!empty($image["artists"])) {
     $selected = array_keys($image["artists"]);
+    foreach ($selected as $artist) {
+        echo form_hidden("artist[]",$artist);
+    }
 }
 echo '<p>'.form_label("Artist(s)","artists[]").'<div id="artists"></div></p>';
 echo '<p>'.form_fieldset("Title");
@@ -33,6 +36,8 @@ echo form_close();
 ?>
 <script type="text/javascript">
     //<![CDATA[
+    /*
+    // Disabled upon request
     var form = $("#imageForm<?php echo $image["id"]; ?>");
     form.find("input[name='title[en]'],input[name='title[fr]'],textarea[name='description[en]'],textarea[name='description[fr]']").on("change",function(){
         var params = /^(.+)\[(.+)\]$/.exec($(this).attr("name"));
@@ -44,6 +49,7 @@ echo form_close();
             otherField.val($(this).val());
         }
     });
+    */
     var artistSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($options); ?>,<?php echo json_encode($selected); ?>);
     artistSelector.changeCallback = function(selectedArtists) {
         $("input[name='artists[]']").remove();

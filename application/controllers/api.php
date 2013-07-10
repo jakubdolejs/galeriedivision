@@ -43,19 +43,22 @@ class Api extends Admin {
     }
 
     public function artist_gallery_images($artist_id,$gallery_id) {
-        $user = $this->get_logged_in_user();
-        if (!$user) {
-            $this->output_login_error();
-            return;
-        }
-        if (!$user["superuser"] && !in_array($gallery_id,$user["galleries"])) {
-            $this->output_error("Not permitted to edit content for gallery ".$gallery_id);
-            return;
-        }
         if ($this->input->post("images") !== false) {
+            $user = $this->get_logged_in_user();
+            if (!$user) {
+                $this->output_login_error();
+                return;
+            }
+            if (!$user["superuser"] && !in_array($gallery_id,$user["galleries"])) {
+                $this->output_error("Not permitted to edit content for gallery ".$gallery_id);
+                return;
+            }
             $images = $this->input->post("images",true);
             $updated = $this->image_model->set_artist_images($artist_id,$gallery_id,$images);
             $this->load->view("json",array("data"=>$updated));
+        } else {
+            $images = $this->image_model->get_artist_images_with_details($artist_id,$gallery_id);
+            $this->load->view("json",array("data"=>$images));
         }
     }
 

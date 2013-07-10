@@ -1,13 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'dg_controller.php';
 /**
- * @property Exhibition_model $exhibition_model 
+ * @property Exhibition_model $exhibition_model
+ * @property Image_model $image_model
  */
 class Exhibition extends Dg_controller {
     
     function __construct() {
         parent::__construct();
         $this->load->model("exhibition_model");
+        $this->load->model("image_model");
     }
     
     public function index($gallery) {
@@ -21,8 +23,14 @@ class Exhibition extends Dg_controller {
         $this->load->view("footer");
     }
     
-    public function view($exhibition) {
-        
+    public function view($gallery_id,$exhibition_id) {
+        $lang = $this->config->item("language");
+        $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
+        $images = $this->image_model->get_exhibition_images($exhibition_id);
+        $header_vars = $this->get_header_vars($gallery_id);
+        $this->load->view("header",$header_vars);
+        $this->load->view("exhibition",array("exhibition"=>$exhibition,"images"=>$images,"gallery_id"=>$gallery_id,"lang"=>$lang));
+        $this->load->view("footer");
     }
 
     public function past($gallery_id) {

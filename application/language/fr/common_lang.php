@@ -25,3 +25,6 @@ $lang["Opening reception"] = "Vernissage";
 $lang["from"] = "de";
 $lang["to"] = "à";
 $lang["Also showing works by"] = "Oeuvres aussi disponibles";
+$lang["Works in the exhibition"] = "Oeuvres de l'exposition";
+$lang["Works"] = "Oeuvres";
+$lang["CV"] = "Résumé";

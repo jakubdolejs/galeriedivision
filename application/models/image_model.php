@@ -173,6 +173,53 @@ class Image_model extends CI_Model {
         return array();
     }
 
+    public function get_artist_images_with_details($artist_id,$gallery_id) {
+        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description")
+            ->from("image")
+            ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
+            ->join("image_gallery","image_gallery.image_id = image.id")
+            ->join("image_translation","image_translation.image_id = image.id","left")
+            ->where("gallery_id",$gallery_id)
+            ->where("exists (select 1 from image_artist where image_artist.image_id = image.id and image_artist.artist_id = ".$this->db->escape($artist_id)." group by image.id)",null,false)
+            ->order_by("image_gallery.priority")
+            ->order_by("artist.name")
+            ->order_by("image.id","desc");
+        $query = $this->db->get();
+        if ($query->num_rows()) {
+            $images = array();
+            foreach ($query->result_array() as $row) {
+                if (empty($images[$row["id"]])) {
+                    $images[$row["id"]] = array(
+                        "id"=>$row["id"],
+                    );
+                    if ($row["work_width"]) {
+                        $images[$row["id"]]["width"] = floatval($row["work_width"]);
+                    }
+                    if ($row["work_height"]) {
+                        $images[$row["id"]]["height"] = floatval($row["work_height"]);
+                    }
+                    if ($row["work_depth"]) {
+                        $images[$row["id"]]["depth"] = floatval($row["work_depth"]);
+                    }
+                    if ($row["work_creation_year"]) {
+                        $images[$row["id"]]["year"] = $row["work_creation_year"];
+                    }
+                }
+                if ($row["artist_id"]) {
+                    $images[$row["id"]]["artists"][$row["artist_id"]] = $row["name"];
+                }
+                if ($row["title"]) {
+                    $images[$row["id"]]["title"][$row["lang"]] = $row["title"];
+                }
+                if ($row["description"]) {
+                    $images[$row["id"]]["description"][$row["lang"]] = $row["description"];
+                }
+            }
+            return array_values($images);
+        }
+        return array();
+    }
+
     public function set_artist_images($artist_id,$gallery_id,$images) {
         $this->db->trans_start();
         $query = "DELETE image_gallery FROM image_gallery JOIN image_artist ON image_artist.image_id = image_gallery.image_id WHERE image_artist.artist_id = ".$this->db->escape($artist_id)." AND image_gallery.gallery_id = ".$this->db->escape($gallery_id);
@@ -210,6 +257,54 @@ class Image_model extends CI_Model {
                 }
                 if ($row["artist_id"]) {
                     $images[$row["id"]]["artists"][$row["artist_id"]] = $row["name"];
+                }
+            }
+            return array_values($images);
+        }
+        return array();
+    }
+
+
+
+    public function get_exhibition_images_with_details($exhibition_id) {
+        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description")
+            ->from("image")
+            ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
+            ->join("image_exhibition","image_exhibition.image_id = image.id")
+            ->where("image_exhibition.exhibition_id",$exhibition_id)
+            ->join("image_translation","image_translation.image_id = image.id","left")
+            ->order_by("image_exhibition.priority")
+            ->order_by("artist.name")
+            ->order_by("image.id","desc");
+        $query = $this->db->get();
+        if ($query->num_rows()) {
+            $images = array();
+            foreach ($query->result_array() as $row) {
+                if (empty($images[$row["id"]])) {
+                    $images[$row["id"]] = array(
+                        "id"=>$row["id"],
+                    );
+                    if ($row["work_width"]) {
+                        $images[$row["id"]]["width"] = floatval($row["work_width"]);
+                    }
+                    if ($row["work_height"]) {
+                        $images[$row["id"]]["height"] = floatval($row["work_height"]);
+                    }
+                    if ($row["work_depth"]) {
+                        $images[$row["id"]]["depth"] = floatval($row["work_depth"]);
+                    }
+                    if ($row["work_creation_year"]) {
+                        $images[$row["id"]]["year"] = $row["work_creation_year"];
+                    }
+                }
+                if ($row["artist_id"]) {
+                    $images[$row["id"]]["artists"][$row["artist_id"]] = $row["name"];
+                }
+                if ($row["title"]) {
+                    $images[$row["id"]]["title"][$row["lang"]] = $row["title"];
+                }
+                if ($row["description"]) {
+                    $images[$row["id"]]["description"][$row["lang"]] = $row["description"];
                 }
             }
             return array_values($images);
