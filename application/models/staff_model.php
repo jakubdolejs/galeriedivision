@@ -5,6 +5,7 @@ class Staff_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->driver("cache");
     }
 
     public function get_staff($gallery_ids=null) {
@@ -67,6 +68,7 @@ class Staff_model extends CI_Model {
     }
 
     public function edit($id,$name,$email,$gallery_id,$titles) {
+        $this->db->trans_start();
         $this->db->set("name",$name)
             ->set("email",$email)
             ->set("gallery_id",$gallery_id)
@@ -83,9 +85,16 @@ class Staff_model extends CI_Model {
         if (!empty($batch)) {
             $this->db->insert_batch("gallery_staff_translation",$batch);
         }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function add($name,$email,$gallery_id,$titles) {
+        $this->db->trans_start();
         $this->db->set("name",$name)
             ->set("email",$email)
             ->set("gallery_id",$gallery_id);
@@ -100,6 +109,12 @@ class Staff_model extends CI_Model {
         if (!empty($batch)) {
             $this->db->insert_batch("gallery_staff_translation",$batch);
         }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function delete($id) {
@@ -109,6 +124,7 @@ class Staff_model extends CI_Model {
         $this->db->from("gallery_staff")
             ->where("id",$id);
         $this->db->delete();
+        $this->cache->memcached->clean();
     }
 
     public function reorder($priority) {
@@ -123,6 +139,10 @@ class Staff_model extends CI_Model {
             }
         }
         $this->db->trans_complete();
-        return $this->db->trans_status() !== false;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 }

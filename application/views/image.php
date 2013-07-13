@@ -1,6 +1,5 @@
 <?php
 $lang = $this->config->item("language");
-$this->lang->load("common");
 $title = $this->lang->line("Division Gallery");
 ?>
 <!DOCTYPE html>

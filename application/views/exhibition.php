@@ -37,7 +37,6 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
     }
     echo '</div>';
     if (!empty($images)) {
-        $this->lang->load("common");
         $base_image_url = $artist_id ? "/".$gallery_id."/artist/".$artist_id."/exhibition/".$exhibition["id"]."/image/" : "/".$gallery_id."/exhibition/".$exhibition["id"]."/image/";
         echo '<h3>'.$this->lang->line("Works in the exhibition").'</h3><ul class="thumbnails">';
         foreach ($images as $image) {

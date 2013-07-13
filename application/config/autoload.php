@@ -96,7 +96,7 @@ $autoload['config'] = array("constant_contact");
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array("common");
 
 
 /*

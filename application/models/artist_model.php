@@ -5,6 +5,7 @@ class Artist_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->driver("cache");
     }
     
     public function get_artists($gallery_id=null) {
@@ -89,7 +90,11 @@ class Artist_model extends CI_Model {
     public function update_name($artist_id,$name) {
         $this->db->set("name",$name)
             ->where("id",$artist_id);
-        return $this->db->update("artist");
+        if ($this->db->update("artist")) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function update_gallery_info($artist_id,$gallery_id,$listed,$represented,$image_id) {
@@ -105,7 +110,11 @@ class Artist_model extends CI_Model {
             $this->db->insert("artist_gallery");
         }
         $this->db->trans_complete();
-        return $this->db->trans_status() !== false;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function update_cv($artist_id,$lang,$cv) {
@@ -118,7 +127,11 @@ class Artist_model extends CI_Model {
             ->set("cv",$cv);
         $this->db->insert("artist_translation");
         $this->db->trans_complete();
-        return $this->db->trans_status() !== false;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function get_artist_sections($artist_id,$gallery_id) {
@@ -163,6 +176,7 @@ class Artist_model extends CI_Model {
         $this->db->set("id",$id);
         $this->db->set("name",$name);
         if ($this->db->insert("artist")) {
+            $this->cache->memcached->clean();
             return $id;
         }
         return false;
@@ -204,6 +218,10 @@ class Artist_model extends CI_Model {
         $this->db->where("id",$artist_id);
         $this->db->delete("artist");
         $this->db->trans_complete();
-        return $this->db->trans_status() !== false;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 }

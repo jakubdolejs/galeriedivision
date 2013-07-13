@@ -1,5 +1,4 @@
 <?php
-$this->lang->load("common");
 $this->load->config();
 $lang = $this->config->item("language");
 $this->load->helper("date_formatter");

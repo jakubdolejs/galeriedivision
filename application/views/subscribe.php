@@ -1,26 +1,7 @@
-<?php
-if (empty($lang)) {
-    return;
-}
-?>
-<!DOCTYPE html>
-<html lang="<?php echo $lang; ?>">
-<head>
-    <title>Subscribe to Division Gallery Newsletter</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="/css/style.css" />
-</head>
 <form action="/news/subscribe" method="post">
-    <p><label for="email">Email</label><br /><input type="email" name="email" /></p>
-    <?php
-    if (!empty($lists)) {
-        foreach ($lists as $list) {
-            if ($list->status == "ACTIVE") {
-                echo '<div><input type="checkbox" name="list[]" value="'.$list->id.'" /><label for="list[]">'.htmlspecialchars($list->name).'</label></div>';
-            }
-        }
-    }
-    ?>
-    <p><input type="submit" name="subscribe" value="Subscribe" /></p>
+    <h2><?php echo $this->lang->line("Subscribe to Division Gallery newsletter"); ?></h2>
+    <div class="input"><label for="first_name"><?php echo $this->lang->line("First name"); ?></label><input type="text" name="first_name" /></div>
+    <div class="input"><label for="last_name"><?php echo $this->lang->line("Last name"); ?></label><input type="text" name="last_name" /></div>
+    <div class="input"><label for="email"><?php echo $this->lang->line("Email"); ?></label><input type="email" name="email" /></div>
+    <div class="submit"><input type="submit" name="subscribe" value="<?php echo $this->lang->line("Submit"); ?>" /></div>
 </form>
-</html>

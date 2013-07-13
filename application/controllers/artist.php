@@ -17,49 +17,66 @@ class Artist extends Dg_controller {
     }
     
     public function index($gallery_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
-        $artists = $this->artist_model->get_artists($gallery_id);
-        $this->load->view("artist",array("artists"=>$artists,"gallery_id"=>$gallery_id));
-        $this->load->view("footer");
+        $lang = $this->config->item("language");
+        $cache_key = MemcacheKeys::artists($gallery_id,$lang);
+        if (!$this->output_memcache_if_available($cache_key)) {
+            $header_vars = $this->get_header_vars($gallery_id);
+            $this->load->view("header",$header_vars);
+            $artists = $this->artist_model->get_artists($gallery_id);
+            $this->load->view("artist",array("artists"=>$artists,"gallery_id"=>$gallery_id));
+            $this->load->view("footer");
+            $this->save_memcache($cache_key,$this->output->get_output());
+        }
     }
     
     public function view($gallery_id,$artist_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
-        $artist = $this->artist_model->get_artist($artist_id);
-        $images = $this->image_model->get_artist_images_with_details($artist_id,$gallery_id);
         $lang = $this->config->item("language");
-        $this->output->append_output('<h1>'.$artist["name"].'</h1>');
-        $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"images"));
-        $this->load->view("link_group",$links);
-        $this->load->view("artist_images",array("artist"=>$artist,"images"=>$images,"gallery_id"=>$gallery_id,"lang"=>$lang));
-        $this->load->view("footer");
+        $cache_key = MemcacheKeys::artist($gallery_id,$artist_id,$lang);
+        if (!$this->output_memcache_if_available($cache_key)) {
+            $header_vars = $this->get_header_vars($gallery_id);
+            $this->load->view("header",$header_vars);
+            $artist = $this->artist_model->get_artist($artist_id);
+            $images = $this->image_model->get_artist_images_with_details($artist_id,$gallery_id);
+            $this->output->append_output('<h1>'.$artist["name"].'</h1>');
+            $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"images"));
+            $this->load->view("link_group",$links);
+            $this->load->view("artist_images",array("artist"=>$artist,"images"=>$images,"gallery_id"=>$gallery_id,"lang"=>$lang));
+            $this->load->view("footer");
+            $this->save_memcache($cache_key,$this->output->get_output());
+        }
     }
 
     public function cv($gallery_id,$artist_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
-        $artist = $this->artist_model->get_artist($artist_id);
         $lang = $this->config->item("language");
-        $this->output->append_output('<h1>'.$artist["name"].'</h1>');
-        $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"cv"));
-        $this->load->view("link_group",$links);
-        $this->load->view("artist_cv",array("artist"=>$artist,"lang"=>$lang));
-        $this->load->view("footer");
+        $cache_key = MemcacheKeys::artist_cv($gallery_id,$artist_id,$lang);
+        if (!$this->output_memcache_if_available($cache_key)) {
+            $header_vars = $this->get_header_vars($gallery_id);
+            $this->load->view("header",$header_vars);
+            $artist = $this->artist_model->get_artist($artist_id);
+            $this->output->append_output('<h1>'.$artist["name"].'</h1>');
+            $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"cv"));
+            $this->load->view("link_group",$links);
+            $this->load->view("artist_cv",array("artist"=>$artist,"lang"=>$lang));
+            $this->load->view("footer");
+            $this->save_memcache($cache_key,$this->output->get_output());
+        }
     }
 
     public function exhibitions($gallery_id,$artist_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
-        $artist = $this->artist_model->get_artist($artist_id);
-        $exhibitions = $this->exhibition_model->get_artist_exhibitions($artist_id,$gallery_id);
         $lang = $this->config->item("language");
-        $this->output->append_output('<h1>'.$artist["name"].'</h1>');
-        $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"exhibitions"));
-        $this->load->view("link_group",$links);
-        $this->load->view("artist_exhibitions",array("artist"=>$artist,"exhibitions"=>$exhibitions,"gallery_id"=>$gallery_id,"lang"=>$lang));
-        $this->load->view("footer");
+        $cache_key = MemcacheKeys::artist_exhibitions($gallery_id,$artist_id,$lang);
+        if (!$this->output_memcache_if_available($cache_key)) {
+            $header_vars = $this->get_header_vars($gallery_id);
+            $this->load->view("header",$header_vars);
+            $artist = $this->artist_model->get_artist($artist_id);
+            $exhibitions = $this->exhibition_model->get_artist_exhibitions($artist_id,$gallery_id);
+            $this->output->append_output('<h1>'.$artist["name"].'</h1>');
+            $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"exhibitions"));
+            $this->load->view("link_group",$links);
+            $this->load->view("artist_exhibitions",array("artist"=>$artist,"exhibitions"=>$exhibitions,"gallery_id"=>$gallery_id,"lang"=>$lang));
+            $this->load->view("footer");
+            $this->save_memcache($cache_key,$this->output->get_output());
+        }
     }
 
     public function exhibition($gallery_id,$artist_id,$exhibition_id) {
@@ -92,7 +109,6 @@ class Artist extends Dg_controller {
 
     private function get_tabs($artist_id,$gallery_id,$selected=null) {
         $links = array();
-        $this->lang->load("common");
         $sections = $this->artist_model->get_artist_sections($artist_id,$gallery_id);
         if ($sections["images"]) {
             $links[] = array(

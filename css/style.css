@@ -39,6 +39,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 12pt;
     /*
     background-image: 
       -webkit-linear-gradient(0deg, transparent 5em, rgba(0,0,0,0) 0, transparent 5.1em),
@@ -149,6 +150,14 @@ h3 {
     font-weight: 200;
     font-size: 14pt;
 }
+h4 {
+    font-family: Calibri,sans-serif;
+    font-weight: 200;
+    font-size: 11pt;
+    letter-spacing: 1px;
+    color: #000;
+    text-transform: uppercase;
+}
 img.thumbnail {
     max-width: 100%;
     max-height: 100%;
@@ -191,6 +200,58 @@ ul.thumbnails li a.artist {
 ul.thumbnails li p {
     text-align: center;
 }
+
+ul.news {
+    list-style-type: none;
+    padding: 0;
+    margin-right: -20px;
+}
+ul.news li.story {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin-bottom: 20px;
+}
+ul.news li.story > * {
+    margin-right: 20px;
+}
+ul.news li.story div.text, ul.news li.story div.image {
+    max-height: 195px;
+    position: relative;
+    line-height: 21px;
+}
+ul.news li.story div.text div {
+    max-height: 185px;
+    overflow: hidden;
+}
+ul.news li.story div.text div p {
+    margin: 0 0 21px 0;
+    padding: 0;
+}
+ul.news li.story div.image.text img {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+ul.news div.text a.more {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: #999;
+    color: #fff;
+    font-size: 30px;
+    padding: 0 6px 3px;
+}
+ul.news li.story h4 {
+    clear: both;
+    margin-bottom: 0;
+}
+ul.news li.story ul.links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 @media all and (max-width: 959px) {
     #menuButton {
         font-family: Calibri, sans-serif;
@@ -241,6 +302,9 @@ ul.thumbnails li p {
     }
     ul.thumbnails li {
         width: 33.33%;
+    }
+    ul.news li.story {
+        width: 50%;
     }
 }
 @media all and (min-width: 960px) {
@@ -363,4 +427,71 @@ div.imageViewer {
     right: 0px;
     bottom: 0px;
     overflow: hidden;
+}
+div.subscribe {
+    background-color: #eee;
+    padding: 5px 0 0 10px;
+    white-space: nowrap;
+}
+div.subscribe div {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 15px 0;
+    padding: 0;
+    white-space: nowrap;
+    width: 25%;
+}
+div.subscribe label, div.subscribe input {
+    display: block;
+    width: 80%;
+}
+div.contact {
+    white-space: nowrap;
+}
+div.contact div.column, div.contact div.map {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 20px;
+}
+div.contact div.column {
+    width: 25%;
+}
+div.contact div.map {
+    text-align: right;
+    width: 49%;
+    padding-top: 15px;
+}
+@media (max-width: 320px) {
+    div.subscribe {
+        white-space: normal;
+    }
+    div.subscribe div {
+        display: block;
+        width: 100%;
+    }
+    div.subscribe label, div.subscribe input {
+        width: 100%;
+    }
+}
+@media (min-width: 321px) and (max-width: 640px) {
+    div.subscribe {
+        white-space: normal;
+    }
+    div.subscribe div {
+        width: 48%;
+    }
+}
+/*TODO*/
+@media (max-width: 899px) {
+    div.contact {
+        white-space: normal;
+    }
+    div.contact div.column, div.contact div.map {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}
+@media (min-width: 900px) {
+
 }

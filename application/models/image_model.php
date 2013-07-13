@@ -4,12 +4,14 @@ class Image_model extends CI_Model {
 
     function __construct() {
         $this->load->database();
+        $this->load->driver("cache");
     }
 
     public function insert($width,$height) {
         $this->db->set("image_width",$width)
             ->set("image_height",$height);
         if ($this->db->insert("image")) {
+            $this->cache->memcached->clean();
             return $this->db->insert_id();
         }
         return null;
@@ -18,9 +20,11 @@ class Image_model extends CI_Model {
     public function delete($image_id) {
         $this->db->where("id",$image_id);
         $this->db->delete("image");
+        $this->cache->memcached->clean();
     }
 
     public function update($image_id,$width,$height,$depth,$year,$artists,$title,$description) {
+        $this->db->trans_start();
         $this->db->set("work_width",$width)
             ->set("work_height",$height)
             ->set("work_depth",$depth)
@@ -70,6 +74,12 @@ class Image_model extends CI_Model {
                 }
             }
         }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function get_list() {
@@ -234,7 +244,11 @@ class Image_model extends CI_Model {
             $this->db->insert_batch("image_gallery",$batch);
         }
         $this->db->trans_complete();
-        return $this->db->trans_status() !== FALSE;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function get_exhibition_images($exhibition_id) {
@@ -326,6 +340,10 @@ class Image_model extends CI_Model {
             $this->db->insert_batch("image_exhibition",$batch);
         }
         $this->db->trans_complete();
-        return $this->db->trans_status() !== FALSE;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 }

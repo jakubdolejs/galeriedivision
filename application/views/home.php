@@ -1,5 +1,4 @@
 <?php
-$this->lang->load("common");
 $class = "left";
 foreach ($galleries as $gallery) {
     echo '<div class="large-column '.$class.'">';

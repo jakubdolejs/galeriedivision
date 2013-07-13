@@ -5,6 +5,7 @@ class Exhibition_model extends CI_Model {
     function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->driver("cache");
     }
     
     public function get_exhibitions($type,$lang,$gallery_id=NULL) {
@@ -265,7 +266,11 @@ class Exhibition_model extends CI_Model {
             $this->db->insert_batch("space_exhibition",$batch);
         }
         $this->db->trans_complete();
-        return $this->db->trans_status() !== false;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function delete($exhibition_id) {
@@ -281,7 +286,11 @@ class Exhibition_model extends CI_Model {
         $this->db->where("id",$exhibition_id);
         $this->db->delete("exhibition");
         $this->db->trans_complete();
-        return $this->db->trans_status() !== FALSE;
+        if ($this->db->trans_status() !== false) {
+            $this->cache->memcached->clean();
+            return true;
+        }
+        return false;
     }
 
     public function get_years($gallery_ids=null) {

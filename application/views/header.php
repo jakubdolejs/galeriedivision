@@ -1,5 +1,4 @@
 <?php
-$this->lang->load("common");
 $languages = array("en"=>"English","fr"=>"Français");
 $lang = $this->config->item("language");
 $city = "";
