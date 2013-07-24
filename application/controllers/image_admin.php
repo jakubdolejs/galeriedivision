@@ -111,6 +111,8 @@ class Image_admin extends Admin {
     }
 
     public function upload() {
+        set_time_limit(0);
+        ignore_user_abort(true);
         if (isset($_FILES["file"]) && !empty($_FILES["file"])) {
             $response = array();
 

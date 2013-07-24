@@ -31,20 +31,24 @@ DivisionAdmin = {
                     callbacks.progress.fire({"loaded":event.loaded,"total":event.total});
                 }
             }, false);
-            xhr.addEventListener("load", function(event) {
-                var response = JSON.parse(event.target.responseText);
-                if (!response.hasOwnProperty("error")) {
-                    callbacks.complete.fire(response);
-                } else {
-                    callbacks.error.fire(response.error);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (xhr.status == 200 && !response.hasOwnProperty("error")) {
+                        callbacks.complete.fire(response);
+                    } else {
+                        callbacks.error.fire(response.error);
+                    }
                 }
-            }, false);
-            xhr.addEventListener("error", function(event) {
-                callbacks.error.fire(event);
-            }, false);
-            xhr.addEventListener("abort", function(event) {
-                callbacks.abort.fire(event);
-            }, false);
+            }
+            try {
+                xhr.ontimeout = function() {
+                    callbacks.error.fire("Request timed out");
+                }
+                xhr.timeout = 120000; // 2 minutes should do
+            } catch (error) {
+                //timeout probably not supported
+            }
             xhr.open("POST", "/admin/image_upload");
             xhr.send(fd);
         }
