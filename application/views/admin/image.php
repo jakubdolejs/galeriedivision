@@ -19,7 +19,7 @@ $selected = array();
 if (!empty($image["artists"])) {
     $selected = array_keys($image["artists"]);
     foreach ($selected as $artist) {
-        echo form_hidden("artist[]",$artist);
+        echo form_hidden("artists[]",$artist);
     }
 }
 echo '<p>'.form_label("Artist(s)","artists[]").'<div id="artists"></div></p>';
