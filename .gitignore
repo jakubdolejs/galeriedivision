@@ -1,2 +1,4 @@
 images/**/*.jpg
+*/.DS_Store*
 .DS_Store*
+.DS_Store
