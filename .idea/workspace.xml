@@ -36,7 +36,7 @@
     <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376053702772" ignored="false" />
     <file path="/admin.js" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376049272505" ignored="false" />
     <file path="/json.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368527204662" ignored="false" />
-    <file path="/image_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376053126067" ignored="false" />
+    <file path="/image_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376054222480" ignored="false" />
     <file path="/image_upload.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376051735582" ignored="false" />
     <file path="/image.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376053853505" ignored="false" />
     <file path="/api.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372782674123" ignored="false" />
@@ -179,19 +179,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_model.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="image_model.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/models/image_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="9" selection-start="1647" selection-end="1647" vertical-scroll-proportion="-18.958334">
+            <state line="53" column="84" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.8018868">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="image.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/image.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="19" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.85119045">
+            <state line="56" column="19" selection-start="2971" selection-end="2971" vertical-scroll-proportion="-8.58">
               <folding>
                 <marker date="1376053975000" expanded="true" signature="2277:2415" placeholder="..." />
               </folding>
@@ -241,10 +241,10 @@
         <option value="$PROJECT_DIR$/application/views/artist_images.php" />
         <option value="$PROJECT_DIR$/application/controllers/image.php" />
         <option value="$PROJECT_DIR$/application/views/admin/image_upload.php" />
-        <option value="$PROJECT_DIR$/application/models/image_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/image_admin.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
         <option value="$PROJECT_DIR$/application/views/admin/image.php" />
+        <option value="$PROJECT_DIR$/application/models/image_model.php" />
       </list>
     </option>
   </component>
@@ -881,13 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/image_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="9" selection-start="1647" selection-end="1647" vertical-scroll-proportion="-18.958334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/image_admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="70" column="13" selection-start="2971" selection-end="2971" vertical-scroll-proportion="-6.6">
@@ -904,10 +897,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/image.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="19" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.85119045">
+        <state line="56" column="19" selection-start="2971" selection-end="2971" vertical-scroll-proportion="-8.58">
           <folding>
             <marker date="1376053975000" expanded="true" signature="2277:2415" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/image_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="84" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.8018868">
+          <folding />
         </state>
       </provider>
     </entry>

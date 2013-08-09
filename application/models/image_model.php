@@ -45,7 +45,15 @@ class Image_model extends CI_Model {
         if ($error["code"] == 0) {
             $this->db->where("id",$image_id);
             $success = $this->db->delete("image") !== false;
-            $this->cache->memcached->clean();
+            if ($success) {
+                $this->cache->memcached->clean();
+                $dirs = array(
+                    "2mp","185","440x235","900x480","original"
+                );
+                foreach ($dirs as $dir) {
+                    @unlink(rtrim(FCPATH,"/")."/images/".$dir."/".$image_id.".jpg");
+                }
+            }
         }
         return $success;
     }
