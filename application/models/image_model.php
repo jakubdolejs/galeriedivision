@@ -17,10 +17,37 @@ class Image_model extends CI_Model {
         return null;
     }
 
-    public function delete($image_id) {
-        $this->db->where("id",$image_id);
-        $this->db->delete("image");
-        $this->cache->memcached->clean();
+    public function delete($image_id,&$error) {
+        $success = false;
+        $error = array("code"=>0);
+        $this->db->select("exhibition_id")->from("image_exhibition")->where("image_id",$image_id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $error = array(
+                "code"=>1,
+                "exhibitions"=>array()
+            );
+            foreach ($query->result_array() as $row) {
+                $error["exhibitions"][] = $row["exhibition_id"];
+            }
+        }
+        $this->db->select("news_id")->from("news_image")->where("image_id",$image_id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $error = array(
+                "code"=>1,
+                "news"=>array()
+            );
+            foreach ($query->result_array() as $row) {
+                $error["news"][] = $row["news_id"];
+            }
+        }
+        if ($error["code"] == 0) {
+            $this->db->where("id",$image_id);
+            $success = $this->db->delete("image") !== false;
+            $this->cache->memcached->clean();
+        }
+        return $success;
     }
 
     public function update_dimensions($image_id,$width,$height) {

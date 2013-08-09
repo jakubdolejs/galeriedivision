@@ -29,6 +29,50 @@ class Image_admin extends Admin {
         $this->load->view("admin/footer");
     }
 
+    public function delete($id) {
+        $user = $this->get_logged_in_user();
+        if (!$user) {
+            redirect(site_url("/admin/login"));
+            return;
+        }
+        $this->load->view("admin/header",array("user"=>$user));
+        $image = $this->image_model->get($id);
+        if (!$user["superuser"] && !empty($image["galleries"])) {
+            foreach ($image["galleries"] as $gallery_id) {
+                if (!in_array($gallery_id,$user["galleries"])) {
+                    $this->output->append_output('<h1>Error</h1><p>You are not allowed to delete this image. The image is being used by '.$gallery_id.'.</p>');
+                    $this->load->view("admin/footer");
+                    return;
+                }
+            }
+        }
+        if ($this->image_model->delete($id,$error)) {
+            $this->output->append_output('<h1>Image deleted</h1><p>The image has been deleted.</p><p><a href="/admin/images">OK</a></p>');
+        } else {
+            $reason = "The script was unable to delete the image from the database.";
+            if ($error["code"] > 0) {
+                $reason = "";
+                if (!empty($error["exhibitions"])) {
+                    $reason .= "<p>The image is used in the ".(count($error["exhibitions"]) > 1 ? "following exhibitions: " : "exhibition ");
+                    $exhibitions = array();
+                    foreach ($error["exhibitions"] as $eid) {
+                        $exhibitions[] = '<a href="/admin/exhibition/'.$eid.'">'.$eid.'</a>';
+                    }
+                    $reason .= join(", ",$exhibitions).'</p>';
+                }
+                if (!empty($error["news"])) {
+                    $reason .= "<p>The image is used in the ".(count($error["news"]) > 1 ? "following news stories: " : "news ");
+                    $news = array();
+                    foreach ($error["news"] as $story) {
+                        $news[] = '<a href="/admin/news/'.$story.'">story id '.$story.'</a>';
+                    }
+                    $reason .= join(", ",$news).'</p>';
+                }
+            }
+            $this->output->append_output('<h1>Error deleting image</h1><p>'.$reason.'</p><p><a href="/admin/images">OK</a></p>');
+        }
+    }
+
     public function float_check($val) {
         if (!$val) {
             return true;

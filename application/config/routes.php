@@ -42,6 +42,7 @@ $route['admin/login'] = "admin/login";
 $route['admin/logout'] = "admin/logout";
 $route['admin/images'] = "image_admin";
 $route['admin/image_upload'] = "image_admin/upload";
+$route['admin/image/(:num)/delete'] = "image_admin/delete/$1";
 $route['admin/image/(:num)'] = "image_admin/edit/$1";
 $route['admin/artists'] = "artist_admin";
 $route['admin/artist/(:any)/images/(:any)'] = "artist_admin/images/$1/$2";

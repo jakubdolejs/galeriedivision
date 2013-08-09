@@ -1,5 +1,5 @@
 <?php
-if (empty($image) || empty($artists)) {
+if (empty($image) || !isset($artists)) {
     return;
 }
 $this->load->helper("form");
@@ -35,6 +35,7 @@ echo form_fieldset_close().'</p>';
 echo '<p>'.form_submit('save','Save').'</p>';
 echo form_close();
 ?>
+<p><a id="deleteImage" href="/admin/image/<?php echo $image['id']; ?>/delete">Delete image</a></p>
 <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="/js/jquery.exif.js"></script>
 <script type="text/javascript">
@@ -53,6 +54,9 @@ echo form_close();
         }
     });
     */
+    $("#deleteImage").on("click",function(){
+        return confirm("Are you sure you want to delete the image. It cannot be undone.");
+    });
     $("#upload").imageUpload(<?php echo $image["id"]; ?>).on("complete",function(event){
         var thumbnailParent = $("#thumbnail").parent();
         $("#thumbnail").remove();
