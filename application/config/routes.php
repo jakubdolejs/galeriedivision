@@ -91,6 +91,7 @@ $route['(:any)/artists'] = "artist/index/$1";
 $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
 $route['admin/manifest.appcache'] = "admin/appcache";
+$route['images/(:any)/(:num)-(:num).jpg'] = "image/jpeg/$1/$2";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

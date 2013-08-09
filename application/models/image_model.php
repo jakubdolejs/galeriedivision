@@ -23,6 +23,20 @@ class Image_model extends CI_Model {
         $this->cache->memcached->clean();
     }
 
+    public function update_dimensions($image_id,$width,$height) {
+        $this->db->set("image_width",$width)
+            ->set("image_height",$height)
+            ->set("version","version+1",false)
+            ->where("id",$image_id);
+        if ($this->db->update("image") !== false) {
+            $this->db->select('version')->from("image")->where("id",$image_id);
+            $query = $this->db->get();
+            $row = $query->row_array();
+            return $row["version"];
+        }
+        return 0;
+    }
+
     public function update($image_id,$width,$height,$depth,$year,$artists,$title,$description) {
         $this->db->trans_start();
         $this->db->set("work_width",$width)
@@ -83,7 +97,7 @@ class Image_model extends CI_Model {
     }
 
     public function get_list() {
-        $this->db->select("image.id, artist_id, artist.name")
+        $this->db->select("image.id, artist_id, artist.name, image.version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->order_by("image.id","desc");
@@ -94,6 +108,7 @@ class Image_model extends CI_Model {
                 if (empty($images[$row["id"]])) {
                     $images[$row["id"]] = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"],
                         "artists"=>array()
                     );
                 }
@@ -107,7 +122,7 @@ class Image_model extends CI_Model {
     }
 
     public function get($image_id) {
-        $this->db->select("image.id, work_width, work_height, work_depth, work_creation_year, artist_id, artist.name as 'artist_name', exhibition_id, image_translation.title, image_translation.description, image_translation.lang, gallery_id")
+        $this->db->select("image.id, work_width, work_height, work_depth, work_creation_year, artist_id, artist.name as 'artist_name', exhibition_id, image_translation.title, image_translation.description, image_translation.lang, gallery_id, version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->join("image_exhibition","image.id = image_exhibition.image_id","left")
@@ -121,6 +136,7 @@ class Image_model extends CI_Model {
                 if (empty($image)) {
                     $image = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"],
                         "width"=>$row["work_width"] ? floatval($row["work_width"]) : null,
                         "height"=>$row["work_height"] ? floatval($row["work_height"]) : null,
                         "depth"=>$row["work_depth"] ? floatval($row["work_depth"]) : null,
@@ -154,7 +170,7 @@ class Image_model extends CI_Model {
     }
 
     public function get_artist_images($artist_id,$gallery_id=null) {
-        $this->db->select("image.id, artist_id, artist.name")
+        $this->db->select("image.id, artist_id, artist.name, version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left");
         if ($gallery_id) {
@@ -171,6 +187,7 @@ class Image_model extends CI_Model {
                 if (empty($images[$row["id"]])) {
                     $images[$row["id"]] = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"],
                         "artists"=>array()
                     );
                 }
@@ -184,7 +201,7 @@ class Image_model extends CI_Model {
     }
 
     public function get_artist_images_with_details($artist_id,$gallery_id) {
-        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description")
+        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description, version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->join("image_gallery","image_gallery.image_id = image.id")
@@ -201,6 +218,7 @@ class Image_model extends CI_Model {
                 if (empty($images[$row["id"]])) {
                     $images[$row["id"]] = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"]
                     );
                     if ($row["work_width"]) {
                         $images[$row["id"]]["width"] = floatval($row["work_width"]);
@@ -252,7 +270,7 @@ class Image_model extends CI_Model {
     }
 
     public function get_exhibition_images($exhibition_id) {
-        $this->db->select("image.id, artist_id, artist.name")
+        $this->db->select("image.id, artist_id, artist.name, version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->join("image_exhibition","image_exhibition.image_id = image.id")
@@ -266,6 +284,7 @@ class Image_model extends CI_Model {
                 if (empty($images[$row["id"]])) {
                     $images[$row["id"]] = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"],
                         "artists"=>array()
                     );
                 }
@@ -281,7 +300,7 @@ class Image_model extends CI_Model {
 
 
     public function get_exhibition_images_with_details($exhibition_id) {
-        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description")
+        $this->db->distinct()->select("image.id, artist_id, artist.name, work_width, work_height, work_depth, work_creation_year, lang, title, description, version")
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->join("image_exhibition","image_exhibition.image_id = image.id")
@@ -297,6 +316,7 @@ class Image_model extends CI_Model {
                 if (empty($images[$row["id"]])) {
                     $images[$row["id"]] = array(
                         "id"=>$row["id"],
+                        "version"=>$row["version"]
                     );
                     if ($row["work_width"]) {
                         $images[$row["id"]]["width"] = floatval($row["work_width"]);

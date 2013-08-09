@@ -28,4 +28,17 @@ class Image extends Dg_controller {
             $this->save_memcache($cache_key,$this->output->get_output());
         }
     }
+
+    public function jpeg($dir,$id) {
+        $dirs = array(
+            "185","440x235","900x480","2mp","original"
+        );
+        $filename = rtrim(FCPATH,"/")."/images/".$dir."/".$id.".jpg";
+        if (in_array($dir,$dirs) && file_exists($filename)) {
+            $this->output->set_content_type("image/jpeg");
+            $this->output->set_header("Cache-Control: public, max-age=".(60*60*24*365*5));
+            $this->output->set_header("Expires: ".date("r",time()+60*60*24*365*5));
+            $this->output->set_output(file_get_contents($filename));
+        }
+    }
 }

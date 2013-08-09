@@ -105,7 +105,8 @@ class Image_admin extends Admin {
             imagecopy($destination, $source, $dest_x, $dest_y, $src_x, $src_y, $src_w, $src_h);
         }
         imagedestroy($source);
-        imagejpeg($destination,$destination_filename,90);
+        imageinterlace($destination,1);
+        imagejpeg($destination,$destination_filename,95);
         imagedestroy($destination);
         return true;
     }
@@ -228,7 +229,13 @@ class Image_admin extends Admin {
                     }
 
                 }
-                $image_id = $this->image_model->insert($meta["original_width"],$meta["original_height"]);
+                $version = 0;
+                if ($this->input->post("image_id")) {
+                    $image_id = $this->input->post("image_id",true);
+                    $version = $this->image_model->update_dimensions($image_id,$meta["original_width"],$meta["original_height"]);
+                } else {
+                    $image_id = $this->image_model->insert($meta["original_width"],$meta["original_height"]);
+                }
 
                 if (!$image_id) {
                     $response[$i] = array("error"=>"Unable to insert image ".$_FILES["file"]["name"][$i]." to the database");
@@ -257,6 +264,7 @@ class Image_admin extends Admin {
                     $original = imagerotate($original,$rotation,0);
                 }
                 $large_file = $images_dir."/2mp/".$image_id.".jpg";
+                imageinterlace($target,1);
                 imagejpeg($target, $large_file, 90);
                 imagedestroy($target);
 
@@ -269,11 +277,13 @@ class Image_admin extends Admin {
 
                     $w400h235 = imagecreatetruecolor(440,235);
                     imagecopyresampled($w400h235, $original, 0, 0, $crop[0], $crop[1], 440, 235, $crop[2], $crop[3]);
+                    imageinterlace($w400h235,1);
                     imagejpeg($w400h235, $images_dir."/440x235/".$image_id.".jpg");
                     imagedestroy($w400h235);
 
                     $w900h480 = imagecreatetruecolor(900,480);
                     imagecopyresampled($w900h480, $original, 0, 0, $crop[0], $crop[1], 900, 480, $crop[2], $crop[3]);
+                    imageinterlace($w900h480,1);
                     imagejpeg($w900h480, $images_dir."/900x480/".$image_id.".jpg");
                     imagedestroy($w900h480);
                 }
@@ -293,7 +303,7 @@ class Image_admin extends Admin {
                         continue;
                     }
                 }
-                $response[$i] = array("id"=>$image_id);
+                $response[$i] = array("id"=>$image_id,"version"=>$version);
             }
         } else {
             $response = array("error"=>"No files submitted");

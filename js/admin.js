@@ -1,5 +1,5 @@
 DivisionAdmin = {
-    imageUpload: function() {
+    imageUpload: function(imageId) {
         var xhr = null;
         this.subscribe = function(eventType,callback) {
             if (!callbacks.hasOwnProperty(eventType)) {
@@ -25,6 +25,9 @@ DivisionAdmin = {
             for (var i=0; i<files.length; i++) {
                 fd.append("file["+i+"]", files[i]);
                 fd.append("crop["+i+"]", sizes[i]);
+            }
+            if ($.type(imageId) !== "undefined") {
+                fd.append("image_id",imageId);
             }
             xhr.upload.addEventListener("progress", function(event) {
                 if (event.lengthComputable) {
@@ -188,3 +191,206 @@ DivisionAdmin = {
         populateSelect();
     }
 }
+jQuery.fn.extend({
+    "imageUpload":function(imageId) {
+        this.each(function(){
+            var _this = this;
+            var form = $('<form class="uploadForm" method="post" enctype="multipart/form-data"></form>');
+            var fileInput = $('<input type="file" name="file" accept="image/*" />');
+            var cancelButton = $('<button class="cancelBtn" type="reset" style="display:none">Cancel</button>');
+            var uploadButton = $('<button class="uploadBtn" disabled="disabled">Upload</button>');
+            $(this).empty().append(form);
+            form.append($('<p></p>').append(fileInput));
+            form.append($('<p></p>').append(cancelButton).append(document.createTextNode(" ")).append(uploadButton));
+
+            uploadButton.on("click",function(){
+                var files = fileInput.get(0).files;
+                var maxFiles = 1;
+                if (files.length > maxFiles) {
+                    alert("Please upload up to "+maxFiles+" files at a time.");
+                    return false;
+                }
+                if (files.length > 0) {
+                    form.hide();
+                    $(_this).find('.imagePreview p, .uploading').remove();
+                    $(_this).append('<p class="uploading">Uploading. Please wait.</p>');
+
+                    function onProgress(data) {
+                        if ($(_this).find(".progressBarContainer").length == 0) {
+                            $('<div class="progressBarContainer"><div class="progressBar"></div></div>').appendTo($(_this));
+                        }
+                        $(_this).find("div.progressBar").width(data.loaded/data.total*$(_this).find("div.progressBarContainer").width());
+                        if (data.loaded == data.total && data.loaded > 0) {
+                            $(_this).find("div.progressBarContainer").remove();
+                            $(_this).find("p.uploading").text("Resizing images. This may take a little while. Please be patient.");
+                        }
+                    }
+                    function onComplete(response) {
+                        $(_this).find(".progressBarContainer, .uploading").remove();
+                        for (var i=0; i<response.length; i++) {
+                            if (response[i].hasOwnProperty("id")) {
+                                $(_this).find(".progressBarContainer, .uploading, .imagePreview, .warning").remove();
+                                fileInput.show();
+                                cancelButton.hide();
+                                form.show();
+                                var event = jQuery.Event("complete",{"imageId":response[i].id,"version":response[i].version});
+                                $(_this).trigger(event);
+                                return;
+                            }
+                        }
+                    }
+                    function onError(error) {
+                        $(_this).find(".progressBarContainer, .uploading").remove();
+                        form.show();
+                        alert("Error uploading file");
+                        $(_this).trigger("error");
+                    }
+
+                    var imageUpload = new DivisionAdmin.imageUpload(imageId);
+                    imageUpload.subscribe("progress",onProgress);
+                    imageUpload.subscribe("complete",onComplete);
+                    imageUpload.subscribe("error",onError);
+                    imageUpload.subscribe("abort",onError);
+                    imageUpload.upload(files,[crop]);
+                }
+                return false;
+            });
+            cancelButton.on("click",function(){
+                $(_this).find('.imagePreview, .warning').remove();
+                uploadButton.attr("disabled","disabled");
+                fileInput.show();
+                $(this).hide();
+                $(_this).trigger("cancel");
+            });
+            fileInput.on("change",function(){
+                $(_this).trigger("start");
+                fileInput.hide();
+                cancelButton.show();
+                if (this.files.length > 0) {
+                    var files = this.files;
+                    try {
+                        $(this).fileExif(function(exif){
+                            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                                for (var i=0, f; f=files[i]; i++) {
+                                    if (!f.type.match('image.*')) {
+                                        continue;
+                                    }
+                                    var reader = new FileReader();
+                                    reader.onload = (function(theFile) {
+                                        return function(e) {
+                                            $(_this).find('.imagePreview, .warning').remove();
+                                            var img = $('<img style="position:absolute" />');
+                                            img.on("load",function(){
+                                                $(this).off("load");
+                                                var originalWidth = $(this).get(0).naturalWidth;
+                                                var originalHeight = $(this).get(0).naturalHeight;
+                                                var cropWidth = 440;
+                                                var cropHeight = 235;
+                                                var rotation = 0;
+                                                if (exif && exif.hasOwnProperty("Orientation")) {
+                                                    switch (exif.Orientation) {
+                                                        case 2:
+                                                            //horizontal flip
+                                                            break;
+                                                        case 3:
+                                                            rotation = 180;
+                                                            break;
+                                                        case 4:
+                                                            //vertical flip
+                                                            break;
+                                                        case 5:
+                                                            //vertical flip
+                                                            var ow = originalWidth;
+                                                            originalWidth = originalHeight;
+                                                            originalHeight = ow;
+                                                            rotation = -90;
+                                                            break;
+                                                        case 6:
+                                                            var ow = originalWidth;
+                                                            originalWidth = originalHeight;
+                                                            originalHeight = ow;
+                                                            rotation = 90;
+                                                            break;
+                                                        case 7:
+                                                            //horizontal flip
+                                                            var ow = originalWidth;
+                                                            originalWidth = originalHeight;
+                                                            originalHeight = ow;
+                                                            rotation = -90;
+                                                            break;
+                                                        case 8:
+                                                            var ow = originalWidth;
+                                                            originalWidth = originalHeight;
+                                                            originalHeight = ow;
+                                                            rotation = -90;
+                                                            break;
+                                                    }
+                                                }
+                                                if (originalWidth < 900) {
+                                                    $(_this).find('.imagePreview, .warning').remove();
+                                                    form.prepend('<p class="warning">The image is too small. Please make sure it\'s at least 900 pixels wide.</p>');
+                                                    cancelButton.hide();
+                                                    fileInput.show();
+                                                } else {
+                                                    var imageRatio = originalWidth/originalHeight;
+                                                    var cropRatio = cropWidth/cropHeight;
+                                                    var w, h, axis;
+                                                    if (imageRatio < cropRatio) {
+                                                        w = cropWidth;
+                                                        h = Math.round(w/imageRatio);
+                                                        axis = "y";
+                                                    } else {
+                                                        h = cropHeight;
+                                                        w = Math.round(h*imageRatio);
+                                                        axis = "x";
+                                                    }
+
+                                                    canvas.attr("width",w).attr("height",h);
+                                                    var ctx = canvas.get(0).getContext("2d");
+
+                                                    if (rotation == 90) {
+                                                        ctx.rotate(rotation*Math.PI/180);
+                                                        ctx.drawImage(img.get(0),0,0-w,h,w);
+                                                    } else if (rotation == -90) {
+                                                        ctx.rotate(rotation*Math.PI/180);
+                                                        ctx.drawImage(img.get(0),0-h,0,h,w);
+                                                    } else {
+                                                        ctx.drawImage(img.get(0),0,0,w,h);
+                                                    }
+
+                                                    var scale = w/originalWidth;
+                                                    var imgContainerSize = {"width":(w-cropWidth)+w,"height":(h-cropHeight)+h,"left":cropWidth/2-((w-cropWidth)+w)/2,"top":cropHeight/2-((h-cropHeight)+h)/2};
+                                                    canvas.draggable({"axis":axis,"containment":"parent"}).on("dragstop",function(event,ui){
+                                                        crop = [Math.round((w-cropWidth-ui.position.left)/scale),Math.round((h-cropHeight-ui.position.top)/scale),Math.round(cropWidth/scale),Math.round(cropHeight/scale)];
+                                                    });
+                                                    $(_this).find(".croppedImage div").css(imgContainerSize);
+                                                    $(_this).find(".croppedImage").css({"overflow":"hidden"});
+                                                    crop = [Math.round((w-cropWidth-canvas.position().left)/scale),Math.round((h-cropHeight-canvas.position().top)/scale),Math.round(cropWidth/scale),Math.round(cropHeight/scale)];
+                                                    uploadButton.removeAttr("disabled");
+                                                }
+                                            });
+                                            $(_this).find('.imagePreview, .warning').remove();
+                                            form.before('<p class="imagePreview"></p>');
+                                            $(_this).find("p.imagePreview").append('<p>Adjust image cropping for exhibition pages</p>').append('<div style="width:440px;height:235px;position:relative;oveflow:hidden" class="croppedImage"><div style="position:absolute"></div></div>');
+                                            var canvas = $('<canvas></canvas>');
+                                            $(_this).find(".croppedImage div").append(canvas);
+                                            img.attr("src",e.target.result);
+                                        };
+                                    })(f);
+                                    reader.readAsDataURL(f);
+                                }
+                            } else {
+                                alert("Your browser does not support advanced features that allow for cropping images before they are uploaded. Please use the latest version of Google Chrome.");
+                            }
+                        });
+                    } catch (error) {
+                        alert("Your browser does not support advanced features that allow for cropping images before they are uploaded. Please use the latest version of Google Chrome.");
+                    }
+                } else {
+                    uploadButton.attr("disabled","disabled");
+                }
+            });
+        });
+        return this;
+    }
+});

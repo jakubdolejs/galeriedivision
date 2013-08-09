@@ -4,7 +4,8 @@ if (empty($image) || empty($artists)) {
 }
 $this->load->helper("form");
 echo form_open("/admin/image/".$image["id"],array("method"=>"post","id"=>"imageForm".$image["id"]));
-echo '<p><img src="/images/185/'.$image["id"].'.jpg" alt="image" /></p>';
+echo '<p><img src="/images/185/'.$image["id"].($image["version"] ? "-".$image["version"] : "").'.jpg" alt="image" id="thumbnail" /></p>';
+echo '<div id="upload"></div>';
 echo '<p>'.form_fieldset("Dimensions");
 echo '<p>'.form_label("Height (inches)","height").'<br />'.form_input("height",$image["height"]).'</p>';
 echo '<p>'.form_label("Width (inches)","width").'<br />'.form_input("width",$image["width"]).'</p>';
@@ -34,6 +35,8 @@ echo form_fieldset_close().'</p>';
 echo '<p>'.form_submit('save','Save').'</p>';
 echo form_close();
 ?>
+<script type="text/javascript" src="/js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.exif.js"></script>
 <script type="text/javascript">
     //<![CDATA[
     /*
@@ -50,6 +53,15 @@ echo form_close();
         }
     });
     */
+    $("#upload").imageUpload(<?php echo $image["id"]; ?>).on("complete",function(event){
+        var thumbnailParent = $("#thumbnail").parent();
+        $("#thumbnail").remove();
+        thumbnailParent.append('<img id="thumbnail" src="/images/185/'+event.imageId+(event.version ? '-'+event.version : '')+'.jpg?t='+(new Date().getTime())+'" alt="image" />');
+    }).on("start",function(){
+            $("#thumbnail").hide();
+        }).on("error cancel",function(){
+            $("#thumbnail").show();
+        });
     var artistSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($options); ?>,<?php echo json_encode($selected); ?>);
     artistSelector.changeCallback = function(selectedArtists) {
         $("input[name='artists[]']").remove();

@@ -33,15 +33,15 @@ $title = $this->lang->line("Division Gallery");
                 }
             }
             function loadImage(id) {
-                imageId = id;
-                if ($("div.slide img[src='/images/2mp/"+id+".jpg']").length > 0) {
-                    $("div.slide img[src='/images/2mp/"+id+".jpg']").parent().animate({"left":0,"right":0});
-                } else {
-                    $("div.slide img").attr("src","/images/2mp/"+id+".jpg");
-                }
-                $("div.slide, div.slide img").hammer().on("dragleft",onDragLeft).on("dragright",onDragRight).on("dragend",onDragEnd);
                 for (var i=0; i<images.length; i++) {
                     if (images[i].id == id) {
+                        imageId = id;
+                        if ($("div.slide img[src='/images/2mp/"+id+(images[i].version ? "-"+images[i].version : "")+".jpg']").length > 0) {
+                            $("div.slide img[src='/images/2mp/"+id+(images[i].version ? "-"+images[i].version : "")+".jpg']").parent().animate({"left":0,"right":0});
+                        } else {
+                            $("div.slide img").attr("src","/images/2mp/"+id+(images[i].version ? "-"+images[i].version : "")+".jpg");
+                        }
+                        $("div.slide, div.slide img").hammer().on("dragleft",onDragLeft).on("dragright",onDragRight).on("dragend",onDragEnd);
                         $("div.previous").toggleClass("disabled",i <= 0);
                         $("div.next").toggleClass("disabled", i >= images.length - 1);
                         if (i > 0) {
@@ -143,7 +143,7 @@ $title = $this->lang->line("Division Gallery");
                 if (tempSlide.length == 0) {
                     tempSlide = currentSlide.clone();
                     tempSlide.removeClass("slide").addClass("tempSlide");
-                    tempSlide.find("img").attr("src","/images/2mp/"+nextSlide.id+".jpg");
+                    tempSlide.find("img").attr("src","/images/2mp/"+nextSlide.id+(nextSlide.version ? "-"+nextSlide.version : "")+".jpg");
                     tempSlide.attr("name",nextSlide.id);
                     tempSlide.insertAfter(currentSlide);
                 }
@@ -172,7 +172,7 @@ $title = $this->lang->line("Division Gallery");
                 if (tempSlide.length == 0) {
                     tempSlide = currentSlide.clone();
                     tempSlide.removeClass("slide").addClass("tempSlide");
-                    tempSlide.find("img").attr("src","/images/2mp/"+nextSlide.id+".jpg");
+                    tempSlide.find("img").attr("src","/images/2mp/"+nextSlide.id+(nextSlide.version ? "-"+nextSlide.version : "")+".jpg");
                     tempSlide.attr("name",nextSlide.id);
                     tempSlide.insertAfter(currentSlide);
                 }
@@ -292,7 +292,7 @@ if (!empty($images)) {
             } else {
                 echo '<div class="previous disabled"><a data-id="'.$images[$i]["id"].'" href="javascript:void(0)">&lt;</a></div>';
             }
-            echo '<div class="slide"><img src="/images/2mp/'.$image["id"].'.jpg" /></div>';
+            echo '<div class="slide"><img src="/images/2mp/'.$image["id"].($image["version"] ? "-".$image["version"] : "").'.jpg" /></div>';
             if ($i < count($images) - 1) {
                 echo '<div class="next"><a data-id="'.$images[$i+1]["id"].'" href="'.$base_url.$images[$i+1]["id"].'">&gt;</a></div>';
             } else {
