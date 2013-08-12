@@ -21,7 +21,22 @@ class Gallery extends Dg_controller {
 
             $hours = array();
             $last_times = NULL;
+            $hours_microdata = array();
+            $microdata_days = array(
+                'http://purl.org/goodrelations/v1#Sunday',
+                'http://purl.org/goodrelations/v1#Monday',
+                'http://purl.org/goodrelations/v1#Tuesday',
+                'http://purl.org/goodrelations/v1#Wednesday',
+                'http://purl.org/goodrelations/v1#Thursday',
+                'http://purl.org/goodrelations/v1#Friday',
+                'http://purl.org/goodrelations/v1#Saturday'
+            );
             foreach ($gallery_hours as $times) {
+                $key = '<meta itemprop="opens" content="'.date("H:i:s",strtotime($times["open_time"])).'" /><meta itemprop="closes" content="'.date("H:i:s",strtotime($times["close_time"])).'" />';
+                if (!isset($hours_microdata[$key])) {
+                    $hours_microdata[$key] = array();
+                }
+                $hours_microdata[$key][] = '<link itemprop="dayOfWeek" href="'.$microdata_days[$times["day"]].'" />';
                 if (!$last_times || $times["open_time"] != $last_times["open_time"] || $times["close_time"] != $last_times["close_time"]) {
                     $hours[] = array("start"=>$this->lang->line("weekday_".$times["day"]),"open"=>strtotime($times["open_time"]),"close"=>strtotime($times["close_time"]));
                 } else {
@@ -65,7 +80,7 @@ class Gallery extends Dg_controller {
             $gallery_info["name"] = $this->lang->line("Division Gallery")." ".$this->lang->line($gallery_info["city"]);
             $header_vars = $this->get_header_vars($gallery);
             $this->load->view("header",$header_vars);
-            $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours));
+            $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours,"hours_microdata"=>$hours_microdata));
             $this->load->view("footer");
             $this->save_memcache($cache_key,$this->output->get_output());
         }

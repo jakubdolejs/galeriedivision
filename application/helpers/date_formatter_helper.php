@@ -10,22 +10,22 @@ if (!function_exists("format_exhibition_dates")) {
         if ($lang == "en") {
             if ($start->format("Y") == $end->format("Y")) {
                 if ($start->format("n") == $end->format("n")) {
-                    $dates = $start->format("F j")."–".$end->format("j, Y");
+                    $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("F j").'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("j, Y").'</time>';
                 } else {
-                    $dates = $start->format("F j")."–".$end->format("F j, Y");
+                    $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("F j").'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("F j, Y").'</time>';
                 }
             } else {
-                $dates = $start->format("F j, Y")."–".$end->format("F j, Y");
+                $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("F j, Y").'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("F j, Y").'</time>';
             }
         } else {
             if ($start->format("Y") == $end->format("Y")) {
                 if ($start->format("n") == $end->format("n")) {
-                    $dates = $start->format("j")."–".$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y");
+                    $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("j").'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y").'</time>';
                 } else {
-                    $dates = $start->format("j ").$CI->lang->line("cal_".strtolower($start->format("F")))."–".$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y");
+                    $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("j ").$CI->lang->line("cal_".strtolower($start->format("F"))).'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y").'</time>';
                 }
             } else {
-                $dates = $start->format("j ").$CI->lang->line("cal_".strtolower($start->format("F"))).$start->format(", Y")."–".$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y");
+                $dates = '<time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format("j ").$CI->lang->line("cal_".strtolower($start->format("F"))).$start->format(", Y").'</time>–<time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format("j ").$CI->lang->line("cal_".strtolower($end->format("F"))).$end->format(", Y").'</time>';
             }
         }
         return $dates;
@@ -54,9 +54,9 @@ if (!function_exists("format_opening_reception_dates")) {
             $end_time_format .= "a";
         }
         $date_format = $lang == "en" ? "l F j " : "";
-        $reception = $start->format($date_format)." ".$CI->lang->line("from")." ".$start->format($start_time_format)." ".$CI->lang->line("to")." ".$end->format($end_time_format);
+        $reception = $start->format($date_format)." ".$CI->lang->line("from").' <time itemprop="startDate" datetime="'.$start->format("c").'">'.$start->format($start_time_format)."</time> ".$CI->lang->line("to").' <time itemprop="endDate" datetime="'.$end->format("c").'">'.$end->format($end_time_format).'</time>';
         if ($lang == "fr") {
-            $reception = $CI->lang->line("weekday_".$start->format("N"))." ".$start->format("j")." ".$CI->lang->line("cal_".strtolower($start->format("F")))." ".$reception;
+            $reception = $CI->lang->line("weekday_".$start->format("N")).' '.$start->format("j").' '.$CI->lang->line("cal_".strtolower($start->format("F")))." ".$reception;
         }
         return $reception;
     }

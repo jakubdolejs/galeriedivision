@@ -79,6 +79,7 @@ $route['api/staff/order'] = "api/order_staff";
 $route['api/(:any)/(:any)/images'] = "api/artist_gallery_images/$2/$1";
 $route['admin'] = "admin";
 $route['news/subscribe'] = "news/subscribe";
+$route['sitemap.xml'] = "sitemap";
 $route['(:any)/artist/(:any)/exhibition/(:any)/image/(:num)'] = "artist/exhibition_image/$1/$2/$3/$4";
 $route['(:any)/artist/(:any)/image/(:any)'] = "artist/image/$1/$2/$3";
 $route['(:any)/artist/(:any)/exhibitions'] = "artist/exhibitions/$1/$2";

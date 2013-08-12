@@ -61,8 +61,8 @@ $title = $this->lang->line("Division Gallery");
     </head>
     <body>
         <div id="content">
-        <header>
-            <h1><a href="/"><?php echo $this->lang->line("Division Gallery"); ?> </a><?php echo $city; ?></h1>
+        <header itemscope itemtype="http://schema.org/Place" id="gallery-address" itemprop="location">
+            <h1><a href="/" itemprop="name"><?php echo $this->lang->line("Division Gallery"); ?></a> <span itemprop="address" itemscope itemtype="PostalAddress"><span itemprop="addressLocality"><?php echo $city; ?></span></span></h1>
             <nav>
                 <ul>
                     <?php

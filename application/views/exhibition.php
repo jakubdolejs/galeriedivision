@@ -1,11 +1,11 @@
 <?php
 if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
-    echo '<div class="exhibition">';
+    echo '<div class="exhibition" itemscope itemtype="http://schema.org/VisualArtsEvent" itemref="gallery-address">';
     if (!empty($exhibition["image_id"])) {
-        echo '<p><img src="/images/900x480/'.$exhibition["image_id"].'.jpg" alt="'.$exhibition["id"].'" class="exhibition-feature" /></p>';
+        echo '<p><img itemprop="image" src="http://'.$this->input->server("HTTP_HOST").'/images/900x480/'.$exhibition["image_id"].'.jpg" alt="'.$exhibition["id"].'" class="exhibition-feature" /></p>';
     }
     if (!empty($exhibition["title"][$lang])) {
-        $title = htmlspecialchars($exhibition["title"]);
+        $title = htmlspecialchars($exhibition["title"][$lang]);
     } else {
         $title = "";
     }
@@ -14,14 +14,14 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
         if (count($exhibition["artists"]) > 1) {
             $artists = array();
             foreach ($exhibition["artists"] as $artist_id=>$artist_name) {
-                $artists[] = '<a href="/'.$exhibition["gallery_id"].'/artist/'.$artist_id.'">'.htmlspecialchars($artist_name).'</a>';
+                $artists[] = '<a href="/'.$gallery_id.'/artist/'.$artist_id.'" itemprop="performer" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'.htmlspecialchars($artist_name).'</span></a>';
             }
             $artists = '<p>'.join(", ",$artists).'</p>';
         } else {
             $title = htmlspecialchars(current($exhibition["artists"]))." ".$title;
         }
     }
-    echo '<h2>'.$title.'</h2>'.$artists;
+    echo '<h2 itemprop="name">'.$title.'</h2>'.$artists;
     $start = DateTime::createFromFormat("Y-m-d", $exhibition["start_date"]);
     $end = DateTime::createFromFormat("Y-m-d", $exhibition["end_date"]);
     $this->load->helper("date_formatter");
@@ -32,12 +32,12 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
         if ($end->getTimestamp() >= time()) {
             $start = DateTime::createFromFormat("Y-m-d H:i:s", $exhibition["reception_start"]);
             $reception = format_opening_reception_dates($start,$end);
-            echo '<p>'.$this->lang->line("Opening reception")." ".$reception.'</p>';
+            echo '<p itemprop="subEvent" itemscope itemtype="http://schema.org/VisualArtsEvent"><span itemprop="name">'.$this->lang->line("Opening reception")."</span> ".$reception.'</p>';
         }
     }
     echo '</div>';
     if (!empty($images)) {
-        $base_image_url = $artist_id ? "/".$gallery_id."/artist/".$artist_id."/exhibition/".$exhibition["id"]."/image/" : "/".$gallery_id."/exhibition/".$exhibition["id"]."/image/";
+        $base_image_url = !empty($artist_id) ? "/".$gallery_id."/artist/".@$artist_id."/exhibition/".$exhibition["id"]."/image/" : "/".$gallery_id."/exhibition/".$exhibition["id"]."/image/";
         echo '<h3>'.$this->lang->line("Works in the exhibition").'</h3><ul class="thumbnails">';
         foreach ($images as $image) {
             echo '<li>
