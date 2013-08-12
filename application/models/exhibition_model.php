@@ -1,13 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class Exhibition_model extends CI_Model {
-    
-    function __construct() {
-        parent::__construct();
-        $this->load->database();
-        $this->load->driver("cache");
-    }
-    
+class Exhibition_model extends GD_Model {
+
     public function get_exhibitions($type,$lang,$gallery_id=NULL) {
         $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
                 ->from("exhibition")
@@ -180,7 +175,7 @@ class Exhibition_model extends CI_Model {
         return $this->db->count_all_results() > 0;
     }
 
-    public function update($exhibition_id,$values,&$errorinfo=null) {
+    public function update($user_id,$exhibition_id,$values,&$errorinfo=null) {
         $this->db->trans_start();
         if (isset($values["start_date"])) {
             $this->db->set("start_date",$values["start_date"]);
@@ -207,6 +202,7 @@ class Exhibition_model extends CI_Model {
         if ($exhibition_id) {
             $this->db->where("id",$exhibition_id);
             $this->db->update("exhibition");
+            $this->log($user_id);
         } else {
             $base_id = "";
             $this->load->helper("text");
@@ -229,9 +225,11 @@ class Exhibition_model extends CI_Model {
             }
             $this->db->set("id",$exhibition_id);
             $this->db->insert("exhibition");
+            $this->log($user_id);
         }
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("exhibition_translation");
+        $this->log($user_id);
         foreach (array("fr","en") as $lang) {
             if (!empty($values["title"][$lang])) {
                 $this->db->set("title",$values["title"][$lang]);
@@ -246,24 +244,29 @@ class Exhibition_model extends CI_Model {
             $this->db->set("lang",$lang);
             $this->db->set("exhibition_id",$exhibition_id);
             $this->db->insert("exhibition_translation");
+            $this->log($user_id);
         }
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("artist_exhibition");
+        $this->log($user_id);
         if (!empty($values["artist_ids"])) {
             $batch = array();
             foreach ($values["artist_ids"] as $artist_id) {
                 $batch[] = array("artist_id"=>$artist_id,"exhibition_id"=>$exhibition_id);
             }
             $this->db->insert_batch("artist_exhibition",$batch);
+            $this->log($user_id);
         }
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("space_exhibition");
+        $this->log($user_id);
         if (!empty($values["space_ids"])) {
             $batch = array();
             foreach ($values["space_ids"] as $space_id) {
                 $batch[] = array("space_id"=>$space_id,"exhibition_id"=>$exhibition_id);
             }
             $this->db->insert_batch("space_exhibition",$batch);
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -273,18 +276,23 @@ class Exhibition_model extends CI_Model {
         return false;
     }
 
-    public function delete($exhibition_id) {
+    public function delete($user_id,$exhibition_id) {
         $this->db->trans_start();
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("exhibition_translation");
+        $this->log($user_id);
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("artist_exhibition");
+        $this->log($user_id);
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("space_exhibition");
+        $this->log($user_id);
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("image_exhibition");
+        $this->log($user_id);
         $this->db->where("id",$exhibition_id);
         $this->db->delete("exhibition");
+        $this->log($user_id);
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
             $this->cache->memcached->clean();

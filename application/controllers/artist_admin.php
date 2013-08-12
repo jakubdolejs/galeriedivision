@@ -27,7 +27,7 @@ class Artist_admin extends Admin {
         $this->load->view("admin/header",array("user"=>$user));
         if ($this->input->post("name")) {
             $name = $this->input->post("name",true);
-            $id = $this->artist_model->add($name);
+            $id = $this->artist_model->add($user["id"],$name);
             if (!$id) {
                 $this->output->append_output('<script type="text/javascript">alert("Error adding '.$name.'");</script>');
             } else {
@@ -51,7 +51,7 @@ class Artist_admin extends Admin {
         $artist = $this->artist_model->get_artist($artist_id);
         if ($this->input->post("save")) {
             $name = $this->input->post("name",true);
-            $this->artist_model->update_name($artist_id,$name);
+            $this->artist_model->update_name($user["id"],$artist_id,$name);
             $listed = array();
             $represented = array();
             if ($this->input->post("status")) {
@@ -78,12 +78,12 @@ class Artist_admin extends Admin {
                     continue;
                 }
                 $image = !empty($image_id[$id]) ? $image_id[$id] : null;
-                $this->artist_model->update_gallery_info($artist_id,$id,!empty($listed[$id]),!empty($represented[$id]),$image);
+                $this->artist_model->update_gallery_info($user["id"],$artist_id,$id,!empty($listed[$id]),!empty($represented[$id]),$image);
             }
             if ($this->input->post("cv")) {
                 $cv = $this->input->post("cv",true);
                 foreach ($cv as $lang=>$text) {
-                    $this->artist_model->update_cv($artist_id,$lang,$text);
+                    $this->artist_model->update_cv($user["id"],$artist_id,$lang,$text);
                 }
             }
             $this->output->append_output('<h1>Success</h1><p>'.$name.'\'s record has been updated.</p><p><a class="button" href="/admin/artists">OK</a></p>');
@@ -105,7 +105,7 @@ class Artist_admin extends Admin {
         if (!$this->artist_model->is_deletable_by_user($artist_id,$user)) {
             $this->output->append_output('<h1>Error</h1><p>The artist '.$name.' cannot be deleted. There may be exhibitions, news or images associated with the artist. Please delete them first before attempting to delete the artist.</p>');
         } else {
-            if ($this->artist_model->delete($artist_id)) {
+            if ($this->artist_model->delete($user['id'],$artist_id)) {
                 $this->output->append_output('<h1>Success</h1><p>Artist '.$name.' has been deleted.</p>');
             } else {
                 $this->output->append_output('<h1>Error</h1><p>We were unable to delete the artist '.$name.' at this time.</p>');

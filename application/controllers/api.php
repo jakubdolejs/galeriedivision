@@ -54,7 +54,7 @@ class Api extends Admin {
                 return;
             }
             $images = $this->input->post("images",true);
-            $updated = $this->image_model->set_artist_images($artist_id,$gallery_id,$images);
+            $updated = $this->image_model->set_artist_images($user["id"],$artist_id,$gallery_id,$images);
             $this->load->view("json",array("data"=>$updated));
         } else {
             $images = $this->image_model->get_artist_images_with_details($artist_id,$gallery_id);
@@ -78,7 +78,7 @@ class Api extends Admin {
         }
         if ($this->input->post("images") !== false) {
             $images = $this->input->post("images",true);
-            $updated = $this->image_model->set_exhibition_images($exhibition_id,$images);
+            $updated = $this->image_model->set_exhibition_images($user["id"],$exhibition_id,$images);
             $this->load->view("json",array("data"=>$updated));
         }
     }
@@ -91,7 +91,7 @@ class Api extends Admin {
         }
         $priority = $this->input->post("priority",true);
         if ($priority && !empty($priority)) {
-            if ($this->staff_model->reorder($priority)) {
+            if ($this->staff_model->reorder($user["id"],$priority)) {
                 $this->load->view("json",array("data"=>true));
                 return;
             }

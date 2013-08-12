@@ -56,6 +56,7 @@ $route['admin/exhibition/(:any)/delete'] = "exhibition_admin/delete/$1";
 $route['admin/exhibition/(:any)/images'] = "exhibition_admin/images/$1";
 $route['admin/exhibition/(:any)'] = "exhibition_admin/edit/$1";
 $route['admin/users'] = "user_admin";
+$route['admin/user/delete'] = "user_admin/delete";
 $route['admin/user/add'] = "user_admin/add";
 $route['admin/user/edit'] = "user_admin/edit";
 $route['admin/user/password/(:any)'] = "user_admin/password/$1";

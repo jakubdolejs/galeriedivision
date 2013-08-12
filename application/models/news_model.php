@@ -1,12 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class News_model extends CI_Model {
-    
-    function __construct() {
-        parent::__construct();
-        $this->load->database();
-        $this->load->driver("cache");
-    }
+class News_model extends GD_Model {
     
     public function get_news($gallery_id=null,$lang=null,$max_stories=0) {
         $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, name, news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id")
@@ -155,11 +150,12 @@ class News_model extends CI_Model {
         return $news;
     }
 
-    public function add($headline,$text,$source,$date,$url,$gallery_ids,$artist_ids,$exhibition_ids,$image_id) {
+    public function add($user_id,$headline,$text,$source,$date,$url,$gallery_ids,$artist_ids,$exhibition_ids,$image_id) {
         $this->db->set("source",$source)
             ->set("date_published",$date)
             ->set("url",$url);
         if ($this->db->insert("news") !== false) {
+            $this->log($user_id);
             $id = $this->db->insert_id();
             $translation = array();
             if (!empty($headline)) {
@@ -187,6 +183,7 @@ class News_model extends CI_Model {
             if (!empty($translation)) {
                 $translation = array_values($translation);
                 $this->db->insert_batch("news_translation",$translation);
+                $this->log($user_id);
             }
             if (!empty($artist_ids)) {
                 $artists = array();
@@ -197,6 +194,7 @@ class News_model extends CI_Model {
                     );
                 }
                 $this->db->insert_batch("news_artist",$artists);
+                $this->log($user_id);
             }
             if (!empty($exhibition_ids)) {
                 $exhibitions = array();
@@ -207,6 +205,7 @@ class News_model extends CI_Model {
                     );
                 }
                 $this->db->insert_batch("news_exhibition",$exhibitions);
+                $this->log($user_id);
             }
             if (!empty($gallery_ids)) {
                 $galleries = array();
@@ -217,11 +216,13 @@ class News_model extends CI_Model {
                     );
                 }
                 $this->db->insert_batch("news_gallery",$galleries);
+                $this->log($user_id);
             }
             if (!empty($image_id)) {
                 $this->db->set("image_id",$image_id)
                     ->set("news_id",$id);
                 $this->db->insert("news_image");
+                $this->log($user_id);
             }
             $this->cache->memcached->clean();
             return $id;
@@ -229,16 +230,18 @@ class News_model extends CI_Model {
         return null;
     }
 
-    public function update($id,$headline,$text,$source,$date,$url,$gallery_ids,$artist_ids,$exhibition_ids,$image_id) {
+    public function update($user_id,$id,$headline,$text,$source,$date,$url,$gallery_ids,$artist_ids,$exhibition_ids,$image_id) {
         $this->db->trans_start();
         $this->db->set("source",$source)
             ->set("date_published",$date)
             ->set("url",$url)
             ->where("id",$id);
         $this->db->update("news");
+        $this->log($user_id);
 
         $this->db->where("news_id",$id);
         $this->db->delete("news_translation");
+        $this->log($user_id);
         $translation = array();
         if (!empty($headline)) {
             foreach ($headline as $lang=>$value) {
@@ -265,10 +268,12 @@ class News_model extends CI_Model {
         if (!empty($translation)) {
             $translation = array_values($translation);
             $this->db->insert_batch("news_translation",$translation);
+            $this->log($user_id);
         }
 
         $this->db->where("news_id",$id);
         $this->db->delete("news_artist");
+        $this->log($user_id);
         if (!empty($artist_ids)) {
             $artists = array();
             foreach ($artist_ids as $artist_id) {
@@ -278,10 +283,12 @@ class News_model extends CI_Model {
                 );
             }
             $this->db->insert_batch("news_artist",$artists);
+            $this->log($user_id);
         }
 
         $this->db->where("news_id",$id);
         $this->db->delete("news_exhibition");
+        $this->log($user_id);
         if (!empty($exhibition_ids)) {
             $exhibitions = array();
             foreach ($exhibition_ids as $exhibition_id) {
@@ -291,10 +298,12 @@ class News_model extends CI_Model {
                 );
             }
             $this->db->insert_batch("news_exhibition",$exhibitions);
+            $this->log($user_id);
         }
 
         $this->db->where("news_id",$id);
         $this->db->delete("news_gallery");
+        $this->log($user_id);
         if (!empty($gallery_ids)) {
             $galleries = array();
             foreach ($gallery_ids as $gallery_id) {
@@ -304,14 +313,17 @@ class News_model extends CI_Model {
                 );
             }
             $this->db->insert_batch("news_gallery",$galleries);
+            $this->log($user_id);
         }
 
         $this->db->where("news_id",$id);
         $this->db->delete("news_image");
+        $this->log($user_id);
         if (!empty($image_id)) {
             $this->db->set("image_id",$image_id)
                 ->set("news_id",$id);
             $this->db->insert("news_image");
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -321,20 +333,26 @@ class News_model extends CI_Model {
         return false;
     }
 
-    public function delete($id) {
+    public function delete($user_id,$id) {
         $this->db->trans_start();
         $this->db->where("news_id",$id);
         $this->db->delete("news_image");
+        $this->log($user_id);
         $this->db->where("news_id",$id);
         $this->db->delete("news_gallery");
+        $this->log($user_id);
         $this->db->where("news_id",$id);
         $this->db->delete("news_exhibition");
+        $this->log($user_id);
         $this->db->where("news_id",$id);
         $this->db->delete("news_artist");
+        $this->log($user_id);
         $this->db->where("news_id",$id);
         $this->db->delete("news_translation");
+        $this->log($user_id);
         $this->db->where("id",$id);
         $this->db->delete("news");
+        $this->log($user_id);
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
             $this->cache->memcached->clean();

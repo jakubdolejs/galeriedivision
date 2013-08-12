@@ -46,7 +46,7 @@ class Image_admin extends Admin {
                 }
             }
         }
-        if ($this->image_model->delete($id,$error)) {
+        if ($this->image_model->delete($user["id"],$id,$error)) {
             $this->output->append_output('<h1>Image deleted</h1><p>The image has been deleted.</p><p><a href="/admin/images">OK</a></p>');
         } else {
             $reason = "The script was unable to delete the image from the database.";
@@ -93,7 +93,7 @@ class Image_admin extends Admin {
             $this->form_validation->set_rules('height','trim|callback_float_check');
             $this->form_validation->set_rules('depth','trim|callback_float_check');
             if ($this->form_validation->run() == true) {
-                $this->image_model->update($image_id,$this->input->post("width"),$this->input->post("height"),$this->input->post("depth"),$this->input->post("year"),$this->input->post("artists"),$this->input->post("title"),$this->input->post("description"));
+                $this->image_model->update($user["id"],$image_id,$this->input->post("width"),$this->input->post("height"),$this->input->post("depth"),$this->input->post("year"),$this->input->post("artists"),$this->input->post("title"),$this->input->post("description"));
                 $this->output->append_output('<h1>Success</h1><p>Image updated</p><p><img src="/images/185/'.$image_id.'.jpg" /></p><p><a class="button" href="/admin/images">OK</a></p>');
             } else {
                 $this->output->append_output('<h1>Error</h1><p>Error updating image. Please check that the dimensions are entered as numbers or left blank.</p><p><a class="button" href="/admin/image/'.$image_id.'">OK</a></p>');
@@ -156,6 +156,11 @@ class Image_admin extends Admin {
     }
 
     public function upload() {
+        $user = $this->get_logged_in_user();
+        if (!$user) {
+            $this->load->view("json",array("data"=>array("error"=>"Not logged in")));
+            return;
+        }
         set_time_limit(0);
         ignore_user_abort(true);
         if (isset($_FILES["file"]) && !empty($_FILES["file"])) {
@@ -276,9 +281,9 @@ class Image_admin extends Admin {
                 $version = 0;
                 if ($this->input->post("image_id")) {
                     $image_id = $this->input->post("image_id",true);
-                    $version = $this->image_model->update_dimensions($image_id,$meta["original_width"],$meta["original_height"]);
+                    $version = $this->image_model->update_dimensions($user["id"],$image_id,$meta["original_width"],$meta["original_height"]);
                 } else {
-                    $image_id = $this->image_model->insert($meta["original_width"],$meta["original_height"]);
+                    $image_id = $this->image_model->insert($user["id"],$meta["original_width"],$meta["original_height"]);
                 }
 
                 if (!$image_id) {
@@ -291,7 +296,7 @@ class Image_admin extends Admin {
 
                 if (!move_uploaded_file($img_file,$images_dir."/original/".$image_id.".".pathinfo($_FILES["file"]["name"][$i],PATHINFO_EXTENSION))) {
                     $response[$i] = array("error"=>"Unable to save uploaded file");
-                    $this->image_model->delete($image_id);
+                    $this->image_model->delete($user["id"],$image_id);
                     continue;
                 }
 
@@ -342,7 +347,7 @@ class Image_admin extends Admin {
                 foreach ($files as $file=>$params) {
                     if (!$this->resample($large_file,$file,$params[0],$params[1])) {
                         $response[$i] = array("error"=>"Error resampling file ".$_FILES["file"]["name"][$i]);
-                        $this->image_model->delete($image_id);
+                        $this->image_model->delete($user["id"],$image_id);
                         break;
                         continue;
                     }

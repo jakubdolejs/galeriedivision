@@ -1,12 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class Staff_model extends CI_Model {
-
-    function __construct() {
-        parent::__construct();
-        $this->load->database();
-        $this->load->driver("cache");
-    }
+class Staff_model extends GD_Model {
 
     public function get_staff($gallery_ids=null) {
         $this->db->select("gallery_staff.id, gallery_id, city, gallery_staff.name, email, priority, lang, gallery_staff_translation.title")
@@ -67,15 +62,17 @@ class Staff_model extends CI_Model {
         return $staff;
     }
 
-    public function edit($id,$name,$email,$gallery_id,$titles) {
+    public function edit($user_id,$id,$name,$email,$gallery_id,$titles) {
         $this->db->trans_start();
         $this->db->set("name",$name)
             ->set("email",$email)
             ->set("gallery_id",$gallery_id)
             ->where("id",$id);
         $this->db->update("gallery_staff");
+        $this->log($user_id);
         $this->db->where("staff_id",$id);
         $this->db->delete("gallery_staff_translation");
+        $this->log($user_id);
         $batch = array();
         if (!empty($titles)) {
             foreach ($titles as $lang=>$title) {
@@ -84,6 +81,7 @@ class Staff_model extends CI_Model {
         }
         if (!empty($batch)) {
             $this->db->insert_batch("gallery_staff_translation",$batch);
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -93,12 +91,13 @@ class Staff_model extends CI_Model {
         return false;
     }
 
-    public function add($name,$email,$gallery_id,$titles) {
+    public function add($user_id,$name,$email,$gallery_id,$titles) {
         $this->db->trans_start();
         $this->db->set("name",$name)
             ->set("email",$email)
             ->set("gallery_id",$gallery_id);
         $this->db->insert("gallery_staff");
+        $this->log($user_id);
         $id = $this->db->insert_id();
         $batch = array();
         if (!empty($titles)) {
@@ -108,6 +107,7 @@ class Staff_model extends CI_Model {
         }
         if (!empty($batch)) {
             $this->db->insert_batch("gallery_staff_translation",$batch);
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -117,17 +117,19 @@ class Staff_model extends CI_Model {
         return false;
     }
 
-    public function delete($id) {
+    public function delete($user_id,$id) {
         $this->db->from("gallery_staff_translation")
             ->where("staff_id",$id);
         $this->db->delete();
+        $this->log($user_id);
         $this->db->from("gallery_staff")
             ->where("id",$id);
         $this->db->delete();
+        $this->log($user_id);
         $this->cache->memcached->clean();
     }
 
-    public function reorder($priority) {
+    public function reorder($user_id,$priority) {
         $this->db->trans_start();
         foreach ($priority as $gallery_id=>$ids) {
             $i = 1;
@@ -135,6 +137,7 @@ class Staff_model extends CI_Model {
                 $this->db->set("priority",$i)
                     ->where("id",$id);
                 $this->db->update("gallery_staff");
+                $this->log($user_id);
                 $i++;
             }
         }

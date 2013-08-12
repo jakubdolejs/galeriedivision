@@ -29,7 +29,7 @@ class Exhibition_admin extends Admin {
         $this->load->view("admin/header",array("user"=>$user));
 
         if ($this->input->post("save")) {
-            if (!$this->exhibition_model->update(null,$this->input->post(null,true),$error)) {
+            if (!$this->exhibition_model->update($user["id"],null,$this->input->post(null,true),$error)) {
                 $this->output->append_output("<h1>Error</h1><p>Error adding exhibition.</p>");
                 if ($error) {
                     $this->output->append_output("<p>".$error."</p>");
@@ -101,7 +101,7 @@ class Exhibition_admin extends Admin {
             $this->output->append_output("<h1>Error</h1><p>You are not authorized to edit this exhibition.</p>");
         } else {
             if ($this->input->post("save")) {
-                if (!$this->exhibition_model->update($exhibition_id,$this->input->post(null,true),$error)) {
+                if (!$this->exhibition_model->update($user["id"],$exhibition_id,$this->input->post(null,true),$error)) {
                     $this->output->append_output("<h1>Error</h1><p>Error saving exhibition.</p>");
                     if ($error) {
                         $this->output->append_output("<p>".$error."</p>");
@@ -132,7 +132,7 @@ class Exhibition_admin extends Admin {
         if (!$user["superuser"] && !in_array($exhibition_gallery_id,$user["galleries"])) {
             $this->output->append_output("<h1>Error</h1><p>You are not authorized to delete this exhibition.</p>");
         } else {
-            if (!$this->exhibition_model->delete($exhibition_id)) {
+            if (!$this->exhibition_model->delete($user["id"],$exhibition_id)) {
                 $this->output->append_output("<h1>Error</h1><p>Error deleting exhibition.</p>");
             } else {
                 $this->output->append_output('<h1>Success</h1><p>Exhibition deleted.</p><p><a class="button" href="/admin/exhibitions">OK</a></p>');

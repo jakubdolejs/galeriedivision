@@ -26,7 +26,7 @@ class Staff_admin extends Admin {
             if (!$user["superuser"] && !in_array($this->input->post("gallery_id",true),$user["galleries"])) {
                 $this->output->append_output('<h1>Denied</h1><p>You are not permitted to edit the staff in '.$this->input->post("gallery_id",true).'</p>');
             } else {
-                $this->staff_model->add($this->input->post("name",true),$this->input->post("email",true),$this->input->post("gallery_id",true),$this->input->post("title",true));
+                $this->staff_model->add($user["id"],$this->input->post("name",true),$this->input->post("email",true),$this->input->post("gallery_id",true),$this->input->post("title",true));
                 $this->output->append_output('<h1>Success</h1><p>'.$this->input->post("name",true).' added.</p><p><a class="button" href="/admin/staff">OK</a></p>');
             }
         } else {
@@ -61,7 +61,7 @@ class Staff_admin extends Admin {
             if (!$user["superuser"] && !in_array($this->input->post("gallery_id",true),$user["galleries"])) {
                 $this->output->append_output('<h1>Denied</h1><p>You are not permitted to edit the staff in '.$this->input->post("gallery_id",true).'</p><p><a class="button" href="/admin/staff">OK</a></p>');
             } else {
-                $this->staff_model->edit($staff_id,$this->input->post("name",true),$this->input->post("email",true),$this->input->post("gallery_id",true),$this->input->post("title",true));
+                $this->staff_model->edit($user["id"],$staff_id,$this->input->post("name",true),$this->input->post("email",true),$this->input->post("gallery_id",true),$this->input->post("title",true));
                 $this->output->append_output('<h1>Success</h1><p>'.$this->input->post("name",true).' updated.</p><p><a class="button" href="/admin/staff">OK</a></p>');
             }
         } else {
@@ -83,7 +83,7 @@ class Staff_admin extends Admin {
         if (!$user["superuser"] && !in_array($staff["gallery"]["id"],$user["galleries"])) {
             $this->output->append_output('<h1>Denied</h1><p>You are not permitted to delete staff in '.$this->input->post("gallery_id",true).'</p><p><a class="button" href="/admin/staff">OK</a></p>');
         } else {
-            $this->staff_model->delete($staff_id);
+            $this->staff_model->delete($user["id"],$staff_id);
             $this->output->append_output('<h1>Success</h1><p>'.$staff["name"].' deleted.</p><p><a class="button" href="/admin/staff">OK</a></p>');
         }
         $this->load->view("admin/footer");

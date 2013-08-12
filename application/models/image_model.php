@@ -1,23 +1,20 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class Image_model extends CI_Model {
+class Image_model extends GD_Model {
 
-    function __construct() {
-        $this->load->database();
-        $this->load->driver("cache");
-    }
-
-    public function insert($width,$height) {
+    public function insert($user_id,$width,$height) {
         $this->db->set("image_width",$width)
             ->set("image_height",$height);
         if ($this->db->insert("image")) {
             $this->cache->memcached->clean();
+            $this->log($user_id);
             return $this->db->insert_id();
         }
         return null;
     }
 
-    public function delete($image_id,&$error) {
+    public function delete($user_id,$image_id,&$error) {
         $success = false;
         $error = array("code"=>0);
         $this->db->select("exhibition_id")->from("image_exhibition")->where("image_id",$image_id);
@@ -46,6 +43,7 @@ class Image_model extends CI_Model {
             $this->db->where("id",$image_id);
             $success = $this->db->delete("image") !== false;
             if ($success) {
+                $this->log($user_id);
                 $this->cache->memcached->clean();
                 $dirs = array(
                     "2mp","185","440x235","900x480","original"
@@ -58,12 +56,13 @@ class Image_model extends CI_Model {
         return $success;
     }
 
-    public function update_dimensions($image_id,$width,$height) {
+    public function update_dimensions($user_id,$image_id,$width,$height) {
         $this->db->set("image_width",$width)
             ->set("image_height",$height)
             ->set("version","version+1",false)
             ->where("id",$image_id);
         if ($this->db->update("image") !== false) {
+            $this->log($user_id);
             $this->db->select('version')->from("image")->where("id",$image_id);
             $query = $this->db->get();
             $row = $query->row_array();
@@ -72,7 +71,7 @@ class Image_model extends CI_Model {
         return 0;
     }
 
-    public function update($image_id,$width,$height,$depth,$year,$artists,$title,$description) {
+    public function update($user_id,$image_id,$width,$height,$depth,$year,$artists,$title,$description) {
         $this->db->trans_start();
         $this->db->set("work_width",$width)
             ->set("work_height",$height)
@@ -80,9 +79,11 @@ class Image_model extends CI_Model {
             ->set("work_creation_year",$year)
             ->where("id",$image_id);
         $this->db->update("image");
+        $this->log($user_id);
 
         $this->db->where("image_id",$image_id);
         $this->db->delete("image_artist");
+        $this->log($user_id);
         if (!empty($artists)) {
             $inserts = array();
             foreach ($artists as $artist) {
@@ -92,6 +93,7 @@ class Image_model extends CI_Model {
                 );
             }
             $this->db->insert_batch("image_artist",$inserts);
+            $this->log($user_id);
         }
 
         foreach (array("en","fr") as $lang) {
@@ -121,6 +123,7 @@ class Image_model extends CI_Model {
                     $this->db->set("image_id",$image_id);
                     $this->db->insert("image_translation");
                 }
+                $this->log($user_id);
             }
         }
         $this->db->trans_complete();
@@ -283,10 +286,11 @@ class Image_model extends CI_Model {
         return array();
     }
 
-    public function set_artist_images($artist_id,$gallery_id,$images) {
+    public function set_artist_images($user_id,$artist_id,$gallery_id,$images) {
         $this->db->trans_start();
         $query = "DELETE image_gallery FROM image_gallery JOIN image_artist ON image_artist.image_id = image_gallery.image_id WHERE image_artist.artist_id = ".$this->db->escape($artist_id)." AND image_gallery.gallery_id = ".$this->db->escape($gallery_id);
         $this->db->query($query,false,false);
+        $this->log($user_id);
         if (!empty($images)) {
             $batch = array();
             $i = 1;
@@ -295,6 +299,7 @@ class Image_model extends CI_Model {
                 $i ++;
             }
             $this->db->insert_batch("image_gallery",$batch);
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -381,10 +386,11 @@ class Image_model extends CI_Model {
         return array();
     }
 
-    public function set_exhibition_images($exhibition_id,$images) {
+    public function set_exhibition_images($user_id,$exhibition_id,$images) {
         $this->db->trans_start();
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("image_exhibition");
+        $this->log($user_id);
         if (!empty($images)) {
             $batch = array();
             $i = 1;
@@ -393,6 +399,7 @@ class Image_model extends CI_Model {
                 $i ++;
             }
             $this->db->insert_batch("image_exhibition",$batch);
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {

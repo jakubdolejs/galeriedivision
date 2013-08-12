@@ -53,7 +53,7 @@ class User_admin extends Admin {
                 $this->output->append_output('<h1>Error</h1><p>User id not supplied.</p>');
             } else {
                 $user_id = strtolower($user_id);
-                if ($this->admin_login_model->add_user($user_id,$this->input->post("gallery_ids",true),$this->input->post("superuser",true))) {
+                if ($this->admin_login_model->add_user($user["id"],$user_id,$this->input->post("gallery_ids",true),$this->input->post("superuser",true))) {
                     $link = site_url("/admin/user/password/".md5($user_id));
                     $msg = "An account has been created for you by the system administrator. Please go to ".$link." to set a password.";
                     mail($user_id,"Your new galeriedivision.com account",$msg);
@@ -96,7 +96,7 @@ class User_admin extends Admin {
                 $this->load->view("admin/footer.php");
                 return;
             }
-            $this->admin_login_model->edit_user($this->input->post("id",true),$this->input->post("gallery_ids",true),$this->input->post("superuser",true));
+            $this->admin_login_model->edit_user($user["id"],$this->input->post("id",true),$this->input->post("gallery_ids",true),$this->input->post("superuser",true));
             $this->output->append_output('<h1>Success</h1><p>'.$user_id.'\'s record has been updated.</p><p><a class="button" href="/admin/users">OK</a></p>');
         } else {
             $galleries = $this->gallery_model->get_galleries();
@@ -185,7 +185,7 @@ class User_admin extends Admin {
             return;
         }
         if ($user["superuser"] && $user["id"] != $user_id) {
-            $this->admin_login_model->reset_access($user_id);
+            $this->admin_login_model->reset_access($user['id'],$user_id);
             $link = site_url("/admin/user/password/".md5($user_id));
             $msg = "Your password has been reset by the administrator. Please go to ".$link." to set a new password.";
             mail($user_id,"galeriedivision.com password reset",$msg);
@@ -201,24 +201,28 @@ class User_admin extends Admin {
         $this->load->view("admin/footer.php");
     }
 
-    public function delete($artist_id) {
+    public function delete() {
         $user = $this->get_logged_in_user();
         if (!$user) {
             redirect(site_url("/admin/login"));
             return;
         }
-        $name = $this->artist_model->get_name($artist_id);
+        $user_id = $this->input->post("id",true);
         $this->load->view("admin/header",array("user"=>$user));
-        if (!$this->artist_model->is_deletable_by_user($artist_id,$user)) {
-            $this->output->append_output('<h1>Error</h1><p>The artist '.$name.' cannot be deleted. There may be exhibitions, news or images associated with the artist. Please delete them first before attempting to delete the artist.</p>');
-        } else {
-            if ($this->artist_model->delete($artist_id)) {
-                $this->output->append_output('<h1>Success</h1><p>Artist '.$name.' has been deleted.</p>');
+        if ($user_id) {
+            if (!$user["superuser"] && $user["id"] != $user_id || !$user_id) {
+                $this->output->append_output('<h1>Access Denied</h1><p>You are not permitted to delete this account.</p>');
             } else {
-                $this->output->append_output('<h1>Error</h1><p>We were unable to delete the artist '.$name.' at this time.</p>');
+                if ($this->admin_login_model->delete_account($user["id"],$user_id)) {
+                    $this->output->append_output('<h1>Success</h1><p>User '.$user_id.' has been deleted.</p>');
+                } else {
+                    $this->output->append_output('<h1>Error</h1><p>We were unable to delete the user '.$user_id.' at this time.</p>');
+                }
             }
+        } else {
+            $this->output->append_output('<h1>Error</h1><p>We were unable to delete the user. No user id supplied.</p>');
         }
-        $this->output->append_output('<p><a class="button" href="/admin/artists">OK</a></p>');
+        $this->output->append_output('<p><a class="button" href="/admin/users">OK</a></p>');
         $this->load->view("admin/footer.php");
     }
 

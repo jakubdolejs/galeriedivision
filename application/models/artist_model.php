@@ -1,13 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class Artist_model extends CI_Model {
-    
-    function __construct() {
-        parent::__construct();
-        $this->load->database();
-        $this->load->driver("cache");
-    }
-    
+class Artist_model extends GD_Model {
+
     public function get_artists($gallery_id=null) {
         $this->db->select("artist.id, artist.name, gallery_id, represented, image_id")
                 ->from("artist");
@@ -87,27 +82,30 @@ class Artist_model extends CI_Model {
         return null;
     }
 
-    public function update_name($artist_id,$name) {
+    public function update_name($user_id,$artist_id,$name) {
         $this->db->set("name",$name)
             ->where("id",$artist_id);
         if ($this->db->update("artist")) {
             $this->cache->memcached->clean();
+            $this->log($user_id);
             return true;
         }
         return false;
     }
 
-    public function update_gallery_info($artist_id,$gallery_id,$listed,$represented,$image_id) {
+    public function update_gallery_info($user_id,$artist_id,$gallery_id,$listed,$represented,$image_id) {
         $this->db->trans_start();
         $this->db->where("artist_id",$artist_id);
         $this->db->where("gallery_id",$gallery_id);
         $this->db->delete("artist_gallery");
+        $this->log($user_id);
         if ($listed) {
             $this->db->set("artist_id",$artist_id)
                 ->set("gallery_id",$gallery_id)
                 ->set("represented",intval($represented))
                 ->set("image_id",$image_id);
             $this->db->insert("artist_gallery");
+            $this->log($user_id);
         }
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
@@ -117,15 +115,17 @@ class Artist_model extends CI_Model {
         return false;
     }
 
-    public function update_cv($artist_id,$lang,$cv) {
+    public function update_cv($user_id,$artist_id,$lang,$cv) {
         $this->db->trans_start();
         $this->db->where("artist_id",$artist_id)
             ->where("lang",$lang);
         $this->db->delete("artist_translation");
+        $this->log($user_id);
         $this->db->set("artist_id",$artist_id)
             ->set("lang",$lang)
             ->set("cv",$cv);
         $this->db->insert("artist_translation");
+        $this->log($user_id);
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
             $this->cache->memcached->clean();
@@ -164,7 +164,7 @@ class Artist_model extends CI_Model {
         return $this->db->count_all_results() > 0;
     }
 
-    public function add($name) {
+    public function add($user_id,$name) {
         $this->load->helper("text");
         $base_id = preg_replace("/[^a-z0-9]+/i","-",strtolower(convert_accented_characters($name)));
         $id = $base_id;
@@ -176,6 +176,7 @@ class Artist_model extends CI_Model {
         $this->db->set("id",$id);
         $this->db->set("name",$name);
         if ($this->db->insert("artist")) {
+            $this->log($user_id);
             $this->cache->memcached->clean();
             return $id;
         }
@@ -211,12 +212,14 @@ class Artist_model extends CI_Model {
         return true;
     }
 
-    public function delete($artist_id) {
+    public function delete($user_id,$artist_id) {
         $this->db->trans_start();
         $this->db->where("artist_id",$artist_id);
         $this->db->delete("artist_gallery");
+        $this->log($user_id);
         $this->db->where("id",$artist_id);
         $this->db->delete("artist");
+        $this->log($user_id);
         $this->db->trans_complete();
         if ($this->db->trans_status() !== false) {
             $this->cache->memcached->clean();

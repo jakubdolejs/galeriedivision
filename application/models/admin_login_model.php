@@ -1,10 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
-class Admin_login_model extends CI_Model {
-
-    function __construct() {
-        $this->load->database();
-    }
+class Admin_login_model extends GD_Model {
 
     public function get_user_by_email($email,$is_checksum=false) {
         $this->db->select("user.id, user.superuser, user.password_checksum, user_gallery.gallery_id, ip_address, last_access_date")
@@ -113,13 +110,15 @@ class Admin_login_model extends CI_Model {
         $this->db->delete();
     }
 
-    public function reset_access($id) {
+    public function reset_access($user_id,$id) {
         $this->db->set("password_checksum","")
             ->where("id",$id);
         $this->db->update('user');
+        $this->log($user_id);
         $this->db->from("access_token")
             ->where("user_id",$id);
         $this->db->delete();
+        $this->log($user_id);
     }
 
     public function reset_password($id,$password_checksum) {
@@ -136,23 +135,26 @@ class Admin_login_model extends CI_Model {
         $this->db->delete("access_token");
     }
 
-    public function edit_user($user_id,$gallery_ids,$superuser) {
+    public function edit_user($logged_in_user_id,$user_id,$gallery_ids,$superuser) {
         $this->db->set("superuser",$superuser)
             ->where("id",$user_id);
         $this->db->update("user");
+        $this->log($logged_in_user_id);
         $this->db->from("user_gallery")
             ->where("user_id",$user_id);
         $this->db->delete();
+        $this->log($logged_in_user_id);
         if (!empty($gallery_ids)) {
             $batch = array();
             foreach ($gallery_ids as $id) {
                 $batch[] = array("user_id"=>$user_id,"gallery_id"=>$id);
             }
             $this->db->insert_batch("user_gallery",$batch);
+            $this->log($logged_in_user_id);
         }
     }
 
-    public function add_user($user_id,$gallery_ids,$superuser) {
+    public function add_user($logged_in_user_id,$user_id,$gallery_ids,$superuser) {
         $this->db->from("user");
         $this->db->where("id",$user_id);
         if ($this->db->count_all_results() > 0) {
@@ -162,14 +164,34 @@ class Admin_login_model extends CI_Model {
         $this->db->set("id",$user_id);
         $this->db->set("superuser",$superuser);
         $this->db->insert("user");
+        $this->log($logged_in_user_id);
         if (!empty($gallery_ids)) {
             $batch = array();
             foreach ($gallery_ids as $id) {
                 $batch[] = array("user_id"=>$user_id,"gallery_id"=>$id);
             }
             $this->db->insert_batch("user_gallery",$batch);
+            $this->log($logged_in_user_id);
         }
         $this->db->trans_complete();
         return $this->db->trans_status() !== false;
+    }
+
+    public function delete_account($logged_in_user_id,$user_id) {
+        if ($logged_in_user_id != $user_id) {
+            $this->db->from("user")
+                ->where("id",$user_id)
+                ->where("superuser",1);
+            if ($this->db->count_all_results() > 0) {
+                return false;
+            }
+        }
+        $this->db->from("user")
+            ->where("id",$user_id);
+        if ($this->db->delete("user") !== false) {
+            $this->log($logged_in_user_id);
+            return true;
+        }
+        return false;
     }
 }
