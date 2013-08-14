@@ -155,8 +155,8 @@ class News_model extends GD_Model {
             ->set("date_published",$date)
             ->set("url",$url);
         if ($this->db->insert("news") !== false) {
-            $this->log($user_id);
             $id = $this->db->insert_id();
+            $this->log($user_id);
             $translation = array();
             if (!empty($headline)) {
                 foreach ($headline as $lang=>$value) {

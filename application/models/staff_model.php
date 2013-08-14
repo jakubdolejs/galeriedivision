@@ -97,8 +97,8 @@ class Staff_model extends GD_Model {
             ->set("email",$email)
             ->set("gallery_id",$gallery_id);
         $this->db->insert("gallery_staff");
-        $this->log($user_id);
         $id = $this->db->insert_id();
+        $this->log($user_id);
         $batch = array();
         if (!empty($titles)) {
             foreach ($titles as $lang=>$title) {

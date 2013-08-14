@@ -7,9 +7,10 @@ class Image_model extends GD_Model {
         $this->db->set("image_width",$width)
             ->set("image_height",$height);
         if ($this->db->insert("image")) {
+            $image_id = $this->db->insert_id();
             $this->cache->memcached->clean();
             $this->log($user_id);
-            return $this->db->insert_id();
+            return $image_id;
         }
         return null;
     }

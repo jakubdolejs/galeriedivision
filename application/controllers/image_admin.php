@@ -150,9 +150,9 @@ class Image_admin extends Admin {
         }
         imagedestroy($source);
         imageinterlace($destination,1);
-        imagejpeg($destination,$destination_filename,95);
+        $success = imagejpeg($destination,$destination_filename,95);
         imagedestroy($destination);
-        return true;
+        return $success;
     }
 
     public function upload() {
@@ -314,8 +314,14 @@ class Image_admin extends Admin {
                 }
                 $large_file = $images_dir."/2mp/".$image_id.".jpg";
                 imageinterlace($target,1);
-                imagejpeg($target, $large_file, 90);
+                $success = imagejpeg($target, $large_file, 90);
                 imagedestroy($target);
+
+                if (!$success) {
+                    $response[$i] = array("error"=>"Unable to save file ".$large_file);
+                    $this->image_model->delete($user["id"],$image_id,$error);
+                    continue;
+                }
 
                 if ($this->input->post("crop")) {
                     $crop = $this->input->post("crop",true);
@@ -327,14 +333,26 @@ class Image_admin extends Admin {
                     $w400h235 = imagecreatetruecolor(440,235);
                     imagecopyresampled($w400h235, $original, 0, 0, $crop[0], $crop[1], 440, 235, $crop[2], $crop[3]);
                     imageinterlace($w400h235,1);
-                    imagejpeg($w400h235, $images_dir."/440x235/".$image_id.".jpg");
+                    $success = imagejpeg($w400h235, $images_dir."/440x235/".$image_id.".jpg");
                     imagedestroy($w400h235);
+
+                    if (!$success) {
+                        $response[$i] = array("error"=>"Unable to save file ".$images_dir."/440x235/".$image_id.".jpg");
+                        $this->image_model->delete($user["id"],$image_id,$error);
+                        continue;
+                    }
 
                     $w900h480 = imagecreatetruecolor(900,480);
                     imagecopyresampled($w900h480, $original, 0, 0, $crop[0], $crop[1], 900, 480, $crop[2], $crop[3]);
                     imageinterlace($w900h480,1);
-                    imagejpeg($w900h480, $images_dir."/900x480/".$image_id.".jpg");
+                    $success = imagejpeg($w900h480, $images_dir."/900x480/".$image_id.".jpg");
                     imagedestroy($w900h480);
+
+                    if (!$success) {
+                        $response[$i] = array("error"=>"Unable to save file ".$images_dir."/900x480/".$image_id.".jpg");
+                        $this->image_model->delete($user["id"],$image_id,$error);
+                        continue;
+                    }
                 }
                 imagedestroy($original);
 
