@@ -1,10 +1,12 @@
 <?php
 if (!empty($artist)) {
     $this->load->helper("form");
-    echo form_open("/admin/artist/".$artist["id"],array("method"=>"post"));
+    echo form_open_multipart("/admin/artist/".$artist["id"],array("method"=>"post"));
     echo '<p>'.form_label("Name","name").'<br />'.form_input("name",$artist["name"]).'</p>';
-    echo form_fieldset("French").'<p>'.form_label("CV","cv[fr]").'<br />'.form_textarea("cv[fr]",@$artist["cv"]["fr"],'class="cv"').'</p>'.form_fieldset_close();
-    echo form_fieldset("English").'<p>'.form_label("CV","cv[en]").'<br />'.form_textarea("cv[en]",@$artist["cv"]["en"],'class="cv"').'</p>'.form_fieldset_close();
+    echo '<p>'.form_label("CV (French)","pdf[fr]").'<br /><input type="file" name="pdf[fr]" accept="application/pdf" /></p>';
+    echo '<p>'.form_label("CV (English)","pdf[en]").'<br /><input type="file" name="pdf[en]" accept="application/pdf" /></p>';
+    //echo form_fieldset("French").'<p>'.form_label("CV","cv[fr]").'<br />'.form_textarea("cv[fr]",@$artist["cv"]["fr"],'class="cv"').'</p>'.form_fieldset_close();
+    //echo form_fieldset("English").'<p>'.form_label("CV","cv[en]").'<br />'.form_textarea("cv[en]",@$artist["cv"]["en"],'class="cv"').'</p>'.form_fieldset_close();
     foreach ($artist["galleries"] as $id=>$gallery) {
         if (!$user["superuser"] && !in_array($id,$user["galleries"])) {
            continue;

@@ -29,7 +29,7 @@ class News_admin extends Admin {
         if ($this->input->post("save")) {
             $id = $this->news_model->add($user["id"],$this->input->post("headline",true),$this->input->post("text",true),$this->input->post("source",true),$this->input->post("date",true),$this->input->post("url",true),$this->input->post("gallery_ids",true),$this->input->post("artist_ids",true),$this->input->post("exhibition_ids",true),$this->input->post("image_id",true));
             if ($id) {
-                $error = $this->save_pdf();
+                $error = $this->save_pdf($id);
             } else {
                 $error = "Error saving news story.";
             }
@@ -60,7 +60,7 @@ class News_admin extends Admin {
             $error = false;
             $this->load->view("admin/header",array("user"=>$user));
             if ($this->news_model->update($user["id"],$id,$this->input->post("headline",true),$this->input->post("text",true),$this->input->post("source",true),$this->input->post("date",true),$this->input->post("url",true),$this->input->post("gallery_ids",true),$this->input->post("artist_ids",true),$this->input->post("exhibition_ids",true),$this->input->post("image_id",true))) {
-                $error = $this->save_pdf();
+                $error = $this->save_pdf($id);
             } else {
                 $error = "Error saving news story.";
             }
@@ -124,7 +124,7 @@ class News_admin extends Admin {
     /**
      * @return bool|string <code>false</code> if file was not present or was saved without incident, otherwise error string
      */
-    private function save_pdf() {
+    private function save_pdf($id) {
         $error = false;
         if (isset($_FILES["pdf"]) && !empty($_FILES["pdf"])) {
             switch ($_FILES["pdf"]["error"]) {
@@ -159,7 +159,7 @@ class News_admin extends Admin {
                 default:
                     if (strtolower(path_info($_FILES["pdf"]["name"],PATHINFO_EXTENSION)) != "pdf") {
                         $error = "The uploaded file must be a PDF.";
-                    } else if (!move_uploaded_file($_FILES["pdf"]["tmp_name"],rtrim(FCPATH,"/")."/pdf/".$id.".pdf")) {
+                    } else if (!move_uploaded_file($_FILES["pdf"]["tmp_name"],rtrim(FCPATH,"/")."/news_pdf/".$id.".pdf")) {
                         $error = "Error moving uploaded PDF file.";
                     }
             }

@@ -49,6 +49,11 @@ class Artist_admin extends Admin {
         }
         $this->load->view("admin/header",array("user"=>$user));
         $artist = $this->artist_model->get_artist($artist_id);
+        if (!$artist) {
+            $this->output->append_output('<h1>Error</h1><p>The artist '.$artist_id.' does not exist in the database.</p>');
+            $this->load->view("admin/footer");
+            return;
+        }
         if ($this->input->post("save")) {
             $name = $this->input->post("name",true);
             $this->artist_model->update_name($user["id"],$artist_id,$name);
@@ -80,6 +85,14 @@ class Artist_admin extends Admin {
                 $image = !empty($image_id[$id]) ? $image_id[$id] : null;
                 $this->artist_model->update_gallery_info($user["id"],$artist_id,$id,!empty($listed[$id]),!empty($represented[$id]),$image);
             }
+            foreach (array("en","fr") as $lang) {
+                $error = $this->save_pdf($artist_id,$lang);
+                if ($error) {
+                    $this->output->append_output('<h1>Error saving CV</h1><p>'.$error.'</p>');
+                    $this->load->view("admin/footer.php");
+                    return;
+                }
+            }
             if ($this->input->post("cv")) {
                 $cv = $this->input->post("cv",true);
                 foreach ($cv as $lang=>$text) {
@@ -92,6 +105,49 @@ class Artist_admin extends Admin {
             $this->load->view("admin/artist",array("artist"=>$artist,"user"=>$user,"images"=>$images));
         }
         $this->load->view("admin/footer.php");
+    }
+
+    private function save_pdf($id,$lang) {
+        $error = false;
+        if (isset($_FILES["pdf"]) && !empty($_FILES["pdf"]["name"][$lang])) {
+            switch ($_FILES["pdf"]["error"][$lang]) {
+                case UPLOAD_ERR_INI_SIZE:
+                    //Value: 1; The uploaded file exceeds the upload_max_filesize directive in php.ini.
+                    $error = "The uploaded file exceeds the maximum permitted upload size.";
+                    break;
+                case UPLOAD_ERR_FORM_SIZE:
+                    //Value: 2; The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.
+                    $error = "The uploaded file exceeds the maximum permitted upload size.";
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    //Value: 3; The uploaded file was only partially uploaded.
+                    $error = "The file was only partially uploaded.";
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    //Value: 4; No file was uploaded.
+                    $error = "No file was uploaded.";
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    //Value: 6; Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.
+                    $error = "Missing a temporary folder.";
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    //Value: 7; Failed to write file to disk. Introduced in PHP 5.1.0.
+                    $error = "Failed to write the uploaded file to disk.";
+                    break;
+                case UPLOAD_ERR_EXTENSION:
+                    //Value: 8; A PHP extension stopped the file upload. PHP does not provide a way to ascertain which extension caused the file upload to stop; examining the list of loaded extensions with phpinfo() may help. Introduced in PHP 5.2.0.
+                    $error = "A PHP extension stopped the file upload.";
+                    break;
+                default:
+                    if (strtolower(pathinfo($_FILES["pdf"]["name"][$lang],PATHINFO_EXTENSION)) != "pdf") {
+                        $error = "The uploaded file must be a PDF.";
+                    } else if (!move_uploaded_file($_FILES["pdf"]["tmp_name"][$lang],rtrim(FCPATH,"/")."/cv_pdf/".$id."-".$lang.".pdf")) {
+                        $error = "Error moving uploaded PDF file.";
+                    }
+            }
+        }
+        return $error;
     }
 
     public function delete($artist_id) {
