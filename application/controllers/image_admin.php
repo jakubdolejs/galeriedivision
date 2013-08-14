@@ -295,8 +295,8 @@ class Image_admin extends Admin {
                 $images_dir = rtrim(FCPATH,"/")."/images";
 
                 if (!move_uploaded_file($img_file,$images_dir."/original/".$image_id.".".pathinfo($_FILES["file"]["name"][$i],PATHINFO_EXTENSION))) {
-                    $response[$i] = array("error"=>"Unable to save uploaded file");
-                    $this->image_model->delete($user["id"],$image_id);
+                    $response[$i] = array("error"=>"Unable to save uploaded file ".$_FILES["file"]["name"][$i]);
+                    $this->image_model->delete($user["id"],$image_id,$error);
                     continue;
                 }
 
@@ -347,7 +347,7 @@ class Image_admin extends Admin {
                 foreach ($files as $file=>$params) {
                     if (!$this->resample($large_file,$file,$params[0],$params[1])) {
                         $response[$i] = array("error"=>"Error resampling file ".$_FILES["file"]["name"][$i]);
-                        $this->image_model->delete($user["id"],$image_id);
+                        $this->image_model->delete($user["id"],$image_id,$error);
                         break;
                         continue;
                     }

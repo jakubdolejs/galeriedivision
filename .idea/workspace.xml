@@ -33,7 +33,7 @@
     <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376338142925" ignored="false" />
     <file path="/login.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368518545021" ignored="false" />
     <file path="/javascript_redirect.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368523387986" ignored="false" />
-    <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376326497904" ignored="false" />
+    <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376503884654" ignored="false" />
     <file path="/admin.js" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376049272505" ignored="false" />
     <file path="/json.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368527204662" ignored="false" />
     <file path="/image_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376326629202" ignored="false" />
@@ -150,7 +150,7 @@
       <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/contact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="77" selection-start="2481" selection-end="2481" vertical-scroll-proportion="-20.75">
+            <state line="41" column="77" selection-start="2481" selection-end="2481" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -159,8 +159,10 @@
       <file leaf-file-name="artist.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/artist.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="76" selection-start="598" selection-end="642" vertical-scroll-proportion="-6.875">
-              <folding />
+            <state line="11" column="76" selection-start="598" selection-end="642" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1376338697000" expanded="true" signature="29:1107" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -168,16 +170,34 @@
       <file leaf-file-name="exhibition.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/exhibition.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="88" selection-start="322" selection-end="322" vertical-scroll-proportion="-1.2">
+            <state line="4" column="88" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exhibition_listing.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="exhibition_listing.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/exhibition_listing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="145" selection-start="362" selection-end="362" vertical-scroll-proportion="0.11881188">
+            <state line="4" column="145" selection-start="362" selection-end="362" vertical-scroll-proportion="-2.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image_admin.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/image_admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="298" column="77" selection-start="13879" selection-end="13879" vertical-scroll-proportion="0.75454545">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="image_model.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/image_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="20" selection-start="537" selection-end="537" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
@@ -186,7 +206,7 @@
       <file leaf-file-name="gallery.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="70" selection-start="1787" selection-end="1787" vertical-scroll-proportion="-10.625">
+            <state line="38" column="70" selection-start="1787" selection-end="1787" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -195,7 +215,7 @@
       <file leaf-file-name="gallery_model.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/gallery_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="20" selection-start="568" selection-end="568" vertical-scroll-proportion="-7.5">
+            <state line="20" column="20" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -204,7 +224,7 @@
       <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="98" selection-start="2212" selection-end="2212" vertical-scroll-proportion="-4.25">
+            <state line="56" column="98" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -213,25 +233,7 @@
       <file leaf-file-name="date_formatter_helper.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/helpers/date_formatter_helper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="99" selection-start="3668" selection-end="3668" vertical-scroll-proportion="-18.291666">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dg_controller.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/dg_controller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="6" selection-start="133" selection-end="133" vertical-scroll-proportion="-2.5">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="news_model.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/news_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="20" selection-start="195" selection-end="195" vertical-scroll-proportion="16.875">
+            <state line="58" column="99" selection-start="3668" selection-end="3668" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -258,7 +260,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/models/news_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/api.php" />
         <option value="$PROJECT_DIR$/application/models/staff_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/staff_admin.php" />
@@ -274,6 +275,7 @@
         <option value="$PROJECT_DIR$/application/views/artist.php" />
         <option value="$PROJECT_DIR$/application/views/exhibition.php" />
         <option value="$PROJECT_DIR$/application/views/exhibition_listing.php" />
+        <option value="$PROJECT_DIR$/application/controllers/image_admin.php" />
       </list>
     </option>
   </component>
@@ -635,11 +637,11 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33739838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32586557" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32520324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6737805" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32604057" sideWeight="0.6038697" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39613035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3335112" sideWeight="0.67479676" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39613035" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -748,114 +750,106 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/controllers/dg_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="6" selection-start="133" selection-end="133" vertical-scroll-proportion="-2.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../jakubdolejs.com_2013/application/controllers/welcome.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.1428572">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/exhibition.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.7524753">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/helpers/date_formatter_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="99" selection-start="3668" selection-end="3668" vertical-scroll-proportion="-18.291666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/exhibitions_listing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../jakubdolejs.com_2013/application/views/default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/sitemap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="35" selection-start="565" selection-end="622" vertical-scroll-proportion="0.3488372">
-          <folding />
-        </state>
+        <state line="20" column="35" selection-start="565" selection-end="622" vertical-scroll-proportion="0.3488372" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/gallery_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="20" selection-start="568" selection-end="568" vertical-scroll-proportion="-7.5">
+        <state line="20" column="20" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="70" selection-start="1787" selection-end="1787" vertical-scroll-proportion="-10.625">
+        <state line="38" column="70" selection-start="1787" selection-end="1787" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/exhibitions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="98" selection-start="2212" selection-end="2212" vertical-scroll-proportion="-4.25">
+        <state line="56" column="98" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/exhibition.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.11090573">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.11090573" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="77" selection-start="2481" selection-end="2481" vertical-scroll-proportion="-20.75">
+        <state line="41" column="77" selection-start="2481" selection-end="2481" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/artist.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="76" selection-start="598" selection-end="642" vertical-scroll-proportion="-6.875">
-          <folding />
+        <state line="11" column="76" selection-start="598" selection-end="642" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1376338697000" expanded="true" signature="29:1107" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/exhibition.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="88" selection-start="322" selection-end="322" vertical-scroll-proportion="-1.2">
+        <state line="4" column="88" selection-start="322" selection-end="322" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/exhibition_listing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="145" selection-start="362" selection-end="362" vertical-scroll-proportion="0.11881188">
+        <state line="4" column="145" selection-start="362" selection-end="362" vertical-scroll-proportion="-2.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/news_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="20" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/dg_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="6" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/image_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="20" selection-start="537" selection-end="537" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/image_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="298" column="77" selection-start="13879" selection-end="13879" vertical-scroll-proportion="0.75454545">
           <folding />
         </state>
       </provider>

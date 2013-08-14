@@ -9,3 +9,6 @@ images/w900/*
 images/900x480/*
 images/440x235/*
 images/2mp/*
+*.bmp
+
+*.png
