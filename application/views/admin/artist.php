@@ -1,10 +1,19 @@
 <?php
 if (!empty($artist)) {
+    function get_cv_path($id,$lang) {
+        return rtrim(FCPATH,"/")."/cv_pdf/".$id."-".$lang.".pdf";
+    }
     $this->load->helper("form");
     echo form_open_multipart("/admin/artist/".$artist["id"],array("method"=>"post"));
     echo '<p>'.form_label("Name","name").'<br />'.form_input("name",$artist["name"]).'</p>';
-    echo '<p>'.form_label("CV (French)","pdf[fr]").'<br /><input type="file" name="pdf[fr]" accept="application/pdf" /></p>';
-    echo '<p>'.form_label("CV (English)","pdf[en]").'<br /><input type="file" name="pdf[en]" accept="application/pdf" /></p>';
+    foreach (array("fr"=>"French","en"=>"English") as $lang=>$language) {
+        echo '<p>'.form_label("CV (".$language.")","pdf[".$lang."]");
+        $filename = get_cv_path($artist["id"],$lang);
+        if (file_exists($filename)) {
+            echo '<span> | <a class="cv view" href="/cv_pdf/'.$artist["id"]."-".$lang.'.pdf" target="_blank">View</a> | <a href="javascript:void(0);" class="delete cv" data-lang="'.$lang.'" data-id="'.$artist["id"].'">Delete</a></span>';
+        }
+        echo '<br /><input type="file" name="pdf['.$lang.']" accept="application/pdf" /></p>';
+    }
     //echo form_fieldset("French").'<p>'.form_label("CV","cv[fr]").'<br />'.form_textarea("cv[fr]",@$artist["cv"]["fr"],'class="cv"').'</p>'.form_fieldset_close();
     //echo form_fieldset("English").'<p>'.form_label("CV","cv[en]").'<br />'.form_textarea("cv[en]",@$artist["cv"]["en"],'class="cv"').'</p>'.form_fieldset_close();
     foreach ($artist["galleries"] as $id=>$gallery) {
@@ -73,6 +82,28 @@ if (!empty($artist)) {
         galleryDiv.empty().append($('<p></p>').append($('<a class="add-image" data-gallery_id="'+galleryId+'" href="javascript:void(0);">Add image</a>').on("click",addImage)));
     }
     $('a.remove-image').on("click",removeImage);
+    $("a.delete.cv").on("click",function(){
+        if (!confirm("Are you sure you want to delete the CV?")) {
+            return false;
+        }
+        function onError() {
+            alert("Error deleting CV.");
+        }
+        $.ajax({
+            "url":"/api/artist/"+$(this).data("id")+"/delete_cv/"+$(this).data("lang"),
+            "dataType":"json",
+            "success":function(data) {
+                if (data) {
+                    $(this).parent().remove();
+                } else {
+                    onError();
+                }
+            },
+            "error":onError,
+            "context":this
+        });
+        return false;
+    });
 </script>
 <?php
 }

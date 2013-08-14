@@ -70,6 +70,7 @@ $route['admin/news/create'] = "news_admin/create";
 $route['admin/news/(:num)'] = "news_admin/edit/$1";
 $route['admin/news/(:num)/delete'] = "news_admin/delete/$1";
 $route['api/artists'] = "api/artists";
+$route['api/artist/(:any)/delete_cv/(:any)'] = "api/delete_cv/$1/$2";
 $route['api/artist/(:any)/images/(:any)'] = "api/artist_gallery_images/$1/$2";
 $route['api/artist/(:any)/images'] = "api/artist_images/$1";
 $route['api/exhibition/(:any)/images'] = "api/exhibition_images/$1";

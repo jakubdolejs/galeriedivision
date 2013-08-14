@@ -62,6 +62,29 @@ class Api extends Admin {
         }
     }
 
+    public function delete_cv($artist_id,$lang) {
+        $user = $this->get_logged_in_user();
+        if (!$user) {
+            $this->output_login_error();
+            return;
+        }
+        $artist = $this->artist_model->get_artist($artist_id);
+        if (!$artist) {
+            $this->output_error("Artist ".$artist_id." does not exist in the database.");
+            return;
+        }
+        if (!in_array($lang,array("en","fr"))) {
+            $this->output_error("The language attribute must be set to either 'en' or 'fr'.");
+            return;
+        }
+        $filename = rtrim(FCPATH,"/")."/cv_pdf/".$artist_id."-".$lang.".pdf";
+        $success = true;
+        if (file_exists($filename)) {
+            $success = unlink($filename);
+        }
+        $this->load->view("json",array("data"=>intval($success)));
+    }
+
     public function exhibition_images($exhibition_id) {
         $user = $this->get_logged_in_user();
         if (!$user) {
