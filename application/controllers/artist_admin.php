@@ -144,6 +144,9 @@ class Artist_admin extends Admin {
                         $error = "The uploaded file must be a PDF.";
                     } else if (!move_uploaded_file($_FILES["pdf"]["tmp_name"][$lang],rtrim(FCPATH,"/")."/cv_pdf/".$id."-".$lang.".pdf")) {
                         $error = "Error moving uploaded PDF file.";
+                    } else {
+                        $this->load->driver("cache");
+                        $this->cache->memcached->clean();
                     }
             }
         }

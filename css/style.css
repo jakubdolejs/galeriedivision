@@ -481,6 +481,9 @@ div.contact div.map {
         width: 48%;
     }
 }
+object.cv {
+    min-height: 1165px;
+}
 /*TODO*/
 @media (max-width: 899px) {
     div.contact {

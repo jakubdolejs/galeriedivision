@@ -81,6 +81,10 @@ class Api extends Admin {
         $success = true;
         if (file_exists($filename)) {
             $success = unlink($filename);
+            if ($success) {
+                $this->load->driver("cache");
+                $this->cache->memcached->clean();
+            }
         }
         $this->load->view("json",array("data"=>intval($success)));
     }

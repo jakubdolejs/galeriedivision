@@ -1,8 +1,4 @@
-<h1><?php echo $this->lang->line("News"); ?></h1>
 <?php
-echo '<div class="subscribe">';
-$this->load->view("subscribe");
-echo '</div>';
 echo '<ul class="news">';
 if (!empty($news)) {
     foreach ($news as $story) {

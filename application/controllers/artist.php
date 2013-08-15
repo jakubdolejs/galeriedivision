@@ -5,6 +5,7 @@ require_once 'dg_controller.php';
  * @property Artist_model $artist_model
  * @property Image_model $image_model
  * @property Exhibition_model $exhibition_model
+ * @property News_model $news_model
  */
 
 class Artist extends Dg_controller {
@@ -14,6 +15,7 @@ class Artist extends Dg_controller {
         $this->load->model("artist_model");
         $this->load->model("image_model");
         $this->load->model("exhibition_model");
+        $this->load->model("news_model");
     }
     
     public function index($gallery_id) {
@@ -90,6 +92,19 @@ class Artist extends Dg_controller {
         $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         $images = $this->image_model->get_exhibition_images($exhibition_id);
         $this->load->view("exhibition",array("exhibition"=>$exhibition,"images"=>$images,"gallery_id"=>$gallery_id,"artist_id"=>$artist_id,"lang"=>$lang));
+        $this->load->view("footer");
+    }
+
+    public function news($gallery_id,$artist_id) {
+        $header_vars = $this->get_header_vars($gallery_id);
+        $this->load->view("header",$header_vars);
+        $artist = $this->artist_model->get_artist($artist_id);
+        $lang = $this->config->item("language");
+        $this->output->append_output('<h1>'.$artist["name"].'</h1>');
+        $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"news"));
+        $this->load->view("link_group",$links);
+        $news = $this->news_model->get_artist_news($gallery_id,$artist_id,$lang);
+        $this->load->view("news",array("news"=>$news,"gallery_id"=>$gallery_id));
         $this->load->view("footer");
     }
 

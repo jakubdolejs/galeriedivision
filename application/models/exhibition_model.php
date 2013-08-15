@@ -98,7 +98,7 @@ class Exhibition_model extends GD_Model {
     }
 
     public function get_artist_exhibitions($artist_id,$gallery_id) {
-        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+        $this->db->select("exhibition.id, exhibition_translation.lang, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
             ->from("exhibition")
             ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id","left")
             ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
@@ -119,10 +119,18 @@ class Exhibition_model extends GD_Model {
                 if (isset($exhibitions[$exhibition["id"]]["artist_name"])) {
                     unset($exhibitions[$exhibition["id"]]["artist_name"]);
                 }
+                unset($exhibitions[$exhibition["id"]]["title"]);
+                unset($exhibitions[$exhibition["id"]]["text"]);
                 $exhibitions[$exhibition["id"]]["artists"] = array();
             }
             if (!empty($exhibition["artist_id"])) {
                 $exhibitions[$exhibition["id"]]["artists"][$exhibition["artist_id"]] = $exhibition["artist_name"];
+            }
+            if (!empty($exhibition["title"])) {
+                $exhibitions[$exhibition["id"]]["title"][$exhibition["lang"]] = $exhibition["title"];
+            }
+            if (!empty($exhibition["text"])) {
+                $exhibitions[$exhibition["id"]]["text"][$exhibition["lang"]] = $exhibition["text"];
             }
         }
         return $exhibitions;

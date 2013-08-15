@@ -152,9 +152,13 @@ class Artist_model extends GD_Model {
                 ->where("artist_id",$artist_id);
             $has_news = $this->db->count_all_results() > 0;
         }
-        $this->db->from("artist_translation")
-            ->where("artist_id",$artist_id);
-        $has_cv = $this->db->count_all_results() > 0;
+        $has_cv = false;
+        foreach (array("fr","en") as $lang) {
+            if (file_exists(rtrim(FCPATH,"/")."/cv_pdf/".$artist_id."-".$lang.".pdf")) {
+                $has_cv = true;
+                break;
+            }
+        }
         return array("images"=>$has_images,"exhibitions"=>$has_exhibitions,"news"=>$has_news,"cv"=>$has_cv);
     }
 

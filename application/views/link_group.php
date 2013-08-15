@@ -8,5 +8,7 @@ if (!empty($links)) {
             $anchors[] = '<a href="'.$link["url"].'" class="selected">'.htmlspecialchars($link["label"]).'</a>';
         }
     }
-    echo '<p class="linkGroup">'.join(" | ",$anchors).'</p>';
+    if (count($anchors) > 1) {
+        echo '<p class="linkGroup">'.join(" | ",$anchors).'</p>';
+    }
 }

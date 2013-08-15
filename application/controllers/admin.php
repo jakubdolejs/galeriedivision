@@ -50,7 +50,8 @@ class Admin extends CI_Controller {
                 "name"=>self::ACCESS_TOKEN_COOKIE_NAME,
                 "value"=>$this->encrypt->encode($token),
                 "expire"=>time()+60*60*24*60,
-                "path"=>"/"
+                "path"=>"/",
+                "secure"=>true
             ));
             $this->load->view("javascript_redirect",array("url"=>site_url("/admin")));
             return;

@@ -2,8 +2,8 @@
 require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 
 class News_model extends GD_Model {
-    
-    public function get_news($gallery_id=null,$lang=null,$max_stories=0) {
+
+    private function select($lang,$callback) {
         $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, name, news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id")
             ->from("news")
             ->join("news_gallery", "news_gallery.news_id = news.id")
@@ -11,9 +11,7 @@ class News_model extends GD_Model {
             ->join("news_translation", "news_translation.news_id = news.id","left")
             ->join("news_artist JOIN artist ON news_artist.artist_id = artist.id", "news_artist.news_id = news.id","left")
             ->join("news_exhibition JOIN exhibition_translation ON news_exhibition.exhibition_id = exhibition_translation.exhibition_id", "news_exhibition.news_id = news.id","left");
-        if ($gallery_id) {
-            $this->db->where("news_gallery.gallery_id",$gallery_id);
-        }
+        $callback();
         $this->db->order_by("date_published","DESC")
             ->order_by("artist.name");
         $query = $this->db->get();
@@ -74,9 +72,19 @@ class News_model extends GD_Model {
                 }
             }
             $news = array_values($news);
-            if ($max_stories > 0) {
-                array_splice($news,0,$max_stories);
+        }
+        return $news;
+    }
+    
+    public function get_news($gallery_id=null,$lang=null,$max_stories=0) {
+        $me = $this;
+        $news = $this->select($lang,function() use($me,$gallery_id) {
+            if ($gallery_id) {
+                $me->db->where("news_gallery.gallery_id",$gallery_id);
             }
+        });
+        if ($max_stories > 0) {
+            array_splice($news,0,$max_stories);
         }
         return $news;
     }
@@ -148,6 +156,14 @@ class News_model extends GD_Model {
             }
         }
         return $news;
+    }
+
+    public function get_artist_news($gallery_id,$artist_id,$lang) {
+        $me = $this;
+        return $this->select($lang,function() use($me,$gallery_id,$artist_id){
+            $me->db->where("news_gallery.gallery_id",$gallery_id);
+            $me->db->where("news_artist.artist_id",$artist_id);
+        });
     }
 
     public function add($user_id,$headline,$text,$source,$date,$url,$gallery_ids,$artist_ids,$exhibition_ids,$image_id) {

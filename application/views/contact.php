@@ -1,8 +1,6 @@
 <h1><?php echo $this->lang->line("Contact"); ?></h1>
 <?php
-echo '<div class="subscribe">';
 $this->load->view("subscribe");
-echo '</div>';
 ?>
 <div class="contact" itemscope itemtype="http://schema.org/LocalBusiness">
     <meta itemprop="name" content="<?php echo $this->lang->line("Division Gallery"); ?>" />
