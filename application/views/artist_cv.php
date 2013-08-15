@@ -13,6 +13,7 @@ if (!empty($artist)) {
         }
     }
     if ($filename) {
-        echo '<object class="cv" data="'.$filename.'" type="application/pdf" width="100%" height="100%"><a href="'.$filename.'">Download PDF</a></object>';
+        echo '<p><a href="/download/cv/'.$artist["id"]."-".$lang.'.pdf">Download PDF</a></p>';
+        echo '<object class="cv" data="'.$filename.'" type="application/pdf" width="100%" height="100%"></object>';
     }
 }

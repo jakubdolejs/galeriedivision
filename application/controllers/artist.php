@@ -64,6 +64,34 @@ class Artist extends Dg_controller {
         }
     }
 
+    public function download_cv($file) {
+        if (!preg_match('/^([a-z0-9_\-]+)\-(en|fr)\.pdf$/i',$file,$match)) {
+            return;
+        }
+        $artist_id = $match[1];
+        $lang = $match[2];
+        $filename = rtrim(FCPATH,"/")."/cv_pdf/".$file;
+        if (!file_exists($filename)) {
+            $languages = array("en","fr");
+            $found = false;
+            foreach ($languages as $language) {
+                $filename = rtrim(FCPATH,"/")."/cv_pdf/".$artist_id."-".$language.".pdf";
+                if ($language != $lang && file_exists($filename)) {
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                return;
+            }
+        }
+        $pdf = file_get_contents($filename);
+        $this->output->set_header("Content-Type: application/pdf");
+        $this->output->set_header("Content-Disposition: attachment");
+        $this->output->set_header("Content-Length: ".strlen($pdf));
+        $this->output->set_output($pdf);
+    }
+
     public function exhibitions($gallery_id,$artist_id) {
         $lang = $this->config->item("language");
         $cache_key = MemcacheKeys::artist_exhibitions($gallery_id,$artist_id,$lang);
