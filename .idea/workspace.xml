@@ -30,7 +30,7 @@
     <file path="/admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376568412726" ignored="false" />
     <file path="/admin_login_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376325814739" ignored="false" />
     <file path="/007_add_access_token.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368553563756" ignored="false" />
-    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268770538" ignored="false" />
+    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377269096844" ignored="false" />
     <file path="/login.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368518545021" ignored="false" />
     <file path="/javascript_redirect.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368523387986" ignored="false" />
     <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376505928338" ignored="false" />
@@ -157,10 +157,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tracking_admin.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tracking_admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/tracking_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="0.6826923">
+            <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-14.791667">
               <folding />
             </state>
           </provider>
@@ -219,10 +219,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="header.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="63" selection-start="883" selection-end="959" vertical-scroll-proportion="-10.0">
+            <state line="17" column="59" selection-start="943" selection-end="943" vertical-scroll-proportion="0.4903846">
               <folding />
             </state>
           </provider>
@@ -288,10 +288,10 @@
         <option value="$PROJECT_DIR$/application/views/admin/tracking_visitor_artists.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_visitors.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_artists.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/header.php" />
         <option value="$PROJECT_DIR$/css/admin.css" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_header.php" />
         <option value="$PROJECT_DIR$/application/controllers/tracking_admin.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/header.php" />
       </list>
     </option>
   </component>
@@ -966,13 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="63" selection-start="883" selection-end="959" vertical-scroll-proportion="-10.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_artists.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="40" selection-start="246" selection-end="378" vertical-scroll-proportion="-4.375">
@@ -996,7 +989,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/tracking_admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="0.6826923">
+        <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="-14.791667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="59" selection-start="943" selection-end="943" vertical-scroll-proportion="0.4903846">
           <folding />
         </state>
       </provider>
