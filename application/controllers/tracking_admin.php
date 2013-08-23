@@ -102,7 +102,7 @@ class Tracking_admin extends Admin {
         }
         $artist = $this->artist_model->get_artist($artist_id);
         $this->load->view("admin/header",array("user"=>$user));
-        $this->load->view("admin/tracking_header",array("selected"=>"artists","month"=>$month));
+        $this->load->view("admin/tracking_header",array("month"=>$month));
         $visits = $this->tracking_model->get_visits($artist_id,$email,$month);
         $this->load->view("admin/tracking_visit",array("images"=>$visits,"artist"=>$artist,"name"=>$name));
         $this->load->view("admin/footer");

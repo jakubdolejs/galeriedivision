@@ -1,8 +1,8 @@
 <h1>Tracking</h1>
-<p>
+<p class="trackingHeader">
     <?php
     if (!isset($selected)) {
-        $selected = "visitors";
+        $selected = false;
     }
     $links = array();
     foreach (array("visitors"=>"Visitors","artists"=>"Artists") as $key=>$val) {

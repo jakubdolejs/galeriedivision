@@ -15,6 +15,7 @@
                     <li><a href="/admin/exhibitions">Exhibitions</a></li>
                     <li><a href="/admin/artists">Artists</a></li>
                     <li><a href="/admin/images">Images</a></li>
+                    <li><a href="/admin/tracking">Visitor tracking</a></li>
                     <li><a href="/admin/news">News</a></li>
                     <li><a href="/admin/staff">Gallery Staff</a></li>
                     <?php if (!empty($user) && $user["superuser"]): ?>

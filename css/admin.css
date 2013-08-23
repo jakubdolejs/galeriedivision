@@ -191,3 +191,6 @@ table.trackingListing tbody tr:nth-child(odd) td {
 table.trackingListing tbody tr:hover td {
     background-color: #ccc;
 }
+p.trackingHeader a.selected {
+    text-decoration: none;
+}

@@ -30,7 +30,7 @@
     <file path="/admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376568412726" ignored="false" />
     <file path="/admin_login_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376325814739" ignored="false" />
     <file path="/007_add_access_token.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368553563756" ignored="false" />
-    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376338142925" ignored="false" />
+    <file path="/header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268770538" ignored="false" />
     <file path="/login.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368518545021" ignored="false" />
     <file path="/javascript_redirect.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368523387986" ignored="false" />
     <file path="/image_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376505928338" ignored="false" />
@@ -42,7 +42,7 @@
     <file path="/api.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376562055499" ignored="false" />
     <file path="/artist_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376561761687" ignored="false" />
     <file path="/image_list.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376048772541" ignored="false" />
-    <file path="/admin.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268545188" ignored="false" />
+    <file path="/admin.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268855476" ignored="false" />
     <file path="/*.regexp" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376328536480" ignored="false" />
     <file path="/a.dummy" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1376568361372" ignored="false" />
     <file path="$PROJECT_DIR$/../../sync-audio.com/application/views/upload.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1370457250299" ignored="false" />
@@ -132,7 +132,7 @@
     <file path="/tracking.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377177860281" ignored="false" />
     <file path="/tracking_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377265679338" ignored="false" />
     <file path="/tracking_admin.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377203404707" ignored="false" />
-    <file path="/tracking_header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377199960251" ignored="false" />
+    <file path="/tracking_header.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268896921" ignored="false" />
     <file path="/tracking_artists.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377268353781" ignored="false" />
     <file path="/tracking_artist_visitors.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377204252138" ignored="false" />
     <file path="/tracking_visitor_artists.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1377266549057" ignored="false" />
@@ -157,10 +157,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tracking_admin.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="tracking_admin.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/tracking_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="0" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-7.2083335">
+            <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="0.6826923">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tracking_header.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="25" selection-start="109" selection-end="109" vertical-scroll-proportion="-2.5">
               <folding />
             </state>
           </provider>
@@ -201,10 +210,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="admin.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="36" selection-start="3002" selection-end="3002" vertical-scroll-proportion="0.94208497">
+            <state line="194" column="25" selection-start="3769" selection-end="3769" vertical-scroll-proportion="-17.615385">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="63" selection-start="883" selection-end="959" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
@@ -223,24 +241,6 @@
         <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_visit.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="48" column="17" selection-start="1940" selection-end="1940" vertical-scroll-proportion="-16.75">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/core/Model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="0" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB_active_rec.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/system/database/DB_active_rec.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="962" column="0" selection-start="20733" selection-end="20733" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -276,22 +276,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/application/controllers/news.php" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/application/controllers/tracking.php" />
         <option value="$PROJECT_DIR$/application/migrations/017_add_visit_tracking.php" />
         <option value="$PROJECT_DIR$/application/config/migration.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/tracking_header.php" />
         <option value="$PROJECT_DIR$/application/views/image.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_artist_visitors.php" />
         <option value="$PROJECT_DIR$/application/models/tracking_model.php" />
-        <option value="$PROJECT_DIR$/application/controllers/tracking_admin.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_visit.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_visitor_artists.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_visitors.php" />
         <option value="$PROJECT_DIR$/application/views/admin/tracking_artists.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/header.php" />
         <option value="$PROJECT_DIR$/css/admin.css" />
+        <option value="$PROJECT_DIR$/application/views/admin/tracking_header.php" />
+        <option value="$PROJECT_DIR$/application/controllers/tracking_admin.php" />
       </list>
     </option>
   </component>
@@ -885,18 +885,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/system/core/Loader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="835" column="0" selection-start="19789" selection-end="19789" vertical-scroll-proportion="-7.2083335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="80" selection-start="1134" selection-end="1134" vertical-scroll-proportion="-18.541666" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="76" column="64" selection-start="3454" selection-end="3454" vertical-scroll-proportion="-11.75" />
@@ -942,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/tracking_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-7.2083335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/tracking_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="37" selection-start="1580" selection-end="1580" vertical-scroll-proportion="-23.75">
@@ -985,6 +966,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="63" selection-start="883" selection-end="959" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_artists.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="40" selection-start="246" selection-end="378" vertical-scroll-proportion="-4.375">
@@ -994,7 +982,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="36" selection-start="3002" selection-end="3002" vertical-scroll-proportion="0.94208497">
+        <state line="194" column="25" selection-start="3769" selection-end="3769" vertical-scroll-proportion="-17.615385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/tracking_header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="25" selection-start="109" selection-end="109" vertical-scroll-proportion="-2.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/tracking_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="56" selection-start="4070" selection-end="4070" vertical-scroll-proportion="0.6826923">
           <folding />
         </state>
       </provider>
