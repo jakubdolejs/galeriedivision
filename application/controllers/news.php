@@ -73,9 +73,7 @@ class News extends Dg_controller {
                 }
                 $this->output->append_output('<h1>Thank you</h1><p>Thank you for subscribing to the Division Gallery newsletter.</p><p><a href="javascript:history.back()">Go back to previous page</a></p>');
                 $this->output->append_output('<script type="text/javascript">
-                var expiryDate = new Date();
-                expiryDate.setDate(expiryDate.getDate()+3650);
-                document.cookie = "email="+escape("'.strtolower($this->input->post("email",true)).'")+"; expires="+expiryDate.toUTCString()+"; path=/";
+                saveContact("'.strtolower($this->input->post("email",true)).'",'.json_encode($contact->first_name.' '.$contact->last_name).');
                 </script>');
             } catch (CtctException $error) {
                 $this->output->append_output('<h1>Error</h1><p>'.$error->getMessage().'</p>');

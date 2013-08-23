@@ -11,6 +11,7 @@ $title = $this->lang->line("Division Gallery");
     <link rel="stylesheet" href="/css/style.css" type="text/css" />
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/hammer/dist/jquery.hammer.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
     <script type="text/javascript">
         //<![CDATA[
         (function() {
@@ -36,6 +37,7 @@ $title = $this->lang->line("Division Gallery");
                 for (var i=0; i<images.length; i++) {
                     if (images[i].id == id) {
                         imageId = id;
+                        trackView("<?php echo $gallery_id; ?>",imageId);
                         if ($("div.slide img[src='/images/2mp/"+id+(images[i].version ? "-"+images[i].version : "")+".jpg']").length > 0) {
                             $("div.slide img[src='/images/2mp/"+id+(images[i].version ? "-"+images[i].version : "")+".jpg']").parent().animate({"left":0,"right":0});
                         } else {
@@ -206,6 +208,7 @@ $title = $this->lang->line("Division Gallery");
                     return false;
                 });
                 $("div.slide, div.slide img").hammer().on("dragleft",onDragLeft).on("dragright",onDragRight).on("dragend",onDragEnd);
+                trackView("<?php echo $gallery_id; ?>",imageId);
             });
         })();
         //]]>
@@ -279,7 +282,7 @@ if (!empty($images)) {
             }
             if (!empty($image["description"][$lang])) {
                 $info[] = '<span class="description">'.htmlspecialchars($image["description"][$lang]).'</span>';
-            } else if (!empty($image["title"])) {
+            } else if (!empty($image["description"])) {
                 foreach ($image["description"] as $language=>$description) {
                     if (!empty($description)) {
                         $info[] = '<span class="description" lang="'.$language.'">'.htmlspecialchars($description).'</span>';
