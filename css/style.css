@@ -26,13 +26,21 @@
 */
 @font-face {
     font-family: "Calibri";
-    src: url('/fonts/CALIBRIL.TTF');
+    src: url('/fonts/CALIBRIL.eot');
+    src: url('/fonts/CALIBRIL.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/CALIBRIL.woff') format('woff'),
+    url('/fonts/CALIBRIL.ttf') format('truetype'),
+    url('/fonts/CALIBRIL.svg#Calibri') format('svg');
     font-weight: 200;
     font-style: normal;
 }
 @font-face {
     font-family: "Calibri";
-    src: url('/fonts/CALIBRILI.TTF');
+    src: url('/fonts/CALIBRILI.eot');
+    src: url('/fonts/CALIBRILI.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/CALIBRILI.woff') format('woff'),
+    url('/fonts/CALIBRILI.ttf') format('truetype'),
+    url('/fonts/CALIBRILI.svg#Calibri-Italic') format('svg');
     font-weight: 200;
     font-style: italic;
 }
@@ -51,6 +59,9 @@ body {
     background-size: 100% 16pt;
     */
 }
+img {
+    border: none;
+}
 p, span, div {
     font-family: Calibri, sans-serif;
     font-weight: 200;
@@ -68,7 +79,7 @@ h1 {
     letter-spacing: 0.05em;
 }
 h1, h1 a {
-    font-size: 18pt;
+    font-size: 16pt;
     text-decoration: none;
     color: #000;
     text-transform: uppercase;
@@ -367,45 +378,48 @@ img.exhibition-feature {
 }
 div.imageInfo {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 90px;
+    bottom: 20px;
+    left: 40px;
+    right: 130px;
     padding: 5px 10px;
-    height: 20px;
+    background-color: #fff;
 }
 div.previous {
     position: absolute;
-    top: 0px;
-    right: 60px;
+    bottom: 20px;
+    right: 100px;
     width: 30px;
     height: 25px;
     text-align: center;
     padding-top: 5px;
+    font-size: 24px;
 }
 div.next {
     position: absolute;
-    top: 0px;
-    right: 30px;
+    bottom: 20px;
+    right: 70px;
     width: 30px;
     height: 25px;
     text-align: center;
     padding-top: 5px;
+    font-size: 24px;
 }
 div.close {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    bottom: 20px;
+    right: 40px;
     width: 30px;
     height: 25px;
     text-align: center;
     padding-top: 5px;
+    font-size: 24px;
 }
 div.slide, div.tempSlide {
     position: absolute;
-    top: 30px;
+    top: 60px;
     left: 0px;
     right: 0px;
-    bottom: 0px;
+    bottom: 60px;
 }
 div.slide img, div.tempSlide img {
     position: absolute;
@@ -430,20 +444,45 @@ div.imageViewer {
 }
 div.subscribe {
     background-color: #eee;
-    padding: 5px 0 0 10px;
-    white-space: nowrap;
-}
-div.subscribe div {
+    background-image: url('/images/background-pattern.gif');
+    padding: 5px 10px;
     position: relative;
-    display: inline-block;
+    height: 115px;
+}
+div.subscribe h2 {
+    padding-left: 10px;
+}
+div.subscribe div.container {
+    position: relative;
+}
+div.subscribe div.container div {
+    position: relative;
+    float: left;
     margin: 0 0 15px 0;
     padding: 0;
     white-space: nowrap;
     width: 25%;
+    height: 50px;
 }
 div.subscribe label, div.subscribe input {
     display: block;
-    width: 80%;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    padding: 0;
+    margin: 0;
+}
+div.subscribe input {
+    top: 20px;
+    height: 25px;
+    border: 1px solid #ccc;
+    font-family: Calibri, sans-serif;
+    font-size: 12pt;
+    font-weight: 200;
+}
+div.subscribe input[type='submit'] {
+    background-color: #eee;
+    border-radius: 5px;
 }
 div.contact {
     white-space: nowrap;
@@ -463,22 +502,18 @@ div.contact div.map {
 }
 @media (max-width: 320px) {
     div.subscribe {
-        white-space: normal;
+        height: 335px;
     }
-    div.subscribe div {
-        display: block;
-        width: 100%;
-    }
-    div.subscribe label, div.subscribe input {
+    div.subscribe div.container div {
         width: 100%;
     }
 }
 @media (min-width: 321px) and (max-width: 640px) {
     div.subscribe {
-        white-space: normal;
+        height: 180px;
     }
-    div.subscribe div {
-        width: 48%;
+    div.subscribe div.container div {
+        width: 50%;
     }
 }
 object.cv {

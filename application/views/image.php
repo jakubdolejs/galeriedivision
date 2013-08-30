@@ -259,7 +259,7 @@ if (!empty($images)) {
             }
             if ($titleSpan) {
                 if (count($info) > 0) {
-                    $info[0] .= ": ".$titleSpan;
+                    $info[0] .= " ".$titleSpan;
                 } else {
                     $info[] = $titleSpan;
                 }

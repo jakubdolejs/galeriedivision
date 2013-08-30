@@ -1,12 +1,20 @@
 @font-face {
     font-family: "Calibri";
-    src: url('/fonts/CALIBRIL.TTF');
+    src: url('/fonts/CALIBRIL.eot');
+    src: url('/fonts/CALIBRIL.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/CALIBRIL.woff') format('woff'),
+    url('/fonts/CALIBRIL.ttf') format('truetype'),
+    url('/fonts/CALIBRIL.svg#Calibri') format('svg');
     font-weight: 200;
     font-style: normal;
 }
 @font-face {
     font-family: "Calibri";
-    src: url('/fonts/CALIBRILI.TTF');
+    src: url('/fonts/CALIBRILI.eot');
+    src: url('/fonts/CALIBRILI.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/CALIBRILI.woff') format('woff'),
+    url('/fonts/CALIBRILI.ttf') format('truetype'),
+    url('/fonts/CALIBRILI.svg#Calibri-Italic') format('svg');
     font-weight: 200;
     font-style: italic;
 }

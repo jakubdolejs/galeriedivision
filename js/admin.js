@@ -326,9 +326,15 @@ jQuery.fn.extend({
                                                             break;
                                                     }
                                                 }
-                                                if (originalWidth < 900) {
+                                                var minWidth = 600;
+
+                                                var proceedWithUpload = originalWidth >= minWidth;
+                                                if (originalWidth < 900 && originalWidth >= minWidth) {
+                                                    proceedWithUpload = confirm("The image is too small to use as the main exhibition picture. Click OK to upload it anyway or cancel to select a larger image.");
+                                                }
+                                                if (!proceedWithUpload) {
                                                     $(_this).find('.imagePreview, .warning').remove();
-                                                    form.prepend('<p class="warning">The image is too small. Please make sure it\'s at least 900 pixels wide.</p>');
+                                                    form.prepend('<p class="warning">The image is too small. Please make sure it\'s at least '+minWidth+' pixels wide.</p>');
                                                     cancelButton.hide();
                                                     fileInput.show();
                                                 } else {

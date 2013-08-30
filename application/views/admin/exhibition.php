@@ -127,8 +127,8 @@ echo form_close();
         imagePicker.load($('#imagePicker'),'/api/images',function(imageId){
             $('#imagePicker').empty().hide();
             if (imageId) {
-                $("input[name='image_id'], #image, #no-image").remove();
-                $("form").append('<input name="image_id" type="hidden" value="'+imageId+'" />');
+                $("#image, #no-image").remove();
+                $("input[name='image_id']").val(imageId);
                 $("form").prepend('<div id="image"><p><a class="pick-image" href="javascript:void(0)"><img src="/images/440x235/'+imageId+'.jpg" /></a></p><p><a class="remove-image" href="javascript:void(0)">Remove image</a></p></div>');
                 $('a.remove-image').on("click",removeImage);
                 $('a.pick-image').on("click",addImage);
@@ -136,7 +136,8 @@ echo form_close();
         });
     }
     function removeImage() {
-        $("input[name='image_id'], #image, #no-image").remove();
+        $("#image, #no-image").remove();
+        $("input[name='image_id']").val("");
         $("form").prepend($('<p id="no-image"></p>').append($('<a class="pick-image" href="javascript:void(0)">Add image</a>').on("click",addImage)));
     }
     $('a.remove-image').on("click",removeImage);

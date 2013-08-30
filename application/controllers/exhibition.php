@@ -49,4 +49,11 @@ class Exhibition extends Dg_controller {
             }
         }
     }
+
+    public function image($gallery_id,$exhibition_id,$image_id) {
+        $images = $this->image_model->get_exhibition_images_with_details($exhibition_id);
+        $base_url = "/".$gallery_id."/exhibition/".$exhibition_id."/image/";
+        $lang = $this->config->item("language");
+        $this->load->view("image",array("parent_url"=>"/".$gallery_id."/exhibition/".$exhibition_id,"base_url"=>$base_url,"images"=>$images,"image_id"=>$image_id,"gallery_id"=>$gallery_id,"lang"=>$lang));
+    }
 }
