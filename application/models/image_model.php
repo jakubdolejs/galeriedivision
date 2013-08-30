@@ -95,7 +95,22 @@ class Image_model extends GD_Model {
             }
             $this->db->insert_batch("image_artist",$inserts);
             $this->log($user_id);
+
+            $this->db->select("gallery_id, artist_id")
+                ->from("artist_gallery")
+                ->where_in("artist_id",$artists)
+                ->where("image_id IS NULL",null,false);
+            $query = $this->db->get();
+            if ($query->num_rows()) {
+                foreach ($query->result_array() as $row) {
+                    $this->db->set("image_id",$image_id)
+                        ->where("artist_id",$row["artist_id"])
+                        ->where("gallery_id",$row["gallery_id"]);
+                    $this->db->update("artist_gallery");
+                }
+            }
         }
+
 
         foreach (array("en","fr") as $lang) {
             if (isset($title[$lang]) || isset($description[$lang])) {

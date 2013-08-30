@@ -26,7 +26,7 @@ if (!empty($artist)) {
             echo '<p><a class="remove-image" data-gallery_id="'.$id.'" href="javascript:void(0)">Remove image</a></p>';
             echo form_hidden('image_id['.$id.']',$gallery["image_id"]);
         } else {
-            echo '<p><a class="add-image" data-gallery_id="'.$id.'" href="javascript:void(0)">Add image</a></p>';
+            echo '<p><a class="add-image" data-gallery_id="'.$id.'" href="javascript:void(0)">Set main image</a></p>';
         }
         $status_options = array(
             "unlisted"=>"Unlisted",
@@ -79,7 +79,7 @@ if (!empty($artist)) {
         var link = $(this);
         var galleryId = link.attr("data-gallery_id");
         var galleryDiv = $('#gallery'+galleryId);
-        galleryDiv.empty().append($('<p></p>').append($('<a class="add-image" data-gallery_id="'+galleryId+'" href="javascript:void(0);">Add image</a>').on("click",addImage)));
+        galleryDiv.empty().append($('<p></p>').append($('<a class="add-image" data-gallery_id="'+galleryId+'" href="javascript:void(0);">Set main image</a>').on("click",addImage)));
     }
     $('a.remove-image').on("click",removeImage);
     $("a.delete.cv").on("click",function(){
