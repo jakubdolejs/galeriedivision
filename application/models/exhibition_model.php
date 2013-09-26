@@ -260,10 +260,14 @@ class Exhibition_model extends GD_Model {
         if (!empty($values["artist_ids"])) {
             $batch = array();
             foreach ($values["artist_ids"] as $artist_id) {
-                $batch[] = array("artist_id"=>$artist_id,"exhibition_id"=>$exhibition_id);
+                if ($artist_id && $exhibition_id) {
+                    $batch[] = array("artist_id"=>$artist_id,"exhibition_id"=>$exhibition_id);
+                }
             }
-            $this->db->insert_batch("artist_exhibition",$batch);
-            $this->log($user_id);
+            if (!empty($batch)) {
+                $this->db->insert_batch("artist_exhibition",$batch);
+                $this->log($user_id);
+            }
         }
         $this->db->where("exhibition_id",$exhibition_id);
         $this->db->delete("space_exhibition");
