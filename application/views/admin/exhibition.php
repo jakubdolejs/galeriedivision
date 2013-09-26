@@ -153,13 +153,15 @@ echo form_close();
     }
     artistSelector.appendTo($("#artists"));
 
-    var spaceSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($space_options); ?>,<?php echo json_encode($space_ids); ?>);
-    spaceSelector.changeCallback = function(selectedSpaces){
+    var spaceChangeCallback = function(selectedSpaces){
         $("input[name='space_ids[]']").remove();
         for (var i=0; i<selectedSpaces.length; i++) {
             $("#spaces").after('<input name="space_ids[]" value="'+selectedSpaces[i].id+'" type="hidden" />');
         }
     }
+
+    var spaceSelector = new DivisionAdmin.MultipleItemSelector(<?php echo json_encode($space_options); ?>,<?php echo json_encode($space_ids); ?>);
+    spaceSelector.changeCallback = spaceChangeCallback;
     spaceSelector.appendTo($("#spaces"));
 
     $("select[name='gallery_id']").on("change",function(){
@@ -171,6 +173,7 @@ echo form_close();
             items.push({"id":spaces[gallery_id][i].id,"text":spaces[gallery_id][i].name});
         }
         spaceSelector = new DivisionAdmin.MultipleItemSelector(items);
+        spaceSelector.changeCallback = spaceChangeCallback;
         spaceSelector.appendTo($("#spaces"));
     });
 
