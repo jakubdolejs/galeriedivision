@@ -9,7 +9,7 @@
     <file path="/Dummy.txt" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372176855599" ignored="false" />
     <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1378497742662" ignored="false" />
     <file path="/home.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942441791" ignored="false" />
-    <file path="/exhibition.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380225381028" ignored="false" />
+    <file path="/exhibition.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380712449901" ignored="false" />
     <file path="/exhibitions_listing.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368475551020" ignored="false" />
     <file path="/date_formatter.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368043146870" ignored="false" />
     <file path="/exhibitions.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368477862603" ignored="false" />
@@ -211,26 +211,28 @@
       <file leaf-file-name="exhibition_admin.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/exhibition_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="4692" selection-end="4692" vertical-scroll-proportion="-12.291667">
+            <state line="103" column="0" selection-start="4692" selection-end="4692" vertical-scroll-proportion="-26.708334">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common_lang.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="17" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.47854784">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exhibition.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="exhibition.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/admin/exhibition.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="175" column="59" selection-start="8133" selection-end="8133" vertical-scroll-proportion="0.0">
+            <state line="106" column="0" selection-start="4672" selection-end="4672" vertical-scroll-proportion="0.33333334">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form_helper.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/helpers/form_helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="953" column="0" selection-start="19703" selection-end="19703" vertical-scroll-proportion="-7.2083335">
+              <folding>
+                <marker date="1364390627000" expanded="false" signature="2101:2113" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -297,8 +299,8 @@
         <option value="$PROJECT_DIR$/application/views/admin/artist.php" />
         <option value="$PROJECT_DIR$/application/views/artist.php" />
         <option value="$PROJECT_DIR$/application/models/exhibition_model.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/exhibition.php" />
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/exhibition.php" />
       </list>
     </option>
   </component>
@@ -373,7 +375,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -520,6 +521,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -606,8 +608,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6046748" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38260406" sideWeight="0.6046748" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.386873" sideWeight="0.6046748" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -703,15 +705,10 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="181" />
+      <option name="time" value="182" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/admin/image_upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/image_admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="95" column="38" selection-start="3980" selection-end="3980" vertical-scroll-proportion="0.0" />
@@ -724,16 +721,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/artist.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/artist_admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/image.php">
@@ -776,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/exhibition.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="59" selection-start="8133" selection-end="8133" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/exhibition_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="186" column="0" selection-start="10830" selection-end="10830" vertical-scroll-proportion="-0.625">
@@ -790,30 +776,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/exhibition_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="4692" selection-end="4692" vertical-scroll-proportion="-12.291667">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/language/fr/form_validation_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/language/fr/calendar_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="17" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.47854784">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/exhibition_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="0" selection-start="4692" selection-end="4692" vertical-scroll-proportion="-26.708334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/helpers/form_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="953" column="0" selection-start="19703" selection-end="19703" vertical-scroll-proportion="-7.2083335">
+          <folding>
+            <marker date="1364390627000" expanded="false" signature="2101:2113" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/exhibition.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="0" selection-start="4672" selection-end="4672" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>

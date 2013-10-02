@@ -3,8 +3,11 @@ $url = "/admin/exhibitions";
 $title["en"] = $title["fr"] = $text["en"] = $text["fr"] = "";
 $start_date = new DateTime();
 $end_date = new DateTime();
+$end_date->add(new DateInterval("P2W"));
 $reception_start = new DateTime();
+$reception_start->setTime(18,0,0);
 $reception_end = new DateTime();
+$reception_end->setTime(21,0,0);
 $gallery_options = array();
 $selected_space = array();
 $space_options = array();
@@ -42,10 +45,20 @@ if (!empty($exhibition)) {
             $text[$lang] = $exhibition["text"][$lang];
         }
     }
-    $start_date = DateTime::createFromFormat("Y-m-d",$exhibition["start_date"]);
-    $end_date = DateTime::createFromFormat("Y-m-d",$exhibition["end_date"]);
-    $reception_start = DateTime::createFromFormat("Y-m-d H:i:s",$exhibition["reception_start"]);
-    $reception_end = DateTime::createFromFormat("Y-m-d H:i:s",$exhibition["reception_end"]);
+    if ($exhibition["start_date"]) {
+        $start_date = DateTime::createFromFormat("Y-m-d",$exhibition["start_date"]);
+    }
+    if ($exhibition["end_date"]) {
+        $end_date = DateTime::createFromFormat("Y-m-d",$exhibition["end_date"]);
+    }
+    if ($exhibition["reception_start"]) {
+        $reception_start = DateTime::createFromFormat("Y-m-d H:i:s",$exhibition["reception_start"]);
+    } else {
+        $reception_start = null;
+    }
+    if ($exhibition["reception_end"]) {
+        $reception_end = DateTime::createFromFormat("Y-m-d H:i:s",$exhibition["reception_end"]);
+    }
     if (!empty($exhibition["artists"])) {
         $artist_ids = array_keys($exhibition["artists"]);
     }
@@ -90,7 +103,7 @@ foreach (range(0,23) as $hour) {
     $times[$time.":00"] = $time.":00";
     $times[$time.":30"] = $time.":30";
 }
-echo '<p>'.form_label("Reception","reception_start").'<br />'.form_input("reception_start",$reception_start->format("Y-m-d"),'class="date"').' '.form_dropdown("reception_starttime",$times,array($reception_start->format("H:i"))).'–'.form_dropdown("reception_endtime",$times,array($reception_end->format("H:i"))).'</p>';
+echo '<p>'.form_label("Reception","reception_start").'<br />'.form_input("reception_start",($reception_start != null ? $reception_start->format("Y-m-d") : ""),'class="date"').' '.form_dropdown("reception_starttime",$times,$reception_start != null ? array($reception_start->format("H:i")) : array()).'–'.form_dropdown("reception_endtime",$times,$reception_start != null ? array($reception_end->format("H:i")) : array()).'</p>';
 if (count($user["galleries"]) > 1) {
     echo '<p>'.form_label("Gallery","gallery_id").'<br />'.form_dropdown("gallery_id",$gallery_options,$selected_gallery).'</p>';
 }
