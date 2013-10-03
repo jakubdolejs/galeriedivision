@@ -198,7 +198,8 @@ $title = $this->lang->line("Division Gallery");
                         loadImage(event.originalEvent.state.id);
                     }
                 });
-                $("div.previous, div.next").on("click","a",function(){
+                $("div.previous, div.next").on("click","a",function(event){
+                    event.stopPropagation();
                     if ($(this).parent().hasClass("disabled")) {
                         return false;
                     }
@@ -208,6 +209,9 @@ $title = $this->lang->line("Division Gallery");
                     return false;
                 });
                 $("div.slide, div.slide img").hammer().on("dragleft",onDragLeft).on("dragright",onDragRight).on("dragend",onDragEnd);
+                $("body").on("click",function(){
+                    $("div.imageInfo").toggle();
+                });
                 trackView("<?php echo $gallery_id; ?>",imageId);
             });
         })();

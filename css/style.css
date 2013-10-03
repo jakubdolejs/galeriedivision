@@ -262,106 +262,6 @@ ul.news li.story ul.links {
     padding: 0;
     margin: 0;
 }
-
-@media all and (max-width: 959px) {
-    #menuButton {
-        font-family: Calibri, sans-serif;
-        font-weight: 200;
-        text-transform: uppercase;
-        position: absolute;
-        top: 8px;
-        right: 0px;
-        font-size: 11pt;
-    }
-    header nav {
-        position: absolute;
-        top: 50px;
-        left: 0px;
-        right: 0px;
-        padding-bottom: 30px;
-        background-color: #fff;
-        z-index: 10;
-        display: none;
-    }
-    header nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    header nav ul li {
-        padding: 5px;
-        border-bottom: 1px solid #eee;
-    }
-    header nav ul li:hover {
-        background-color: #eee;
-    }
-}
-@media all and (min-width: 640px) {
-    div.large-column.left {
-        position: absolute;
-        left: 30px;
-        top: 180px;
-        right: 50%;
-        margin-right: 10px;
-    }
-    div.large-column.right {
-        position: absolute;
-        left: 50%;
-        top: 180px;
-        right: 30px;
-        margin-left: 10px;
-    }
-    ul.thumbnails li {
-        width: 33.33%;
-    }
-    ul.news li.story {
-        width: 50%;
-    }
-}
-@media all and (min-width: 960px) {
-    #content {
-        max-width: 900px;
-        margin: 0px auto;
-    }
-    #menuButton {
-        display: none;
-    }
-    header nav {
-        font-size: 11pt;
-        width: 596px;
-        display: inline-block;
-        text-align: right;
-    }
-    header nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    header nav ul li {
-        display: inline-block;
-        padding: 0 0 0 10px;
-        margin: 0;
-    }
-    ul.thumbnails li {
-        width: 25%;
-    }
-}
-@media all and (max-width: 400px) {
-    header h1 > span {
-        display: block;
-    }
-    header {
-        height: 60px;
-        margin-bottom: 20px;
-    }
-    header nav {
-        top: 65px;
-    }
-    #content {
-        padding: 20px 15px 15px;
-    }
-}
-
 a.feature {
     display: block;
     position: relative;
@@ -535,17 +435,120 @@ div.contact div.map {
 object.cv {
     min-height: 1165px;
 }
-/*TODO*/
-@media (max-width: 899px) {
-    div.contact {
-        white-space: normal;
+
+
+@media all and (max-width: 959px) {
+    #menuButton {
+        font-family: Calibri, sans-serif;
+        font-weight: 200;
+        text-transform: uppercase;
+        position: absolute;
+        top: 8px;
+        right: 0px;
+        font-size: 11pt;
     }
-    div.contact div.column, div.contact div.map {
-        display: block;
-        width: 100%;
-        text-align: left;
+    header nav {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        right: 0px;
+        padding-bottom: 30px;
+        background-color: #fff;
+        z-index: 10;
+        display: none;
+    }
+    header nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    header nav ul li {
+        padding: 5px;
+        border-bottom: 1px solid #eee;
+    }
+    header nav ul li:hover {
+        background-color: #eee;
     }
 }
-@media (min-width: 900px) {
-
+@media all and (min-width: 640px) {
+    div.large-column.left {
+        position: absolute;
+        left: 30px;
+        top: 180px;
+        right: 50%;
+        margin-right: 10px;
+    }
+    div.large-column.right {
+        position: absolute;
+        left: 50%;
+        top: 180px;
+        right: 30px;
+        margin-left: 10px;
+    }
+    ul.thumbnails li {
+        width: 33.33%;
+    }
+    ul.news li.story {
+        width: 50%;
+    }
+}
+@media all and (min-width: 960px) {
+    #content {
+        max-width: 900px;
+        margin: 0px auto;
+    }
+    #menuButton {
+        display: none;
+    }
+    header nav {
+        font-size: 11pt;
+        width: 596px;
+        display: inline-block;
+        text-align: right;
+    }
+    header nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    header nav ul li {
+        display: inline-block;
+        padding: 0 0 0 10px;
+        margin: 0;
+    }
+    ul.thumbnails li {
+        width: 25%;
+    }
+}
+@media all and (max-width: 400px) {
+    header h1 > span {
+        display: block;
+    }
+    header {
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    header nav {
+        top: 65px;
+    }
+    #content {
+        padding: 20px 15px 15px;
+    }
+    div.imageInfo {
+        bottom: 15px;
+        left: 15px;
+        right: 105px;
+    }
+    div.previous {
+        bottom: 15px;
+        right: 75px;
+    }
+    div.next {
+        bottom: 15px;
+        right: 45px;
+    }
+    div.close {
+        bottom: 15px;
+        right: 15px;
+    }
 }
