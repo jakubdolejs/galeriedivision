@@ -94,7 +94,6 @@ header {
 header h1 {
     margin: 0;
     padding: 0;
-    white-space: nowrap;
     text-transform: uppercase;
     font-size: 11pt;
     font-weight: 200;
@@ -107,6 +106,7 @@ header h1 a {
     color: #000;
     font-size: 18pt;
     font-weight: 200;
+    white-space: nowrap;
 }
 header nav ul li a {
     font-family: Calibri, sans-serif;
@@ -181,7 +181,7 @@ img.thumbnail {
 }
 ul.thumbnails {
     list-style-type: none;
-    margin: 0;
+    margin: 0px -20px;
     padding: 0;
 }
 ul.thumbnails li {
@@ -346,6 +346,22 @@ ul.news li.story ul.links {
         width: 25%;
     }
 }
+@media all and (max-width: 400px) {
+    header h1 > span {
+        display: block;
+    }
+    header {
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    header nav {
+        top: 65px;
+    }
+    #content {
+        padding: 20px 15px 15px;
+    }
+}
+
 a.feature {
     display: block;
     position: relative;
