@@ -526,10 +526,14 @@ object.cv {
     }
     header {
         height: 60px;
-        margin-bottom: 20px;
     }
     header nav {
         top: 65px;
+    }
+}
+@media all and (max-width: 640px) {
+    header {
+        margin-bottom: 20px;
     }
     #content {
         padding: 20px 15px 15px;
@@ -551,5 +555,9 @@ object.cv {
     div.close {
         bottom: 15px;
         right: 15px;
+    }
+    div.slide, div.tempSlide {
+        top: 15px;
+        bottom: 95px;
     }
 }

@@ -7,7 +7,7 @@
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372176855599" ignored="false" />
-    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380809840266" ignored="false" />
+    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380810437622" ignored="false" />
     <file path="/home.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942441791" ignored="false" />
     <file path="/exhibition.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380712449901" ignored="false" />
     <file path="/exhibitions_listing.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368475551020" ignored="false" />
@@ -248,7 +248,7 @@
       <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="539" column="26" selection-start="10685" selection-end="10685" vertical-scroll-proportion="0.66254216">
+            <state line="527" column="21" selection-start="10466" selection-end="10466" vertical-scroll-proportion="0.49381328">
               <folding />
             </state>
           </provider>
@@ -803,7 +803,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="539" column="26" selection-start="10685" selection-end="10685" vertical-scroll-proportion="0.66254216">
+        <state line="527" column="21" selection-start="10466" selection-end="10466" vertical-scroll-proportion="0.49381328">
           <folding />
         </state>
       </provider>
