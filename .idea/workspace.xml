@@ -7,7 +7,7 @@
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372176855599" ignored="false" />
-    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380809268917" ignored="false" />
+    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380809724278" ignored="false" />
     <file path="/home.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942441791" ignored="false" />
     <file path="/exhibition.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380712449901" ignored="false" />
     <file path="/exhibitions_listing.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368475551020" ignored="false" />
@@ -236,19 +236,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="image.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/image.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="23" selection-start="11321" selection-end="11321" vertical-scroll-proportion="0.8765572">
+            <state line="212" column="23" selection-start="11321" selection-end="11321" vertical-scroll-proportion="-15.48">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="539" column="18" selection-start="10661" selection-end="10661" vertical-scroll-proportion="-13.386364">
+            <state line="300" column="42" selection-start="6108" selection-end="6108" vertical-scroll-proportion="0.43419573">
               <folding />
             </state>
           </provider>
@@ -307,8 +307,8 @@
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
         <option value="$PROJECT_DIR$/application/views/admin/exhibition.php" />
         <option value="$PROJECT_DIR$/application/views/footer.php" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/application/views/image.php" />
+        <option value="$PROJECT_DIR$/css/style.css" />
       </list>
     </option>
   </component>
@@ -794,16 +794,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
+    <entry file="file://$PROJECT_DIR$/application/views/image.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="539" column="18" selection-start="10661" selection-end="10661" vertical-scroll-proportion="-13.386364">
+        <state line="212" column="23" selection-start="11321" selection-end="11321" vertical-scroll-proportion="-15.48">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/image.php">
+    <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="212" column="23" selection-start="11321" selection-end="11321" vertical-scroll-proportion="0.8765572">
+        <state line="300" column="42" selection-start="6108" selection-end="6108" vertical-scroll-proportion="0.43419573">
           <folding />
         </state>
       </provider>
