@@ -94,6 +94,9 @@ class Gallery extends Dg_controller {
 
             $this->loadConstantContact();
             $lists = $this->cc->getLists($this->cc_access_token);
+            $lists = array_filter($lists,function($item){
+                return $item->status == "ACTIVE";
+            });
 
             $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours,"hours_microdata"=>$hours_microdata,"lists"=>$lists));
             $this->load->view("footer");

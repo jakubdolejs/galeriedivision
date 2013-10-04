@@ -119,7 +119,7 @@
     <file path="/013_add_news_image.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373621213937" ignored="false" />
     <file path="/news_list.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373656948099" ignored="false" />
     <file path="/memcache_helper.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373661774241" ignored="false" />
-    <file path="/gallery.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380890777277" ignored="false" />
+    <file path="/gallery.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380894175113" ignored="false" />
     <file path="/contact.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380893931632" ignored="false" />
     <file path="/014_image_dimensions_to_double.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1375970090430" ignored="false" />
     <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/application/controllers/image.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1375975037230" ignored="false" />
@@ -209,10 +209,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/contact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="0.8490566">
+            <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-18.75">
               <folding />
             </state>
           </provider>
@@ -236,10 +236,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gallery.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="gallery.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="3" selection-start="344" selection-end="344" vertical-scroll-proportion="11.875">
+            <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="0.5188679">
               <folding>
                 <element signature="e#110#135#0" expanded="true" />
               </folding>
@@ -295,13 +295,13 @@
         <option value="$PROJECT_DIR$/application/views/footer.php" />
         <option value="$PROJECT_DIR$/application/views/image.php" />
         <option value="$PROJECT_DIR$/application/config/constant_contact.php" />
-        <option value="$PROJECT_DIR$/application/controllers/gallery.php" />
         <option value="$PROJECT_DIR$/application/controllers/news.php" />
         <option value="$PROJECT_DIR$/application/views/subscribe.php" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/application/language/en/common_lang.php" />
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
         <option value="$PROJECT_DIR$/application/views/contact.php" />
+        <option value="$PROJECT_DIR$/application/controllers/gallery.php" />
       </list>
     </option>
   </component>
@@ -626,7 +626,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33739838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -634,7 +634,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6046748" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30576307" sideWeight="0.6046748" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -730,11 +730,16 @@
           <line>68</line>
           <option name="timeStamp" value="185" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/controllers/gallery.php</url>
+          <line>100</line>
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="186" />
+      <option name="time" value="187" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -801,15 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="3" selection-start="344" selection-end="344" vertical-scroll-proportion="11.875">
-          <folding>
-            <element signature="e#110#135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/news.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="68" selection-start="1690" selection-end="1690" vertical-scroll-proportion="3.75">
@@ -833,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="-18.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="65" selection-start="1282" selection-end="1340" vertical-scroll-proportion="-18.875">
@@ -849,8 +838,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="0.8490566">
+        <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-18.75">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="-18.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="0.5188679">
+          <folding>
+            <element signature="e#110#135#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
