@@ -75,11 +75,17 @@ class News extends Dg_controller {
                         $contact->addEmail(strtolower($this->input->post("email",true)));
                         $contact->first_name = $this->input->post("first_name",true);
                         $contact->last_name = $this->input->post("last_name",true);
+                        foreach ($lists as $list) {
+                            $contact->addList($list);
+                        }
                         $returnContact = $this->cc->addContact($this->cc_access_token, $contact, false);
                     } else {
                         $contact = $response->results[0];
                         $contact->first_name = $this->input->post("first_name",true);
                         $contact->last_name = $this->input->post("last_name",true);
+                        foreach ($lists as $list) {
+                            $contact->addList($list);
+                        }
                         $returnContact = $this->cc->updateContact($this->cc_access_token, $contact, false);
                     }
                     $this->output->append_output('<h1>Thank you</h1><p>Thank you for subscribing to the Division Gallery newsletter.</p><p><a href="javascript:history.back()">Go back to previous page</a></p>');
