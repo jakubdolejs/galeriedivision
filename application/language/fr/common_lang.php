@@ -33,3 +33,4 @@ $lang["Email"] = "Courriel";
 $lang["Submit"] = "Soumettre";
 $lang["First name"] = "Prénom";
 $lang["Last name"] = "Nom de famille";
+$lang["The gallery is not currently accepting artist submissions."] = "La galerie n’accepte pas de soumissions d’artistes pour l’instant.";

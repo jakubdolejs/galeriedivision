@@ -1,10 +1,7 @@
 <h1><?php echo $this->lang->line("Contact"); ?></h1>
-<?php
-$this->load->view("subscribe");
-?>
 <div class="contact" itemscope itemtype="http://schema.org/LocalBusiness">
     <meta itemprop="name" content="<?php echo $this->lang->line("Division Gallery"); ?>" />
-    <div class="column">
+    <div class="column gallery">
         <div itemscope itemtype="PostalAddress" itemprop="address">
             <h2><?php echo $this->lang->line("Address"); ?></h2>
             <div itemprop="streetAddress"><?php echo $info["address"]; ?></div>
@@ -23,8 +20,6 @@ $this->load->view("subscribe");
             }
             ?>
         </div>
-    </div>
-    <div class="column">
         <h2><?php echo $this->lang->line("Staff"); ?></h2>
         <?php
         foreach ($staff as $person) {
@@ -33,12 +28,38 @@ $this->load->view("subscribe");
             echo '<div><a href="mailto:'.$person["email"].'" itemprop="email">'.$person["email"].'</a></div></div>';
         }
         ?>
+        <div><?php echo $this->lang->line("The gallery is not currently accepting artist submissions."); ?></div>
+    </div>
+    <div class="column">
+        <?php
+        $this->load->view("subscribe",array("lists"=>$lists));
+        ?>
     </div>
     <div class="map">
-        <a href="http://map.google.com?q=<?php echo $info["latitude"]; ?>,<?php echo $info["longitude"]; ?>" itemprop="map"><img src="http://maps.googleapis.com/maps/api/staticmap?center=<?php echo $info["latitude"]; ?>,<?php echo $info["longitude"]; ?>&zoom=15&size=400x300&markers=color:red%7Csize=tiny%7C<?php echo $info["latitude"]; ?>,<?php echo $info["longitude"]; ?>&sensor=false" alt="Map" /></a>
+        <div></div>
     </div>
     <span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
         <meta itemprop="latitude" content="<?php echo $info["latitude"]; ?>" />
         <meta itemprop="longitude" content="<?php echo $info["longitude"]; ?>" />
     </span>
 </div>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    function initialize() {
+        var gallery = new google.maps.LatLng(<?php echo $info["latitude"]; ?>, <?php echo $info["longitude"]; ?>);
+        var mapOptions = {
+            zoom: 15,
+            center: gallery,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map($('div.map div').get(0),
+            mapOptions);
+        var marker = new google.maps.Marker({
+            position: gallery,
+            map: map
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    //]]>
+</script>

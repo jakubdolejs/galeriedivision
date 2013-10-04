@@ -1,10 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once 'dg_controller.php';
+
+use Ctct\ConstantContact;
+use Ctct\Components\Contacts\Contact;
+use Ctct\Components\Contacts\ContactList;
+use Ctct\Components\Contacts\EmailAddress;
+use Ctct\Exceptions\CtctException;
+
 /**
- * @property Gallery_model $gallery_model 
+ * @property Gallery_model $gallery_model
+ * @property ConstantContact $cc
  */
 
 class Gallery extends Dg_controller {
+
+    private $cc;
+    private $cc_access_token;
     
     function __construct() {
         parent::__construct();
@@ -80,9 +91,19 @@ class Gallery extends Dg_controller {
             $gallery_info["name"] = $this->lang->line("Division Gallery")." ".$this->lang->line($gallery_info["city"]);
             $header_vars = $this->get_header_vars($gallery);
             $this->load->view("header",$header_vars);
-            $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours,"hours_microdata"=>$hours_microdata));
+
+            $this->loadConstantContact();
+            $lists = $this->cc->getLists($this->cc_access_token);
+
+            $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours,"hours_microdata"=>$hours_microdata,"lists"=>$lists));
             $this->load->view("footer");
             $this->save_memcache($cache_key,$this->output->get_output());
         }
+    }
+
+    private function loadConstantContact() {
+        require_once rtrim(FCPATH,"/").'/ctct/src/Ctct/autoload.php';
+        $this->cc = new ConstantContact($this->config->item("ctct_api_key"));
+        $this->cc_access_token = $this->config->item("ctct_access_token");
     }
 }

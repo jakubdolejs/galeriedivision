@@ -33,3 +33,4 @@ $lang["Email"] = "Email";
 $lang["Submit"] = "Submit";
 $lang["First name"] = "First name";
 $lang["Last name"] = "Last name";
+$lang["The gallery is not currently accepting artist submissions."] = "The gallery is not currently accepting artist submissions.";

@@ -361,35 +361,10 @@ div.imageViewer {
 div.subscribe {
     background-color: #eee;
     background-image: url('/images/background-pattern.gif');
-    padding: 5px 10px;
+    padding: 5px 20px 20px;
     position: relative;
-    height: 115px;
-}
-div.subscribe h2 {
-    padding-left: 10px;
-}
-div.subscribe div.container {
-    position: relative;
-}
-div.subscribe div.container div {
-    position: relative;
-    float: left;
-    margin: 0 0 15px 0;
-    padding: 0;
-    white-space: nowrap;
-    width: 25%;
-    height: 50px;
-}
-div.subscribe label, div.subscribe input {
-    display: block;
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    padding: 0;
-    margin: 0;
 }
 div.subscribe input {
-    top: 20px;
     height: 25px;
     border: 1px solid #ccc;
     font-family: Calibri, sans-serif;
@@ -400,37 +375,48 @@ div.subscribe input[type='submit'] {
     background-color: #eee;
     border-radius: 5px;
 }
+div.subscribe label {
+    display: block;
+}
+div.subscribe div.submit {
+    margin-top: 10px;
+}
 div.contact {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 div.contact div.column, div.contact div.map {
-    display: inline-block;
-    vertical-align: top;
     margin-bottom: 20px;
+    position: relative;
+    float: left;
 }
 div.contact div.column {
     width: 25%;
 }
+div.contact div.column.gallery > div {
+    margin-bottom: 20px;
+}
+div.contact div.column.gallery h2 {
+    margin: 0;
+}
+div.contact div.column.gallery h3 {
+    margin: 0;
+}
 div.contact div.map {
-    text-align: right;
-    width: 49%;
-    padding-top: 15px;
+    width: 50%;
+    min-height: 400px;
 }
-@media (max-width: 320px) {
-    div.subscribe {
-        height: 335px;
-    }
-    div.subscribe div.container div {
-        width: 100%;
-    }
+div.contact div.map > div {
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    right: 0px;
+    bottom: 0px;
 }
-@media (min-width: 321px) and (max-width: 640px) {
-    div.subscribe {
-        height: 180px;
-    }
-    div.subscribe div.container div {
-        width: 50%;
-    }
+div.contact div.column div.subscribe {
+    margin-left: 20px;
+}
+div.subscribe div.input input {
+    max-width: 100%;
 }
 object.cv {
     min-height: 1165px;
@@ -518,6 +504,31 @@ object.cv {
     }
     ul.thumbnails li {
         width: 25%;
+    }
+}
+@media all and (max-width: 890px) {
+    div.contact div.column {
+        width: 50%;
+    }
+    div.contact div.map {
+        width: 100%;
+    }
+    div.contact div.map > div {
+        left: 0px;
+    }
+}
+@media all and (max-width: 530px) {
+    div.contact div.column {
+        width: 100%;
+    }
+    div.contact div.map {
+        width: 100%;
+    }
+    div.contact div.map > div {
+        left: 0px;
+    }
+    div.contact div.column div.subscribe {
+        margin-left: 0px;
     }
 }
 @media all and (max-width: 400px) {
