@@ -32,6 +32,9 @@ class News extends Dg_controller {
 
             $this->loadConstantContact();
             $lists = $this->cc->getLists($this->cc_access_token);
+            $lists = array_filter($lists,function($item){
+                return $item->status == "ACTIVE";
+            });
 
             if ($this->input->cookie("email")) {
                 $this->loadConstantContact();
