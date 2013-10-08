@@ -55,7 +55,7 @@ class News extends Dg_controller {
 
     public function view($gallery_id,$news_id) {
         $lang = $this->config->item("language");
-        $cache_key = MemcacheKeys::news($gallery_id,$lang,$news_id);
+        $cache_key = MemcacheKeys::news_story($gallery_id,$lang,$news_id);
         if (!$this->output_memcache_if_available($cache_key)) {
             $story = $this->news_model->get_story($news_id,$lang);
             $header_vars = $this->get_header_vars($gallery_id);
