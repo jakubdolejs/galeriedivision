@@ -2,7 +2,7 @@
 echo '<ul class="news">';
 if (!empty($news)) {
     foreach ($news as $story) {
-        echo '<li class="story"><h2>'.$story["headline"].'</h2>';
+        echo '<li class="story"><h2><a href="/'.$gallery_id.'/news/'.$story["id"].'">'.$story["headline"].'</a></h2>';
         if (!empty($story["source"])) {
             echo '<h3>'.htmlspecialchars($story["source"]).'</h3>';
         }

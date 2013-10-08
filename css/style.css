@@ -227,6 +227,10 @@ ul.news li.story {
 ul.news li.story > * {
     margin-right: 20px;
 }
+ul.news li.story h2 a {
+    text-decoration: none;
+    color: #000;
+}
 ul.news li.story div.text, ul.news li.story div.image {
     max-height: 195px;
     position: relative;
