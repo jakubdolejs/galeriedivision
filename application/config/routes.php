@@ -102,6 +102,7 @@ $route['(:any)/past_exhibitions'] = "exhibition/past/$1";
 $route['(:any)/exhibition/(:any)/image/(:num)'] = "exhibition/image/$1/$2/$3";
 $route['(:any)/exhibition/(:any)'] = "exhibition/view/$1/$2";
 $route['(:any)/artists'] = "artist/index/$1";
+$route['(:any)/news/(:num)'] = "news/view/$1/$2";
 $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
 $route['admin/manifest.appcache'] = "admin/appcache";

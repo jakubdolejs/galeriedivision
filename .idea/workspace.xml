@@ -7,7 +7,7 @@
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372176855599" ignored="false" />
-    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380893577927" ignored="false" />
+    <file path="/style.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1381230582077" ignored="false" />
     <file path="/home.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942441791" ignored="false" />
     <file path="/exhibition.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380712449901" ignored="false" />
     <file path="/exhibitions_listing.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1368475551020" ignored="false" />
@@ -101,10 +101,10 @@
     <file path="/sandrafriesen.js" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372944214389" ignored="false" />
     <file path="$PROJECT_DIR$/../../sandrafriesen.com/application/helpers/menu_helper.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942312773" ignored="false" />
     <file path="/menu_helper.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1372942192465" ignored="false" />
-    <file path="/news.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380894565654" ignored="false" />
+    <file path="/news.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1381225798677" ignored="false" />
     <file path="/subscribe.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380891144795" ignored="false" />
-    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/application/views/js/fotobounce.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380833397650" ignored="false" />
-    <file path="/fotobounce.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380833378167" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/application/views/js/fotobounce.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380915770358" ignored="false" />
+    <file path="/fotobounce.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380913361970" ignored="false" />
     <file path="$PROJECT_DIR$/../../sync-audio.com/application/controllers/comp.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373465629944" ignored="false" />
     <file path="/comp.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373465626976" ignored="false" />
     <file path="$PROJECT_DIR$/../../sync-audio.com/application/views/comp_view.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373466908663" ignored="false" />
@@ -118,7 +118,7 @@
     <file path="/012_localise_news_headline.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373617612425" ignored="false" />
     <file path="/013_add_news_image.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373621213937" ignored="false" />
     <file path="/news_list.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373656948099" ignored="false" />
-    <file path="/memcache_helper.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1373661774241" ignored="false" />
+    <file path="/memcache_helper.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1381225528286" ignored="false" />
     <file path="/gallery.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380894175113" ignored="false" />
     <file path="/contact.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380893931632" ignored="false" />
     <file path="/014_image_dimensions_to_double.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1375970090430" ignored="false" />
@@ -161,6 +161,15 @@
     <file path="/recognition_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380818432264" ignored="false" />
     <file path="$PROJECT_DIR$/../../Fotobounce/trunk/libs/codeigniter-packages/fotobounce-server/models/user_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380830973381" ignored="false" />
     <file path="/user_model.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380818591223" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/deployment/deploy.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380895851891" ignored="false" />
+    <file path="/deploy.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380895847045" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/application/views/default.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380911599354" ignored="false" />
+    <file path="/default.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380911595088" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/httpdocs/js/progress_indicator.js" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380912119320" ignored="false" />
+    <file path="/progress_indicator.js" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380911864358" ignored="false" />
+    <file path="$PROJECT_DIR$/../../Fotobounce/trunk/web-server/application/views/css/fotobounce.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380913378123" ignored="false" />
+    <file path="/fotobounce.css" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1380913374973" ignored="false" />
+    <file path="/news_story.php" changelist="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" time="1381225669790" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,28 +189,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <file leaf-file-name="news.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/news.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="22" selection-start="4143" selection-end="4150" vertical-scroll-proportion="-2.26">
+            <state line="62" column="92" selection-start="2557" selection-end="2557" vertical-scroll-proportion="-26.875">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/controllers/news.php">
+      <file leaf-file-name="news_model.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/news_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="25" selection-start="3929" selection-end="3929" vertical-scroll-proportion="0.82840234">
-              <folding>
-                <element signature="e#77#102#0" expanded="true" />
-              </folding>
+            <state line="3" column="6" selection-start="140" selection-end="140" vertical-scroll-proportion="59.375">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/news.php">
+      <file leaf-file-name="memcache_helper.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/helpers/memcache_helper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="58" selection-start="259" selection-end="259" vertical-scroll-proportion="-4.375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/config/database.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
@@ -209,28 +225,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constant_contact.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/config/constant_contact.php">
+      <file leaf-file-name="news.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/news.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="74" selection-start="430" selection-end="430" vertical-scroll-proportion="-5.0">
+            <state line="39" column="21" selection-start="93" selection-end="1862" vertical-scroll-proportion="-24.375">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/contact.php">
+      <file leaf-file-name="news_story.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/news_story.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-18.75">
+            <state line="35" column="35" selection-start="1508" selection-end="1508" vertical-scroll-proportion="-21.875">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common_lang.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
+      <file leaf-file-name="routes.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/config/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="65" selection-start="1282" selection-end="1340" vertical-scroll-proportion="-18.875">
+            <state line="104" column="47" selection-start="5072" selection-end="5072" vertical-scroll-proportion="-32.0">
               <folding />
             </state>
           </provider>
@@ -239,7 +255,7 @@
       <file leaf-file-name="common_lang.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="-18.875">
+            <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -248,27 +264,16 @@
       <file leaf-file-name="gallery.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="-10.5">
-              <folding>
-                <element signature="e#110#135#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subscribe.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/subscribe.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="50" selection-start="991" selection-end="991" vertical-scroll-proportion="-7.5">
+            <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="16" selection-start="4598" selection-end="4603" vertical-scroll-proportion="-10.653846">
+            <state line="398" column="14" selection-start="7980" selection-end="7980" vertical-scroll-proportion="6.4940376">
               <folding />
             </state>
           </provider>
@@ -295,22 +300,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/js/admin.js" />
-        <option value="$PROJECT_DIR$/application/models/image_model.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/artist.php" />
-        <option value="$PROJECT_DIR$/application/views/artist.php" />
         <option value="$PROJECT_DIR$/application/models/exhibition_model.php" />
         <option value="$PROJECT_DIR$/application/views/admin/exhibition.php" />
         <option value="$PROJECT_DIR$/application/views/footer.php" />
         <option value="$PROJECT_DIR$/application/views/image.php" />
         <option value="$PROJECT_DIR$/application/config/constant_contact.php" />
         <option value="$PROJECT_DIR$/application/views/subscribe.php" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/application/language/en/common_lang.php" />
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
         <option value="$PROJECT_DIR$/application/views/contact.php" />
         <option value="$PROJECT_DIR$/application/controllers/gallery.php" />
+        <option value="$PROJECT_DIR$/application/views/news.php" />
+        <option value="$PROJECT_DIR$/application/helpers/memcache_helper.php" />
         <option value="$PROJECT_DIR$/application/controllers/news.php" />
+        <option value="$PROJECT_DIR$/application/config/routes.php" />
+        <option value="$PROJECT_DIR$/application/views/news_story.php" />
+        <option value="$PROJECT_DIR$/css/style.css" />
       </list>
     </option>
   </component>
@@ -390,7 +395,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -555,6 +559,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -635,15 +640,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33739838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32520324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32520324" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6046748" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30576307" sideWeight="0.6046748" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31323373" sideWeight="0.67479676" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3953252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -736,130 +741,122 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/controllers/news.php</url>
-          <line>71</line>
+          <line>84</line>
           <option name="timeStamp" value="185" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="187" />
+      <option name="time" value="188" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="16.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="22" selection-start="4143" selection-end="4150" vertical-scroll-proportion="-2.26">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ctct/src/Ctct/Util/RestClient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3362" selection-end="3362" vertical-scroll-proportion="0.74038464">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ctct/src/Ctct/Services/BaseService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2283" selection-end="2283" vertical-scroll-proportion="0.6685083">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ctct/src/Ctct/ConstantContact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="0" selection-start="4674" selection-end="4674" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/system/core/Input.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="0" selection-start="3965" selection-end="3965" vertical-scroll-proportion="0.31860036">
-          <folding />
-        </state>
+        <state line="186" column="0" selection-start="3965" selection-end="3965" vertical-scroll-proportion="0.31860036" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ctct/src/Ctct/Services/ContactService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="766" selection-end="766" vertical-scroll-proportion="0.3756906">
-          <folding />
-        </state>
+        <state line="28" column="0" selection-start="766" selection-end="766" vertical-scroll-proportion="0.3756906" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/config/constant_contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="74" selection-start="430" selection-end="430" vertical-scroll-proportion="-5.0">
+        <state line="8" column="74" selection-start="430" selection-end="430" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/subscribe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="50" selection-start="991" selection-end="991" vertical-scroll-proportion="-7.5">
+        <state line="12" column="50" selection-start="991" selection-end="991" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="65" selection-start="1282" selection-end="1340" vertical-scroll-proportion="-18.875">
+        <state line="35" column="65" selection-start="1282" selection-end="1340" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="-18.75">
+        <state line="30" column="107" selection-start="1946" selection-end="1946" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="-18.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/news.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="16" selection-start="4598" selection-end="4603" vertical-scroll-proportion="-10.653846">
+        <state line="34" column="33" selection-start="1264" selection-end="1396" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/gallery.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="-10.5">
-          <folding>
-            <element signature="e#110#135#0" expanded="true" />
-          </folding>
+        <state line="100" column="0" selection-start="4364" selection-end="4364" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/memcache_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="58" selection-start="259" selection-end="259" vertical-scroll-proportion="-4.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/news_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="6" selection-start="140" selection-end="140" vertical-scroll-proportion="59.375">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/news.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="25" selection-start="3929" selection-end="3929" vertical-scroll-proportion="0.82840234">
-          <folding>
-            <element signature="e#77#102#0" expanded="true" />
-          </folding>
+        <state line="62" column="92" selection-start="2557" selection-end="2557" vertical-scroll-proportion="-26.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/news.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="21" selection-start="93" selection-end="1862" vertical-scroll-proportion="-24.375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="47" selection-start="5072" selection-end="5072" vertical-scroll-proportion="-32.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/news_story.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="35" selection-start="1508" selection-end="1508" vertical-scroll-proportion="-21.875">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="398" column="14" selection-start="7980" selection-end="7980" vertical-scroll-proportion="6.4940376">
+          <folding />
         </state>
       </provider>
     </entry>

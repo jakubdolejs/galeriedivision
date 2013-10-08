@@ -253,11 +253,11 @@ ul.news div.text a.more {
     font-size: 30px;
     padding: 0 6px 3px;
 }
-ul.news li.story h4 {
+ul.news li.story h4, h4.news.links {
     clear: both;
     margin-bottom: 0;
 }
-ul.news li.story ul.links {
+ul.news li.story ul.links, ul.news.links {
     list-style-type: none;
     padding: 0;
     margin: 0;

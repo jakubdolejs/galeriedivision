@@ -4,6 +4,10 @@ class MemcacheKeys {
         return "news_".$gallery_id."_".$lang;
     }
 
+    public static function news_story($gallery_id,$lang,$news_id) {
+        return "news_".$gallery_id."_".$lang."_".$news_id;
+    }
+
     public static function artists($gallery_id,$lang) {
         return "artists_".$gallery_id."_".$lang;
     }

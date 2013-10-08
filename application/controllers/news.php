@@ -53,6 +53,19 @@ class News extends Dg_controller {
         }
     }
 
+    public function view($gallery_id,$news_id) {
+        $lang = $this->config->item("language");
+        $cache_key = MemcacheKeys::news($gallery_id,$lang,$news_id);
+        if (!$this->output_memcache_if_available($cache_key)) {
+            $story = $this->news_model->get_story($news_id,$lang);
+            $header_vars = $this->get_header_vars($gallery_id);
+            $this->load->view("header",$header_vars);
+            $this->load->view("news_story",array("story"=>$story,"gallery_id"=>$gallery_id));
+            $this->load->view("footer");
+            $this->save_memcache($cache_key,$this->output->get_output());
+        }
+    }
+
     private function loadConstantContact() {
         require_once rtrim(FCPATH,"/").'/ctct/src/Ctct/autoload.php';
         $this->cc = new ConstantContact($this->config->item("ctct_api_key"));

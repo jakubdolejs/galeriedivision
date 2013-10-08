@@ -40,7 +40,7 @@ if (!empty($news)) {
         echo '</li>';
     }
 } else {
-    echo '<li>No news is good news</li>';
+    echo '';
 }
 echo '</ul>';
 ?>
@@ -51,7 +51,7 @@ echo '</ul>';
             if (stories.length > 0) {
                 stories.each(function(){
                     if (this.scrollHeight > $(this).height()) {
-                        $(this).parent().append('<a class="more" href="/<?php echo $gallery_id; ?>/news/'+$(this).data("id")+'">&hellip;</a>');
+                        $(this).parent().append('<a class="more" href="/<?php echo $gallery_id; ?>/news/'+$(this).parent().data("id")+'">&hellip;</a>');
                     }
                 });
             }
