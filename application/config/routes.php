@@ -108,6 +108,7 @@ $route['(:any)/about'] = "about/index/$1";
 $route['admin/manifest.appcache'] = "admin/appcache";
 $route['images/(:any)/(:num)-(:num).jpg'] = "image/jpeg/$1/$2";
 $route['(:any)'] = "exhibition/index/$1";
+$route['migrate'] = "migrate";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

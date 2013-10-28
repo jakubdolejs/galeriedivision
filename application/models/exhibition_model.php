@@ -4,7 +4,7 @@ require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 class Exhibition_model extends GD_Model {
 
     public function get_exhibitions($type,$lang,$gallery_id=NULL) {
-        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', concat(artist.name,' ',artist.surname) as 'artist_name'",false)
                 ->from("exhibition")
                 ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id AND exhibition_translation.lang = ".$this->db->escape($lang),"left")
                 ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
@@ -27,7 +27,7 @@ class Exhibition_model extends GD_Model {
                     ->order_by("end_date","DESC");
         }
         $this->db->order_by("priority");
-        $this->db->order_by("artist.name");
+        $this->db->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         $exhibitions = array();
         foreach ($query->result_array() as $exhibition) {
@@ -46,7 +46,7 @@ class Exhibition_model extends GD_Model {
     }
 
     public function get_all_exhibitions($year=null) {
-        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.lang, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.lang, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', concat(artist.name,' ',artist.surname) as 'artist_name'",false)
             ->from("exhibition")
             ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id","left")
             ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
@@ -61,7 +61,7 @@ class Exhibition_model extends GD_Model {
                 ->or_where("date_format(exhibition.end_date,'%Y') = ".$this->db->escape($year));
         }
         $this->db->order_by("priority");
-        $this->db->order_by("artist.name");
+        $this->db->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         $exhibitions = array();
         if ($query->num_rows()) {
@@ -98,7 +98,7 @@ class Exhibition_model extends GD_Model {
     }
 
     public function get_artist_exhibitions($artist_id,$gallery_id) {
-        $this->db->select("exhibition.id, exhibition_translation.lang, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+        $this->db->select("exhibition.id, exhibition_translation.lang, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', concat(artist.name,' ',artist.surname) as 'artist_name'",false)
             ->from("exhibition")
             ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id","left")
             ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
@@ -137,7 +137,7 @@ class Exhibition_model extends GD_Model {
     }
 
     public function get_exhibition($exhibition_id) {
-        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.lang, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.id as 'space_id', space.name, space.gallery_id, artist.id as 'artist_id', artist.name as 'artist_name'")
+        $this->db->select("exhibition.id, exhibition_translation.title, exhibition_translation.lang, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.id as 'space_id', space.name, space.gallery_id, artist.id as 'artist_id', concat(artist.name,' ',artist.surname) as 'artist_name'",false)
             ->from("exhibition")
             ->join("exhibition_translation","exhibition_translation.exhibition_id = exhibition.id","left")
             ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
@@ -145,7 +145,7 @@ class Exhibition_model extends GD_Model {
             ->join("artist_exhibition JOIN artist ON artist_exhibition.artist_id = artist.id","artist_exhibition.exhibition_id = exhibition.id","left")
             ->where("exhibition.id",$exhibition_id)
             ->order_by("lang")
-            ->order_by("artist.name");
+            ->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         $exhibition = null;
         if ($query->num_rows()) {

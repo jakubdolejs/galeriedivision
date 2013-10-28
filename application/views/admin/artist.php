@@ -5,7 +5,8 @@ if (!empty($artist)) {
     }
     $this->load->helper("form");
     echo form_open_multipart("/admin/artist/".$artist["id"],array("method"=>"post"));
-    echo '<p>'.form_label("Name","name").'<br />'.form_input("name",$artist["name"]).'</p>';
+    echo '<p>'.form_label("Name","name").'<br />'.form_input("name",$artist["first_name"]).'</p>';
+    echo '<p>'.form_label("Surname","surname").'<br />'.form_input("name",$artist["surname"]).'</p>';
     foreach (array("fr"=>"French","en"=>"English") as $lang=>$language) {
         echo '<p>'.form_label("CV (".$language.")","pdf[".$lang."]");
         $filename = get_cv_path($artist["id"],$lang);

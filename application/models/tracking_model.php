@@ -40,7 +40,7 @@ class Tracking_model extends GD_Model {
     }
 
     public function get_artists($year_month=null) {
-        $this->db->select("artist.id, artist.name, count(distinct artist_page_visits.image_id) as 'work_count', count(distinct email) as 'visitor_count'")
+        $this->db->select("artist.id, concat(artist.name,' ',artist.surname) as 'name', count(distinct artist_page_visits.image_id) as 'work_count', count(distinct email) as 'visitor_count'",false)
             ->from("artist_page_visits")
             ->join("image_artist","image_artist.image_id = artist_page_visits.image_id")
             ->join("artist","artist.id = image_artist.artist_id");
@@ -49,7 +49,7 @@ class Tracking_model extends GD_Model {
         }
         $this->db->where("date_format(time,'%Y-%m') = ".$this->db->escape($year_month),null,false);
         $this->db->group_by("artist.id");
-        $this->db->order_by("artist.name");
+        $this->db->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -110,7 +110,7 @@ class Tracking_model extends GD_Model {
     }
 
     public function get_visitor_artists($email,$year_month=null) {
-        $this->db->select("artist.id, artist.name, time, count(distinct artist_page_visits.image_id) as 'work_count'")
+        $this->db->select("artist.id, concat(artist.name,' ',artist.surname) as 'name', time, count(distinct artist_page_visits.image_id) as 'work_count'",false)
             ->from("artist_page_visits")
             ->join("image_artist","image_artist.image_id = artist_page_visits.image_id")
             ->join("artist","artist.id = image_artist.artist_id")
@@ -120,7 +120,7 @@ class Tracking_model extends GD_Model {
         }
         $this->db->where("date_format(time,'%Y-%m') = ".$this->db->escape($year_month),null,false);
         $this->db->group_by("artist.id");
-        $this->db->order_by("artist.name");
+        $this->db->order_by("artist.surname, artist.name");
         $this->db->order_by("time","desc");
         $query = $this->db->get();
         return $query->result_array();

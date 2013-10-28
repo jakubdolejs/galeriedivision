@@ -4,7 +4,7 @@ require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 class News_model extends GD_Model {
 
     private function select($lang,$callback) {
-        $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, name, news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id")
+        $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, concat(artist.name,' ',artist.surname) as 'name', news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id",false)
             ->from("news")
             ->join("news_gallery", "news_gallery.news_id = news.id")
             ->join("news_image", "news_image.news_id = news.id", "left")
@@ -13,7 +13,7 @@ class News_model extends GD_Model {
             ->join("news_exhibition JOIN exhibition_translation ON news_exhibition.exhibition_id = exhibition_translation.exhibition_id", "news_exhibition.news_id = news.id","left");
         $callback();
         $this->db->order_by("date_published","DESC")
-            ->order_by("artist.name");
+            ->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         $news = array();
         if ($query->num_rows()) {
@@ -90,7 +90,7 @@ class News_model extends GD_Model {
     }
 
     public function get_story($id,$lang=null) {
-        $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, name, news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id")
+        $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, concat(artist.name,' ',artist.surname) as 'name', news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id",false)
             ->from("news")
             ->join("news_gallery", "news_gallery.news_id = news.id")
             ->join("news_image", "news_image.news_id = news.id", "left")
@@ -98,7 +98,7 @@ class News_model extends GD_Model {
             ->join("news_artist JOIN artist ON news_artist.artist_id = artist.id", "news_artist.news_id = news.id","left")
             ->join("news_exhibition JOIN exhibition_translation ON news_exhibition.exhibition_id = exhibition_translation.exhibition_id", "news_exhibition.news_id = news.id","left")
             ->where("news.id",$id)
-            ->order_by("artist.name");
+            ->order_by("artist.surname, artist.name");
         $query = $this->db->get();
         $news = array();
         if ($query->num_rows()) {

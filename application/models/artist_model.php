@@ -4,7 +4,7 @@ require_once(rtrim(APPPATH,"/")."/models/GD_Model.php");
 class Artist_model extends GD_Model {
 
     public function get_artists($gallery_id=null) {
-        $this->db->select("artist.id, artist.name, gallery_id, represented, image_id")
+        $this->db->select("artist.id, artist.name, artist.surname, gallery_id, represented, image_id")
                 ->from("artist");
         if ($gallery_id) {
             $this->db->join("artist_gallery","artist_gallery.artist_id = artist.id")
@@ -13,7 +13,7 @@ class Artist_model extends GD_Model {
             $this->db->join("artist_gallery","artist_gallery.artist_id = artist.id","left");
         }
         $this->db->order_by("represented","desc")
-                ->order_by("name");
+                ->order_by("surname, name");
         $query = $this->db->get();
         if ($query->num_rows()) {
             $artists = array();
@@ -21,7 +21,7 @@ class Artist_model extends GD_Model {
                 if (!array_key_exists($row["id"],$artists)) {
                     $artists[$row["id"]] = array(
                         "id"=>$row["id"],
-                        "name"=>$row["name"],
+                        "name"=>$row["name"]." ".$row["surname"],
                         "galleries"=>array()
                     );
                     if ($row["gallery_id"]) {
@@ -38,19 +38,19 @@ class Artist_model extends GD_Model {
     }
 
     public function get_name($artist_id) {
-        $this->db->select("name")
+        $this->db->select("name, surname")
             ->from("artist")
             ->where("id",$artist_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             $row = $query->row_array();
-            return $row["name"];
+            return $row["name"]." ".$row["surname"];
         }
         return null;
     }
 
     public function get_artist($artist_id) {
-        $this->db->select("artist.id, artist.name, gallery.id as 'gid', city, artist_gallery.artist_id is not null as 'available', represented is not null and represented > 0 as 'represented', image_id, cv, lang")
+        $this->db->select("artist.id, artist.name, artist.surname, gallery.id as 'gid', city, artist_gallery.artist_id is not null as 'available', represented is not null and represented > 0 as 'represented', image_id, cv, lang")
             ->from("artist")
             ->join("artist_translation","artist_translation.artist_id = artist.id","left")
             ->join("gallery","1","left")
@@ -63,7 +63,9 @@ class Artist_model extends GD_Model {
                 if (empty($artist)) {
                     $artist = array(
                         "id"=>$row["id"],
-                        "name"=>$row["name"],
+                        "name"=>$row["name"]." ".$row["surname"],
+                        "first_name"=>$row["name"],
+                        "surname"=>$row["surname"],
                         "galleries"=>array()
                     );
                 }
@@ -82,8 +84,9 @@ class Artist_model extends GD_Model {
         return null;
     }
 
-    public function update_name($user_id,$artist_id,$name) {
+    public function update_name($user_id,$artist_id,$name,$surname) {
         $this->db->set("name",$name)
+            ->set("surname",$surname)
             ->where("id",$artist_id);
         if ($this->db->update("artist")) {
             $this->cache->memcached->clean();
@@ -168,9 +171,9 @@ class Artist_model extends GD_Model {
         return $this->db->count_all_results() > 0;
     }
 
-    public function add($user_id,$name) {
+    public function add($user_id,$name,$surname) {
         $this->load->helper("text");
-        $base_id = preg_replace("/[^a-z0-9]+/i","-",strtolower(convert_accented_characters($name)));
+        $base_id = preg_replace("/[^a-z0-9]+/i","-",strtolower(convert_accented_characters($name."-".$surname)));
         $id = $base_id;
         $i = 1;
         while ($this->artist_id_exists($id)) {
@@ -179,6 +182,7 @@ class Artist_model extends GD_Model {
         }
         $this->db->set("id",$id);
         $this->db->set("name",$name);
+        $this->db->set("surname",$surname);
         if ($this->db->insert("artist")) {
             $this->log($user_id);
             $this->cache->memcached->clean();

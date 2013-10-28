@@ -27,9 +27,10 @@ class Artist_admin extends Admin {
         $this->load->view("admin/header",array("user"=>$user));
         if ($this->input->post("name")) {
             $name = $this->input->post("name",true);
-            $id = $this->artist_model->add($user["id"],$name);
+            $surname = $this->input->post("surname",true);
+            $id = $this->artist_model->add($user["id"],$name,$surname);
             if (!$id) {
-                $this->output->append_output('<script type="text/javascript">alert("Error adding '.$name.'");</script>');
+                $this->output->append_output('<script type="text/javascript">alert("Error adding '.$name.' '.$surname.'");</script>');
             } else {
                 $this->output->append_output('<script type="text/javascript">location.href="/admin/artist/'.$id.'";</script>');
             }
@@ -56,7 +57,8 @@ class Artist_admin extends Admin {
         }
         if ($this->input->post("save")) {
             $name = $this->input->post("name",true);
-            $this->artist_model->update_name($user["id"],$artist_id,$name);
+            $surname = $this->input->post("surname",true);
+            $this->artist_model->update_name($user["id"],$artist_id,$name,$surname);
             $listed = array();
             $represented = array();
             if ($this->input->post("status")) {
