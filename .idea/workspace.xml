@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Division Gallery.iml" afterPath="$PROJECT_DIR$/.idea/Division Gallery.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/artist.php" afterPath="$PROJECT_DIR$/application/views/admin/artist.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/artist_add.php" afterPath="$PROJECT_DIR$/application/views/admin/artist_add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/artist_admin.php" afterPath="$PROJECT_DIR$/application/controllers/artist_admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/artist_model.php" afterPath="$PROJECT_DIR$/application/models/artist_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/exhibition_model.php" afterPath="$PROJECT_DIR$/application/models/exhibition_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/image_model.php" afterPath="$PROJECT_DIR$/application/models/image_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/migration.php" afterPath="$PROJECT_DIR$/application/config/migration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/news_model.php" afterPath="$PROJECT_DIR$/application/models/news_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/tracking_model.php" afterPath="$PROJECT_DIR$/application/models/tracking_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="" />
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -527,7 +513,11 @@
       <created>1368553713786</created>
       <updated>1368553713786</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Split artist names by first and last name.">
+      <created>1382993881274</created>
+      <updated>1382993881274</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
