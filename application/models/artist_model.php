@@ -85,6 +85,9 @@ class Artist_model extends GD_Model {
     }
 
     public function update_name($user_id,$artist_id,$name,$surname) {
+        if (!$surname) {
+            $surname = null;
+        }
         $this->db->set("name",$name)
             ->set("surname",$surname)
             ->where("id",$artist_id);
