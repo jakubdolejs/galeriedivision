@@ -37,6 +37,58 @@ class Artist_model extends GD_Model {
         return null;
     }
 
+    public function get_all_artist_ids() {
+        $query = $this->db->distinct()
+            ->select("artist.id, gallery_id")
+            ->from("artist")
+            ->join("artist_gallery","artist_gallery.artist_id = artist.id")
+            ->order_by("surname, name")
+            ->get();
+        $artists = array();
+        foreach ($query->result_array() as $row) {
+            if (!array_key_exists($row["gallery_id"],$artists)) {
+                $artists[$row["gallery_id"]] = array();
+            }
+            $artists[$row["gallery_id"]][] = $row["id"];
+        }
+        return $artists;
+    }
+
+    public function get_all_artist_exhibitions() {
+        $query = $this->db->distinct()
+            ->select("artist_exhibition.artist_id, gallery_id, exhibition_id")
+            ->from("artist_exhibition")
+            ->join("artist_gallery","artist_gallery.artist_id = artist_exhibition.artist_id")
+            ->get();
+        $result = array();
+        foreach ($query->result_array() as $row) {
+            if (!array_key_exists($row["gallery_id"],$result)) {
+                $result[$row["gallery_id"]] = array();
+            }
+            if (!array_key_exists($row["artist_id"],$result[$row["gallery_id"]])) {
+                $result[$row["gallery_id"]][$row["artist_id"]] = array();
+            }
+            $result[$row["gallery_id"]][$row["artist_id"]][] = $row["exhibition_id"];
+        }
+        return $result;
+    }
+
+    public function get_all_artists_with_news() {
+        $query = $this->db->distinct()
+            ->select("news_artist.artist_id, gallery_id")
+            ->from("news_artist")
+            ->join("artist_gallery","artist_gallery.artist_id = news_artist.artist_id")
+            ->get();
+        $result = array();
+        foreach ($query->result_array() as $row) {
+            if (!array_key_exists($row["gallery_id"],$result)) {
+                $result[$row["gallery_id"]] = array();
+            }
+            $result[$row["gallery_id"]][] = $row["artist_id"];
+        }
+        return $result;
+    }
+
     public function get_name($artist_id) {
         $this->db->select("name, surname")
             ->from("artist")

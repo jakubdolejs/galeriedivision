@@ -88,6 +88,7 @@ $route['admin'] = "admin";
 $route['sitemap.xml'] = "sitemap";
 $route['download/cv/(:any)'] = "artist/download_cv/$1";
 $route['track'] = "tracking/track";
+$route['xml_sitemap'] = "welcome/xml_sitemap";
 $route['(:any)/news/subscribe'] = "news/subscribe/$1";
 $route['(:any)/artist/(:any)/exhibition/(:any)/image/(:num)'] = "artist/exhibition_image/$1/$2/$3/$4";
 $route['(:any)/artist/(:any)/image/(:any)'] = "artist/image/$1/$2/$3";
@@ -107,8 +108,8 @@ $route['(:any)/news'] = "news/index/$1";
 $route['(:any)/about'] = "about/index/$1";
 $route['admin/manifest.appcache'] = "admin/appcache";
 $route['images/(:any)/(:num)-(:num).jpg'] = "image/jpeg/$1/$2";
-$route['(:any)'] = "exhibition/index/$1";
 $route['migrate'] = "migrate";
+$route['(:any)'] = "exhibition/index/$1";
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

@@ -89,6 +89,21 @@ class News_model extends GD_Model {
         return $news;
     }
 
+    public function get_all_news_ids() {
+        $query = $this->db->distinct()
+            ->select("news_id, gallery_id")
+            ->from("news_gallery")
+            ->get();
+        $news = array();
+        foreach ($query->result_array() as $row) {
+            if (!array_key_exists($row["gallery_id"],$news)) {
+                $news[$row["gallery_id"]] = array();
+            }
+            $news[$row["gallery_id"]][] = $row["news_id"];
+        }
+        return $news;
+    }
+
     public function get_story($id,$lang=null) {
         $this->db->select("news.id, headline, news_translation.lang, news_translation.text, source, date_published, url, artist_id, concat(artist.name,' ',artist.surname) as 'name', news_exhibition.exhibition_id, exhibition_translation.lang as 'exhibition_lang', title, news_image.image_id, news_gallery.gallery_id",false)
             ->from("news")

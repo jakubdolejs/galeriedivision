@@ -97,6 +97,23 @@ class Exhibition_model extends GD_Model {
         return $exhibitions;
     }
 
+    public function get_all_exhibition_ids() {
+        $query = $this->db->distinct()->select("exhibition.id, space.gallery_id")
+            ->from("exhibition")
+            ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
+            ->join("space","space.id = space_exhibition.space_id")
+            ->order_by("exhibition.start_date","DESC")
+            ->get();
+        $exhibitions = array();
+        foreach ($query->result_array() as $row) {
+            if (!array_key_exists($row["gallery_id"],$exhibitions)) {
+                $exhibitions[$row["gallery_id"]] = array();
+            }
+            $exhibitions[$row["gallery_id"]][] = $row["id"];
+        }
+        return $exhibitions;
+    }
+
     public function get_artist_exhibitions($artist_id,$gallery_id) {
         $this->db->select("exhibition.id, exhibition_translation.lang, exhibition_translation.title, exhibition_translation.text, exhibition.start_date, exhibition.end_date, exhibition.reception_start, exhibition.reception_end, exhibition.image_id, space.name, space.gallery_id, artist.id as 'artist_id', concat(artist.name,' ',artist.surname) as 'artist_name'",false)
             ->from("exhibition")
