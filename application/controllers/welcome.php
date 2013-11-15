@@ -115,10 +115,10 @@ class Welcome extends Dg_Controller {
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">';
 
         foreach ($links as $link) {
-            echo '<url><loc>'.$link.'</loc><xhtml:link rel="alternate" hreflang="fr" href="'.$link.'?language=fr" /><xhtml:link rel="alternate" hreflang="en" href="'.$link.'?language=en" /></url>';
+            echo '<url><loc>'.$link.'</loc><changefreq>daily</changefreq><xhtml:link rel="alternate" hreflang="fr" href="'.$link.'?language=fr" /><xhtml:link rel="alternate" hreflang="en" href="'.$link.'?language=en" /></url>';
         }
         foreach ($localised_links as $link) {
-            echo '<url><loc>'.$link.'</loc></url>';
+            echo '<url><loc>'.$link.'</loc><changefreq>daily</changefreq></url>';
         }
         echo '</urlset>';
     }
