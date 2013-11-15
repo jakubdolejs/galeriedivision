@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/html5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/header.php" afterPath="$PROJECT_DIR$/application/views/header.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="website.iws" />
@@ -35,19 +36,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="1" selection-start="3140" selection-end="3140" vertical-scroll-proportion="0.36574584" vertical-offset="1724" max-vertical-offset="8715">
+            <state line="137" column="1" selection-start="3140" selection-end="3140" vertical-scroll-proportion="174.03847" vertical-offset="6580" max-vertical-offset="8715">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="header.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="64" selection-start="2476" selection-end="2476" vertical-scroll-proportion="-36.875" vertical-offset="0" max-vertical-offset="1320">
+            <state line="58" column="24" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.4966443" vertical-offset="426" max-vertical-offset="1365">
               <folding />
             </state>
           </provider>
@@ -153,8 +154,8 @@
         <option value="$PROJECT_DIR$/application/models/news_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/welcome.php" />
         <option value="$PROJECT_DIR$/application/models/artist_model.php" />
-        <option value="$PROJECT_DIR$/application/views/header.php" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/application/views/header.php" />
       </list>
     </option>
   </component>
@@ -586,12 +587,16 @@
       <created>1384524306350</created>
       <updated>1384524306350</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Moved navigation style definitions out of the css media query.">
+      <created>1384525895526</created>
+      <updated>1384525895527</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299389" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33706722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -599,7 +604,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6046748" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.339381" sideWeight="0.6056911" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.339381" sideWeight="0.6056911" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39430895" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -628,7 +633,8 @@
     <MESSAGE value="Fixed surname not being saved." />
     <MESSAGE value="Added xml sitemap." />
     <MESSAGE value="Added respond.js to execute css media queries in old browsers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added respond.js to execute css media queries in old browsers." />
+    <MESSAGE value="Moved navigation style definitions out of the css media query." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved navigation style definitions out of the css media query." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -794,16 +800,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/header.php">
+    <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="64" selection-start="2476" selection-end="2476" vertical-scroll-proportion="-36.875" vertical-offset="0" max-vertical-offset="1320">
+        <state line="137" column="1" selection-start="3140" selection-end="3140" vertical-scroll-proportion="174.03847" vertical-offset="6580" max-vertical-offset="8715">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
+    <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="1" selection-start="3140" selection-end="3140" vertical-scroll-proportion="0.36574584" vertical-offset="1724" max-vertical-offset="8715">
+        <state line="58" column="24" selection-start="2264" selection-end="2264" vertical-scroll-proportion="0.4966443" vertical-offset="426" max-vertical-offset="1365">
           <folding />
         </state>
       </provider>
