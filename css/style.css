@@ -108,6 +108,22 @@ header h1 a {
     font-weight: 200;
     white-space: nowrap;
 }
+header nav {
+    font-size: 11pt;
+    width: 596px;
+    display: inline-block;
+    text-align: right;
+}
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+header nav ul li {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    margin: 0;
+}
 header nav ul li a {
     font-family: Calibri, sans-serif;
     font-weight: 200;
@@ -116,6 +132,9 @@ header nav ul li a {
     text-transform: uppercase;
     font-size: 11pt;
     letter-spacing: 0.1em;
+}
+header nav ul li:hover {
+    background-color: #eee;
 }
 header nav ul li.selected a {
     color: #777;
@@ -446,18 +465,13 @@ object.cv {
         background-color: #fff;
         z-index: 10;
         display: none;
-    }
-    header nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+        width: auto;
+        text-align: left;
     }
     header nav ul li {
+        display: list-item;
         padding: 5px;
         border-bottom: 1px solid #eee;
-    }
-    header nav ul li:hover {
-        background-color: #eee;
     }
 }
 @media all and (min-width: 640px) {
@@ -489,22 +503,6 @@ object.cv {
     }
     #menuButton {
         display: none;
-    }
-    header nav {
-        font-size: 11pt;
-        width: 596px;
-        display: inline-block;
-        text-align: right;
-    }
-    header nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-    header nav ul li {
-        display: inline-block;
-        padding: 0 0 0 10px;
-        margin: 0;
     }
     ul.thumbnails li {
         width: 25%;
