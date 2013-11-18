@@ -18,10 +18,16 @@ class Image extends Dg_controller {
         $lang = $this->config->item("language");
         $cache_key = MemcacheKeys::artist_image($gallery_id,$artist_id,$image_id,$lang);
         if (!$this->output_memcache_if_available($cache_key)) {
-            $header_vars = $this->get_header_vars($gallery_id);
-            $this->load->view("header",$header_vars);
             $artist = $this->artist_model->get_artist($artist_id);
             $image = $this->image_model->get($image_id);
+            $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $artist["name"];
+            if (!empty($image["title"][$lang])) {
+                $header_vars["title"] .= " – ".$image["title"][$lang];
+            } else if (!empty($image["title"])) {
+                $header_vars["title"] .= " – ".join("/",$image["title"]);
+            }
+            $this->load->view("header",$header_vars);
             $this->output->append_output('<h1>'.$artist["name"].'</h1>');
             $this->load->view("image",array("artist"=>$artist,"image"=>$image,"gallery_id"=>$gallery_id,"lang"=>$lang));
             $this->load->view("footer");

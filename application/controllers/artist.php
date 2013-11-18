@@ -23,6 +23,7 @@ class Artist extends Dg_controller {
         $cache_key = MemcacheKeys::artists($gallery_id,$lang);
         if (!$this->output_memcache_if_available($cache_key)) {
             $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = "Artists";
             $this->load->view("header",$header_vars);
             $artists = $this->artist_model->get_artists($gallery_id);
             $this->load->view("artist",array("artists"=>$artists,"gallery_id"=>$gallery_id));
@@ -35,9 +36,10 @@ class Artist extends Dg_controller {
         $lang = $this->config->item("language");
         $cache_key = MemcacheKeys::artist($gallery_id,$artist_id,$lang);
         if (!$this->output_memcache_if_available($cache_key)) {
-            $header_vars = $this->get_header_vars($gallery_id);
-            $this->load->view("header",$header_vars);
             $artist = $this->artist_model->get_artist($artist_id);
+            $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $artist["name"];
+            $this->load->view("header",$header_vars);
             $images = $this->image_model->get_artist_images_with_details($artist_id,$gallery_id);
             $this->output->append_output('<h1>'.$artist["name"].'</h1>');
             $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"images"));
@@ -52,9 +54,10 @@ class Artist extends Dg_controller {
         $lang = $this->config->item("language");
         $cache_key = MemcacheKeys::artist_cv($gallery_id,$artist_id,$lang);
         if (!$this->output_memcache_if_available($cache_key)) {
-            $header_vars = $this->get_header_vars($gallery_id);
-            $this->load->view("header",$header_vars);
             $artist = $this->artist_model->get_artist($artist_id);
+            $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $artist["name"]." – ".$this->lang->line("CV");
+            $this->load->view("header",$header_vars);
             $this->output->append_output('<h1>'.$artist["name"].'</h1>');
             $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"cv"));
             $this->load->view("link_group",$links);
@@ -96,9 +99,10 @@ class Artist extends Dg_controller {
         $lang = $this->config->item("language");
         $cache_key = MemcacheKeys::artist_exhibitions($gallery_id,$artist_id,$lang);
         if (!$this->output_memcache_if_available($cache_key)) {
-            $header_vars = $this->get_header_vars($gallery_id);
-            $this->load->view("header",$header_vars);
             $artist = $this->artist_model->get_artist($artist_id);
+            $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $artist["name"]." – ".$this->lang->line("Exhibitions");
+            $this->load->view("header",$header_vars);
             $exhibitions = $this->exhibition_model->get_artist_exhibitions($artist_id,$gallery_id);
             $this->output->append_output('<h1>'.$artist["name"].'</h1>');
             $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"exhibitions"));
@@ -110,23 +114,30 @@ class Artist extends Dg_controller {
     }
 
     public function exhibition($gallery_id,$artist_id,$exhibition_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
         $artist = $this->artist_model->get_artist($artist_id);
+        $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         $lang = $this->config->item("language");
+        $header_vars = $this->get_header_vars($gallery_id);
+        $header_vars["title"] = $artist["name"];
+        if (!empty($exhibition["title"][$lang])) {
+            $header_vars["title"] .= " – ".$exhibition["title"];
+        } else if (!empty($exhibition["title"])) {
+            $header_vars["title"] .= " – ".join("/",$exhibition["title"]);
+        }
+        $this->load->view("header",$header_vars);
         $this->output->append_output('<h1>'.$artist["name"].'</h1>');
         $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"exhibitions"));
         $this->load->view("link_group",$links);
-        $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
         $images = $this->image_model->get_exhibition_images($exhibition_id);
         $this->load->view("exhibition",array("exhibition"=>$exhibition,"images"=>$images,"gallery_id"=>$gallery_id,"artist_id"=>$artist_id,"lang"=>$lang));
         $this->load->view("footer");
     }
 
     public function news($gallery_id,$artist_id) {
-        $header_vars = $this->get_header_vars($gallery_id);
-        $this->load->view("header",$header_vars);
         $artist = $this->artist_model->get_artist($artist_id);
+        $header_vars = $this->get_header_vars($gallery_id);
+        $header_vars["title"] = $artist["name"]." – ".$this->lang->line("News");
+        $this->load->view("header",$header_vars);
         $lang = $this->config->item("language");
         $this->output->append_output('<h1>'.$artist["name"].'</h1>');
         $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"news"));

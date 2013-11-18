@@ -41,6 +41,7 @@ class Welcome extends Dg_Controller {
                 $exhibitions[$gallery["id"]] = $this->exhibition_model->get_exhibitions("past", $lang, $gallery["id"]);
             }
         }
+        $header_vars["title"] = $this->lang->line("Montreal")."/".$this->lang->line("Toronto");
         $this->load->view('header',$header_vars);
         $header_vars["exhibitions"] = $exhibitions;
         $this->load->view('home',$header_vars);

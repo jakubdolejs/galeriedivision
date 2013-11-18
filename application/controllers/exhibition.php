@@ -18,6 +18,7 @@ class Exhibition extends Dg_controller {
         $upcoming = $this->exhibition_model->get_exhibitions("upcoming", $lang, $gallery);
         $past = $this->exhibition_model->get_exhibitions("past", $lang, $gallery);
         $header_vars = $this->get_header_vars($gallery);
+        $header_vars["title"] = $this->lang->line("Exhibitions");
         $this->load->view("header",$header_vars);
         $this->load->view("exhibitions",array("current"=>$current,"upcoming"=>$upcoming,"past"=>$past,"gallery_id"=>$gallery));
         $this->load->view("footer");
@@ -30,6 +31,11 @@ class Exhibition extends Dg_controller {
             $exhibition = $this->exhibition_model->get_exhibition($exhibition_id);
             $images = $this->image_model->get_exhibition_images($exhibition_id);
             $header_vars = $this->get_header_vars($gallery_id);
+            if (!empty($exhibition["title"][$lang])) {
+                $header_vars["title"] = $exhibition["title"][$lang];
+            } else if (!empty($exhibition["title"])) {
+                $header_vars["title"] = join("/",$exhibition["title"]);
+            }
             $this->load->view("header",$header_vars);
             $this->load->view("exhibition",array("exhibition"=>$exhibition,"images"=>$images,"gallery_id"=>$gallery_id,"lang"=>$lang));
             $this->load->view("footer");
@@ -41,6 +47,7 @@ class Exhibition extends Dg_controller {
         $header_vars = $this->get_header_vars($gallery_id);
         $lang = $this->config->item("language");
         $past = $this->exhibition_model->get_exhibitions("past", $lang, $gallery_id);
+        $header_vars["title"] = $this->lang->line("Past Exhibitions");
         $this->load->view("header",$header_vars);
         $this->output->append_output('<h1>'.$this->lang->line("Past Exhibitions").'</h1>');
         if (!empty($past)) {

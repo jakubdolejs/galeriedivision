@@ -14,7 +14,7 @@ class Dg_controller extends CI_Controller {
     protected function get_header_vars($gallery_id=NULL) {
         $this->load->model("gallery_model");
         $galleries = $this->gallery_model->get_galleries();
-        return array("gallery_id"=>$gallery_id,"galleries"=>$galleries);
+        return array("gallery_id"=>$gallery_id,"galleries"=>$galleries,"title"=>null);
     }
 
     protected final function get_memcache($key) {

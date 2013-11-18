@@ -90,6 +90,7 @@ class Gallery extends Dg_controller {
             }
             $gallery_info["name"] = $this->lang->line("Division Gallery")." ".$this->lang->line($gallery_info["city"]);
             $header_vars = $this->get_header_vars($gallery);
+            $header_vars["title"] = $this->lang->line("Contact");
             $this->load->view("header",$header_vars);
 
             $this->loadConstantContact();

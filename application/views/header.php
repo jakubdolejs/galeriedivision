@@ -47,7 +47,11 @@ if (!empty($gallery_id)) {
         }
     }
 }
-$title = $this->lang->line("Division Gallery");
+$gallery_name = $this->lang->line("Division Gallery");
+if ($city) {
+    $gallery_name .= " ".$city;
+}
+$title = $title ? $gallery_name." – ".htmlspecialchars($title) : $gallery_name;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $lang; ?>">

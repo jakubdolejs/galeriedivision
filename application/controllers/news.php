@@ -27,6 +27,7 @@ class News extends Dg_controller {
         if (!$this->output_memcache_if_available($cache_key)) {
             $news = $this->news_model->get_news($gallery_id,$lang);
             $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $this->lang->line("News");
             $this->load->view("header",$header_vars);
             $this->output->append_output('<h1>'.$this->lang->line("News").'</h1>');
 
@@ -59,6 +60,14 @@ class News extends Dg_controller {
         if (!$this->output_memcache_if_available($cache_key)) {
             $story = $this->news_model->get_story($news_id,$lang);
             $header_vars = $this->get_header_vars($gallery_id);
+            $header_vars["title"] = $this->lang->line("News");
+            if (!empty($story["headline"][$lang])) {
+                $header_vars["title"] .= " – ".$story["headline"][$lang];
+            } else if (!empty($story["headline"]) && is_array($story["headline"])) {
+                $header_vars["title"] .= " – ".join("/",$story["headline"]);
+            } else if (!empty($story["headline"]) && is_string($story["headline"])) {
+                $header_vars["title"] .= " – ".$story["headline"];
+            }
             $this->load->view("header",$header_vars);
             $this->load->view("news_story",array("story"=>$story,"gallery_id"=>$gallery_id));
             $this->load->view("footer");
@@ -74,6 +83,7 @@ class News extends Dg_controller {
 
     public function subscribe($gallery_id) {
         $header_vars = $this->get_header_vars($gallery_id);
+        $header_vars["title"] = $this->lang->line("Subscribe to Division Gallery newsletter");
         $this->load->view("header",$header_vars);
         if ($this->input->post("email")) {
             $lists = $this->input->post("list",true);
