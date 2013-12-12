@@ -30,7 +30,7 @@
         ?>
         <div><?php echo $this->lang->line("The gallery is not currently accepting artist submissions."); ?></div>
         <?php
-        if ($info["id"] === "montreal") {
+        if ($info["id"] === "montreal" && time() < mktime(0,0,0,1,8,2014)) {
         ?>
         <div><?php echo $this->lang->line("Christmas 2013 Montreal"); ?></div>
         <?php
