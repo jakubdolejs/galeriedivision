@@ -29,6 +29,13 @@
         }
         ?>
         <div><?php echo $this->lang->line("The gallery is not currently accepting artist submissions."); ?></div>
+        <?php
+        if ($info["id"] === "montreal") {
+        ?>
+        <div><?php echo $this->lang->line("Christmas 2013 Montreal"); ?></div>
+        <?php
+        }
+        ?>
     </div>
     <div class="column">
         <?php
