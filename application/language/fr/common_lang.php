@@ -34,4 +34,4 @@ $lang["Submit"] = "Soumettre";
 $lang["First name"] = "Prénom";
 $lang["Last name"] = "Nom de famille";
 $lang["The gallery is not currently accepting artist submissions."] = "La galerie n’accepte pas de soumissions d’artistes pour l’instant.";
-$lang["Christmas 2013 Montreal"] = "Veuillez noter que la galerie sera fermé du 22 décembre au 7 janvier.  Pour toutes urgences, veuillez communiquer avec Dominique Toutant au 514-971-7156.";
+$lang["Christmas 2013 Montreal"] = "Veuillez noter que la galerie sera fermée du 22 décembre au 7 janvier.  Pour toutes urgences, veuillez communiquer avec Dominique Toutant au 514-971-7156.";
