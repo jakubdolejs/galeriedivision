@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/migrations/003_add_artist.php" afterPath="$PROJECT_DIR$/application/migrations/003_add_artist.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon.ico" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/header.php" afterPath="$PROJECT_DIR$/application/views/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,7 +47,7 @@
       <file leaf-file-name="header.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="67" selection-start="2628" selection-end="2628" vertical-scroll-proportion="0.52230686" vertical-offset="495" max-vertical-offset="1455">
+            <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.5059848" vertical-offset="495" max-vertical-offset="1455">
               <folding />
             </state>
           </provider>
@@ -771,7 +770,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="67" selection-start="2628" selection-end="2628" vertical-scroll-proportion="0.52230686" vertical-offset="495" max-vertical-offset="1455">
+        <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.5059848" vertical-offset="495" max-vertical-offset="1455">
           <folding />
         </state>
       </provider>

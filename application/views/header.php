@@ -62,8 +62,8 @@ $title = $title ? $gallery_name." – ".htmlspecialchars($title) : $gallery_name
         <!--[if lte IE 8]>
         <script src="/js/html5.js"></script>
         <![endif]-->
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
         <link rel="stylesheet" href="/css/style.css?v=<?php echo $this->config->item("version"); ?>" type="text/css" />
         <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="/js/respond.min.js"></script>
