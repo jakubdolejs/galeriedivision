@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="" />
+    <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/en/common_lang.php" afterPath="$PROJECT_DIR$/application/language/en/common_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/fr/common_lang.php" afterPath="$PROJECT_DIR$/application/language/fr/common_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,16 +30,16 @@
       <file leaf-file-name="common_lang.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="41" selection-start="1614" selection-end="1649" vertical-scroll-proportion="-19.958334" vertical-offset="76" max-vertical-offset="645">
+            <state line="37" column="52" selection-start="1660" selection-end="1660" vertical-scroll-proportion="-23.125" vertical-offset="0" max-vertical-offset="645">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common_lang.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="common_lang.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="41" selection-start="1588" selection-end="1623" vertical-scroll-proportion="-19.083334" vertical-offset="97" max-vertical-offset="645">
+            <state line="37" column="70" selection-start="1652" selection-end="1652" vertical-scroll-proportion="0.61941963" vertical-offset="0" max-vertical-offset="896">
               <folding />
             </state>
           </provider>
@@ -44,16 +48,16 @@
       <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="-19.375" vertical-offset="495" max-vertical-offset="1455">
+            <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1455">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exhibition.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="exhibition.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/exhibition.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="227" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.7453416" vertical-offset="0" max-vertical-offset="1455">
+            <state line="24" column="227" selection-start="1616" selection-end="1616" vertical-scroll-proportion="8.291667" vertical-offset="559" max-vertical-offset="1455">
               <folding />
             </state>
           </provider>
@@ -62,7 +66,7 @@
       <file leaf-file-name="exhibition.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/exhibition.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="66" selection-start="1709" selection-end="1709" vertical-scroll-proportion="-11.708333" vertical-offset="229" max-vertical-offset="1065">
+            <state line="34" column="66" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="229" max-vertical-offset="1065">
               <folding />
             </state>
           </provider>
@@ -129,9 +133,9 @@
         <option value="$PROJECT_DIR$/application/views/contact.php" />
         <option value="$PROJECT_DIR$/application/migrations/003_add_artist.php" />
         <option value="$PROJECT_DIR$/application/views/header.php" />
+        <option value="$PROJECT_DIR$/application/views/exhibition.php" />
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
         <option value="$PROJECT_DIR$/application/language/en/common_lang.php" />
-        <option value="$PROJECT_DIR$/application/views/exhibition.php" />
       </list>
     </option>
   </component>
@@ -414,16 +418,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="255" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="262" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="259" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/application/models" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="267" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1060" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1059" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1060" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="265" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="261" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
@@ -587,8 +591,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6046748" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3633938" sideWeight="0.60670733" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3932927" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36766276" sideWeight="0.60670733" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3932927" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -746,35 +750,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="-19.375" vertical-offset="495" max-vertical-offset="1455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="41" selection-start="1588" selection-end="1623" vertical-scroll-proportion="-19.083334" vertical-offset="97" max-vertical-offset="645">
+        <state line="64" column="68" selection-start="2552" selection-end="2552" vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1455">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/exhibition.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="66" selection-start="1709" selection-end="1709" vertical-scroll-proportion="-11.708333" vertical-offset="229" max-vertical-offset="1065">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="41" selection-start="1614" selection-end="1649" vertical-scroll-proportion="-19.958334" vertical-offset="76" max-vertical-offset="645">
+        <state line="34" column="66" selection-start="1709" selection-end="1709" vertical-scroll-proportion="0.0" vertical-offset="229" max-vertical-offset="1065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/exhibition.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="227" selection-start="1616" selection-end="1616" vertical-scroll-proportion="0.7453416" vertical-offset="0" max-vertical-offset="1455">
+        <state line="24" column="227" selection-start="1616" selection-end="1616" vertical-scroll-proportion="8.291667" vertical-offset="559" max-vertical-offset="1455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/fr/common_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="52" selection-start="1660" selection-end="1660" vertical-scroll-proportion="-23.125" vertical-offset="0" max-vertical-offset="645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/en/common_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="70" selection-start="1652" selection-end="1652" vertical-scroll-proportion="0.61941963" vertical-offset="0" max-vertical-offset="896">
           <folding />
         </state>
       </provider>
