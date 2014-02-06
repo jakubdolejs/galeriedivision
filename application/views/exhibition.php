@@ -10,6 +10,7 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
         $title = "";
     }
     $artists = "";
+    $more_info_link = "";
     if (!empty($exhibition["artists"])) {
         if (count($exhibition["artists"]) > 1) {
             $artists = array();
@@ -18,7 +19,10 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
             }
             $artists = '<p>'.join(", ",$artists).'</p>';
         } else {
-            $title = htmlspecialchars(current($exhibition["artists"]))." ".$title;
+            $artist_id = current(array_keys($exhibition["artists"]));
+            $artist_name = htmlspecialchars(current($exhibition["artists"]));
+            $title = '<a href="/'.$gallery_id.'/artist/'.$artist_id.'">'.$artist_name.'</a> '.$title;
+            $more_info_link = '<p><a href="/'.$gallery_id.'/artist/'.$artist_id.'" itemprop="performer" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'.$this->lang->line("More information about the artist").'</span></a></p>';
         }
     }
     echo '<h2 itemprop="name">'.$title.'</h2>'.$artists;
@@ -84,4 +88,5 @@ if (!empty($exhibition) && !empty($gallery_id) && !empty($lang)) {
             }
         }
     }
+    echo $more_info_link;
 }
