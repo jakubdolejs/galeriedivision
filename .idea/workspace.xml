@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18b4f957-ffeb-4394-ac4b-17b08d8c67e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/en/common_lang.php" afterPath="$PROJECT_DIR$/application/language/en/common_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/fr/common_lang.php" afterPath="$PROJECT_DIR$/application/language/fr/common_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/contact.php" afterPath="$PROJECT_DIR$/application/views/contact.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/version.php" afterPath="$PROJECT_DIR$/application/config/version.php" />
     </list>
     <ignored path="website.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,10 +43,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contact.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="contact.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/contact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="57" selection-start="2112" selection-end="2112" vertical-scroll-proportion="0.53571427" vertical-offset="15" max-vertical-offset="1155">
+            <state line="34" column="57" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-20.625" vertical-offset="15" max-vertical-offset="1155">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="version.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/config/version.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="22" selection-start="28" selection-end="28" vertical-scroll-proportion="0.016008537" vertical-offset="0" max-vertical-offset="937">
               <folding />
             </state>
           </provider>
@@ -146,6 +152,7 @@
         <option value="$PROJECT_DIR$/application/language/en/common_lang.php" />
         <option value="$PROJECT_DIR$/application/language/fr/common_lang.php" />
         <option value="$PROJECT_DIR$/application/views/contact.php" />
+        <option value="$PROJECT_DIR$/application/config/version.php" />
       </list>
     </option>
   </component>
@@ -819,7 +826,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/contact.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="57" selection-start="2112" selection-end="2112" vertical-scroll-proportion="0.53571427" vertical-offset="15" max-vertical-offset="1155">
+        <state line="34" column="57" selection-start="2112" selection-end="2112" vertical-scroll-proportion="-20.625" vertical-offset="15" max-vertical-offset="1155">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/version.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="22" selection-start="28" selection-end="28" vertical-scroll-proportion="0.016008537" vertical-offset="0" max-vertical-offset="937">
           <folding />
         </state>
       </provider>
