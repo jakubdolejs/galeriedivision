@@ -14,3 +14,11 @@ images/2mp/*
 *.png
 
 *.pdf
+
+.idea/workspace.xml
+
+.idea/deployment.xml
+
+.idea/workspace.xml
+
+.DS_Store
