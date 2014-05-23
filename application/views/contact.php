@@ -32,7 +32,7 @@
         <?php
         if ($info["id"] === "montreal" && time() < mktime(0,0,0,6,4,2014)) {
         ?>
-        <div><?php echo $this->lang->line("Contact notice"); ?></div>
+        <p><strong><?php echo $this->lang->line("Contact notice"); ?></strong></p>
         <?php
         }
         ?>
