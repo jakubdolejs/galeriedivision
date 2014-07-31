@@ -37,3 +37,4 @@ $lang["The gallery is not currently accepting artist submissions."] = "The galle
 $lang["Christmas 2013 Montreal"] = "Please note that the gallery will be closed from December 22nd to January 7th. For any emergency, please contact Dominique Toutant (514-971-7156).";
 $lang["More information about the artist"] = "For more information on the artist";
 $lang["Contact notice"] = "Please note that the gallery will only be open for appointments from May 27th to May 30th. We will reopen our doors to the public on May 31st. To make an appointment, please contact Dominique Toutant at 514-971-7156.";
+$lang["With generous support from"] = "With generous support from";

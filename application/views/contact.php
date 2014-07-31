@@ -29,6 +29,7 @@
         }
         ?>
         <div><?php echo $this->lang->line("The gallery is not currently accepting artist submissions."); ?></div>
+        <div><?php echo $this->lang->line("With generous support from"); ?><br /><img src="/images/sodec.jpg" alt="SODEC Québec" /></div>
         <?php
         if ($info["id"] === "montreal" && time() < mktime(0,0,0,5,31,2014)) {
         ?>
