@@ -27,7 +27,7 @@
                         currentIndex = 0;
                     }
                     loadFeatureImage(link,images[currentIndex]);
-                },5000));
+                },3000));
             }
         });
         if ('localStorage' in window && window.localStorage !== null && location.hash.length > 1) {

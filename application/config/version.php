@@ -1,2 +1,2 @@
 <?php
-$config["version"] = 4;
+$config["version"] = 5;
