@@ -18,7 +18,7 @@
             foreach ($hours_microdata as $hr=>$days) {
                 echo '<span itemprop="openingHoursSpecification" itemscope itemtype="http://schema.org/OpeningHoursSpecification">'.$hr.''.join('',$days).'</span>';
             }
-            if (time() < mktime(0,0,0,0,1,2015)) {
+            if (time() < mktime(0,0,0,1,6,2015)) {
                 echo '<p><strong>'.$this->lang->line("Holiday notice").'</strong></p>';
             }
             ?>
