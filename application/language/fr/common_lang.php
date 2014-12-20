@@ -38,3 +38,4 @@ $lang["Christmas 2013 Montreal"] = "Veuillez noter que la galerie sera fermée d
 $lang["More information about the artist"] = "Pour plus d'information au sujet de l'artiste";
 $lang["Contact notice"] = "Veuillez noter que la Galerie Division ne sera ouverte que sur rendez-vous du 27 au 30 mai. Nous serons ouverts au public à partir du 31 mai. Pour prendre rendez-vous, veuillez communiquer avec Dominique Toutant au 514-971-7156.";
 $lang["With generous support from"] = "Avec la généreuse <br />participation de la";
+$lang["Holiday notice"] = "Veuillez noter que la galerie sera fermée du 21 décembre 2014 au 5 janvier 2015. Nous serons de retour à la galerie le mardi 6 janvier 2015. Pour toute urgence, veuillez communiquer avec Dominique Toutant au 514-971-7156.";
