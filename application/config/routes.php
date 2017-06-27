@@ -93,6 +93,7 @@ $route['(:any)/news/subscribe'] = "news/subscribe/$1";
 $route['(:any)/artist/(:any)/exhibition/(:any)/image/(:num)'] = "artist/exhibition_image/$1/$2/$3/$4";
 $route['(:any)/artist/(:any)/image/(:any)'] = "artist/image/$1/$2/$3";
 $route['(:any)/artist/(:any)/exhibitions'] = "artist/exhibitions/$1/$2";
+$route['(:any)/artist/(:any)/exhibitions_(:any)'] = "artist/exhibitions/$1/$2/$3";
 $route['(:any)/artist/(:any)/exhibition/(:any)'] = "artist/exhibition/$1/$2/$3";
 $route['(:any)/artist/(:any)/cv'] = "artist/cv/$1/$2";
 $route['(:any)/artist/(:any)/news'] = "artist/news/$1/$2";

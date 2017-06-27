@@ -204,9 +204,22 @@ class Artist_model extends GD_Model {
             ->where("artist_id",$artist_id)
             ->where("gallery_id",$gallery_id);
         $has_images = $this->db->count_all_results() > 0;
-        $this->db->from("artist_exhibition")
-            ->where("artist_id",$artist_id);
-        $has_exhibitions = $this->db->count_all_results() > 0;
+        $this->db->distinct()->select("space.gallery_id, gallery.city")
+            ->from("artist_exhibition")
+            ->join("space_exhibition", "space_exhibition.exhibition_id = artist_exhibition.exhibition_id")
+            ->join("space", "space_exhibition.space_id = space.id")
+            ->join("gallery", "gallery.id = space.gallery_id")
+            ->where("artist_id",$artist_id)
+            ->order_by("gallery.id = '".$gallery_id."'", "desc")
+            ->order_by("gallery.city");
+        $query = $this->db->get();
+        $has_exhibitions = $query->num_rows() > 0;
+        $exhibition_galleries = array();
+        if ($has_exhibitions) {
+            foreach ($query->result_array() as $row) {
+                $exhibition_galleries[$row["gallery_id"]] = $row["city"];
+            }
+        }
         $this->db->from("news_artist")
             ->where("artist_id",$artist_id);
         $has_news = $this->db->count_all_results() > 0;
@@ -223,7 +236,7 @@ class Artist_model extends GD_Model {
                 break;
             }
         }
-        return array("images"=>$has_images,"exhibitions"=>$has_exhibitions,"news"=>$has_news,"cv"=>$has_cv);
+        return array("images"=>$has_images,"exhibitions"=>$exhibition_galleries,"news"=>$has_news,"cv"=>$has_cv);
     }
 
     private function artist_id_exists($id) {

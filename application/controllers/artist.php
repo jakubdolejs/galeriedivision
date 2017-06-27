@@ -95,17 +95,23 @@ class Artist extends Dg_controller {
         $this->output->set_output($pdf);
     }
 
-    public function exhibitions($gallery_id,$artist_id) {
+    public function exhibitions($gallery_id,$artist_id,$other_gallery=null) {
         $lang = $this->config->item("language");
-        $cache_key = MemcacheKeys::artist_exhibitions($gallery_id,$artist_id,$lang);
+        if ($other_gallery == null) {
+            $cache_key = MemcacheKeys::artist_exhibitions($gallery_id,$artist_id,$lang);
+        } else {
+            $cache_key = MemcacheKeys::artist_exhibitions_other($gallery_id,$artist_id,$lang,$other_gallery);
+        }
         if (!$this->output_memcache_if_available($cache_key)) {
             $artist = $this->artist_model->get_artist($artist_id);
             $header_vars = $this->get_header_vars($gallery_id);
             $header_vars["title"] = $artist["name"]." – ".$this->lang->line("Exhibitions");
             $this->load->view("header",$header_vars);
-            $exhibitions = $this->exhibition_model->get_artist_exhibitions($artist_id,$gallery_id);
+            $exhibition_gallery = $other_gallery == null ? $gallery_id : $other_gallery;
+            $exhibitions = $this->exhibition_model->get_artist_exhibitions($artist_id,$exhibition_gallery);
             $this->output->append_output('<h1>'.$artist["name"].'</h1>');
-            $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,"exhibitions"));
+            $selected_tab = $other_gallery == null ? "exhibitions" : "exhibitions_".$other_gallery;
+            $links = array("links"=>$this->get_tabs($artist_id,$gallery_id,$selected_tab));
             $this->load->view("link_group",$links);
             $this->load->view("artist_exhibitions",array("artist"=>$artist,"exhibitions"=>$exhibitions,"gallery_id"=>$gallery_id,"lang"=>$lang));
             $this->load->view("footer");
@@ -173,13 +179,25 @@ class Artist extends Dg_controller {
                 $links[0]["selected"] = true;
             }
         }
-        if ($sections["exhibitions"]) {
-            $links[] = array(
-                "url"=>"/".$gallery_id."/artist/".$artist_id."/exhibitions",
-                "label"=>$this->lang->line("Exhibitions")
-            );
-            if ($selected == "exhibitions") {
-                $links[count($links)-1]["selected"] = true;
+        if (count($sections["exhibitions"]) > 0) {
+            foreach ($sections["exhibitions"] as $gid => $city) {
+                if ($gid == $gallery_id) {
+                    $links[] = array(
+                        "url"=>"/".$gallery_id."/artist/".$artist_id."/exhibitions",
+                        "label"=>$this->lang->line("Exhibitions")
+                    );
+                    if ($selected == "exhibitions") {
+                        $links[count($links)-1]["selected"] = true;
+                    }
+                } else {
+                    $links[] = array(
+                        "url"=>"/".$gallery_id."/artist/".$artist_id."/exhibitions_".$gid,
+                        "label"=>$this->lang->line("Exhibitions")." (".$city.")"
+                    );
+                    if ($selected == "exhibitions_".$gid) {
+                        $links[count($links)-1]["selected"] = true;
+                    }
+                }
             }
         }
         if ($sections["cv"]) {

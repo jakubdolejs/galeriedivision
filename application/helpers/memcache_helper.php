@@ -24,6 +24,10 @@ class MemcacheKeys {
         return "artist_exhibitions_".$gallery_id."_".$artist_id."_".$lang;
     }
 
+    public static function artist_exhibitions_other($gallery_id,$artist_id,$lang,$other_gallery_id) {
+        return "artist_exhibitions_other_".$gallery_id."_".$artist_id."_".$lang."_".$other_gallery_id;
+    }
+
     public static function exhibition($gallery_id,$exhibition_id,$lang) {
         return "exhibition_".$gallery_id."_".$exhibition_id."_".$lang;
     }
