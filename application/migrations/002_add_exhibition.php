@@ -37,7 +37,8 @@ class Migration_Add_exhibition extends CI_Migration {
                 "constraint"=>256
             ),
             "text"=>array(
-                "type"=>"TEXT"
+                "type"=>"TEXT",
+                "null"=>true
             ),
             "lang"=>array(
                 "type"=>"CHAR",
