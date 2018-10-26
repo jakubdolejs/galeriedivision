@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="DivisionApp">
+<head profile="http://www.w3.org/2005/10/profile">
+    <title>Division Gallery Montreal – Artists</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <!--[if lte IE 8]>
+    <script src="/js/html5.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/style.css?v=1" type="text/css" />
+    <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/js/respond.min.js"></script>
+    <script type="text/javascript" src="/js/main.js?v=1"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <style type="text/css">
+        div.artists {
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        div.artists div.artistListing {
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            position: absolute;
+        }
+        div.artist {
+            position: absolute;
+            padding: 10px 0px;
+        }
+        div.artistExpanded img.background, div.artist img.background {
+            width: 100%;
+        }
+        div.artistExpanded div.info, div.artist div.info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            padding: 8px 10px;
+        }
+        div.artistExpanded div.info h1, div.artist div.info h1 {
+            margin: 0;
+            padding: 0;
+        }
+        div.artistExpanded {
+            position: relative;
+            column-span: all;
+            -moz-column-span: all;
+            -webkit-column-span: all;
+        }
+        @media all and (max-width: 768px) {
+            div.artists {
+                column-count: 4;
+                -moz-column-count: 4;
+                -webkit-column-count: 4;
+            }
+        }
+        @media all and (max-width: 640px) {
+            div.artists {
+                column-count: 3;
+                -moz-column-count: 3;
+                -webkit-column-count: 3;
+            }
+        }
+        @media all and (max-width: 480px) {
+            div.artists {
+                column-count: 2;
+                -moz-column-count: 2;
+                -webkit-column-count: 2;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        angular.module("DivisionApp",[], function() {
+
+        }).controller("ArtistsCtrl",["$scope","$timeout",function($scope,$timeout){
+                    $scope.artists = [
+                        {
+                            "name":"Stephen Andrews",
+                            "id":"stephen-andrews",
+                            "image_id":"591"
+                        }, {
+                            "name":"Nicolas Baier",
+                            "id":"nicolas-baier",
+                            "image_id":"98"
+                        }, {
+                            "name":"Martin Bourdeau",
+                            "id":"martin-bourdeau",
+                            "image_id":"1073"
+                        }, {
+                            "name":"John Brown",
+                            "id":"john-brown",
+                            "image_id":"200"
+                        }, {
+                            "name":"Paul Butler",
+                            "id":"paul-butler",
+                            "image_id":"1614"
+                        }, {
+                            "name":"Patrick Coutu",
+                            "id":"patrick-coutu",
+                            "image_id":"1144"
+                        }, {
+                            "name":"Laurent Craste",
+                            "id":"laurent-craste",
+                            "image_id":"388"
+                        }, {
+                            "name":"Michel de Broin",
+                            "id":"michel-de-broin",
+                            "image_id":"233"
+                        }, {
+                            "name":"Manon De Pauw",
+                            "id":"manon-de-pauw",
+                            "image_id":"1141"
+                        }, {
+                            "name":"Myriam Dion",
+                            "id":"myriam-dion",
+                            "image_id":"1855"
+                        }, {
+                            "name":"Mario Doucette",
+                            "id":"mario-doucette",
+                            "image_id":"1004"
+                        }, {
+                            "name":"Michael Dumontier",
+                            "id":"michael-dumontier",
+                            "image_id":"279"
+                        }, {
+                            "name":"Brendan Flanagan",
+                            "id":"brendan-flanagan",
+                            "image_id":"1748"
+                        }, {
+                            "name":"Karel Funk",
+                            "id":"karel-funk",
+                            "image_id":"178"
+                        }, {
+                            "name":"Graham Gillmore",
+                            "id":"graham-gillmore",
+                            "image_id":"989"
+                        }, {
+                            "name":"Isabelle Hayeur",
+                            "id":"isabelle-hayeur",
+                            "image_id":"196"
+                        }, {
+                            "name":"Simon Hughes",
+                            "id":"simon-hughes",
+                            "image_id":"705"
+                        }, {
+                            "name":"Sarah Anne Johnson",
+                            "id":"sarah-anne-johnson",
+                            "image_id":"1256"
+                        }, {
+                            "name":"Jillian Kay Ross",
+                            "id":"jillian-kay-ross",
+                            "image_id":"1586"
+                        }, {
+                            "name":"Wanda Koop",
+                            "id":"wanda-koop",
+                            "image_id":"73"
+                        }, {
+                            "name":"Mathieu Latulippe",
+                            "id":"mathieu-latulippe",
+                            "image_id":"1260"
+                        }, {
+                            "name":"Scott McFarland",
+                            "id":"scott-mcfarland",
+                            "image_id":"1129"
+                        }, {
+                            "name":"Brad Phillips",
+                            "id":"brad-phillips",
+                            "image_id":"1848"
+                        }, {
+                            "name":"Allison Schulnik",
+                            "id":"allison-schulnik",
+                            "image_id":"182"
+                        }, {
+                            "name":"Chloe Wise",
+                            "id":"chloe-wise",
+                            "image_id":"1528"
+                        }
+                    ];
+                    $scope.columns = [];
+                    var chunkSize = Math.ceil($scope.artists.length / 5);
+                    var i, j;
+                    for (i=0,j=$scope.artists.length; i<j; i+=chunkSize) {
+                        $scope.columns.push($scope.artists.slice(i,i+chunkSize));
+                    }
+                    $scope.selectArtist = function(artist) {
+                        if ($scope.artist && $scope.artist.id == artist.id) {
+                            $scope.artist = null;
+                        } else {
+                            $scope.artist = artist;
+                        }
+                        $timeout(function(){
+                            $scope.organise();
+                        },100);
+                    }
+                    window.onresize = function() {
+                        $scope.organise();
+                    }
+                    $scope.organise = function() {
+                        var bodyWidth = $("#content").width();
+                        var columnCount = Math.max(Math.floor(bodyWidth/168),1);
+                        var columnWidth = Math.floor(bodyWidth/columnCount);
+                        var listingsPerColumn = Math.ceil($scope.artists.length / columnCount);
+                        var left = 0;
+                        var top = 0;
+                        var selectedArtistRow = -1;
+                        var selectedArtistHeight = 0;
+                        for (var i=0; $scope.artist && i<$scope.artists.length; i++) {
+                            if ($scope.artists[i].id == $scope.artist.id) {
+                                selectedArtistRow = i % listingsPerColumn;
+                                selectedArtistHeight = $("div.artist:first").outerHeight();
+                                break;
+                            }
+                        }
+                        $(".artistListing").each(function(index) {
+                            var row = index % listingsPerColumn;
+                            if (index > 0 && row == 0) {
+                                left += columnWidth;
+                                top = 0;
+                            }
+                            $(this).css({
+                                "left":left+"px",
+                                "top":top+"px"
+                            });
+                            top += $(this).height();
+                            if (selectedArtistRow == row) {
+                                $("div.artist:first").css("top",top+"px");
+                                top += selectedArtistHeight;
+                            }
+                        });
+                    }
+                    $(document).on("ready", $scope.organise);
+                }]);
+    </script>
+</head>
+<body ng-controller="ArtistsCtrl">
+<div id="content">
+    <header itemscope itemtype="http://schema.org/Place" id="gallery-address" itemprop="location">
+        <h1><a href="/" itemprop="name">Division Gallery</a> <span itemprop="address" itemscope itemtype="PostalAddress"><span itemprop="addressLocality">Montreal</span></span></h1>
+        <nav>
+            <ul>
+                <li><a href="/montreal/exhibitions">Exhibitions</a></li><li class="selected"><a href="/montreal/artists">Artists</a></li><li><a href="/montreal/news">News</a></li><li><a href="/montreal/contact">Contact</a></li><li><a href="/toronto/artists">Toronto</a></li><li><a href="/montreal/artists?language=fr">Français</a></li>
+            </ul>
+        </nav>
+        <a class="button" id="menuButton" href="javascript:void(0)">Menu</a>
+    </header>
+    <h1>Artists</h1>
+    <div class="artists">
+        <div ng-repeat="artist in artists" ng-click="selectArtist(artist)" class="artistListing">{{artist.name}}</div>
+        <div class="artist" ng-show="artist">
+            <img class="background" ng-src="http://www.galeriedivision.com/images/900x480/{{artist.image_id}}.jpg" />
+            <div class="info">
+                <h1>{{artist.name}}</h1>
+                <div><a href="http://www.galeriedivision.com/montreal/artist/{{artist.id}}">Works</a></div>
+                <div><a href="http://www.galeriedivision.com/montreal/artist/{{artist.id}}/exhibitions">Exhibitions</a></div>
+                <div><a href="http://www.galeriedivision.com/montreal/artist/{{artist.id}}/cv">CV</a></div>
+                <div><a href="http://www.galeriedivision.com/montreal/artist/{{artist.id}}/news">News</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
