@@ -204,7 +204,7 @@ class Artist_model extends GD_Model {
             ->where("artist_id",$artist_id)
             ->where("gallery_id",$gallery_id);
         $has_images = $this->db->count_all_results() > 0;
-        $this->db->distinct()->select("space.gallery_id, gallery.city")
+        $this->db->select("space.gallery_id, gallery.city")
             ->from("artist_exhibition")
             ->join("space_exhibition", "space_exhibition.exhibition_id = artist_exhibition.exhibition_id")
             ->join("space", "space_exhibition.space_id = space.id")
