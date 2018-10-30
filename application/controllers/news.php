@@ -31,23 +31,23 @@ class News extends Dg_controller {
             $this->load->view("header",$header_vars);
             $this->output->append_output('<h1>'.$this->lang->line("News").'</h1>');
 
-            $this->loadConstantContact();
-            $lists = $this->cc->getLists($this->cc_access_token);
-            $lists = array_filter($lists,function($item){
-                return $item->status == "ACTIVE";
-            });
+            // $this->loadConstantContact();
+            // $lists = $this->cc->getLists($this->cc_access_token);
+            // $lists = array_filter($lists,function($item){
+            //     return $item->status == "ACTIVE";
+            // });
 
-            if ($this->input->cookie("email")) {
-                $this->loadConstantContact();
-                $response = $this->cc->getContactByEmail($this->cc_access_token,$this->input->cookie("email"));
-                if (empty($response)) {
-                    $this->load->helper("cookie");
-                    delete_cookie("email");
-                    $this->load->view("subscribe",array("lists"=>$lists));
-                }
-            } else {
-                $this->load->view("subscribe",array("lists"=>$lists));
-            }
+            // if ($this->input->cookie("email")) {
+            //     $this->loadConstantContact();
+            //     $response = $this->cc->getContactByEmail($this->cc_access_token,$this->input->cookie("email"));
+            //     if (empty($response)) {
+            //         $this->load->helper("cookie");
+            //         delete_cookie("email");
+            //         $this->load->view("subscribe",array("lists"=>$lists));
+            //     }
+            // } else {
+            //     $this->load->view("subscribe",array("lists"=>$lists));
+            // }
             $this->load->view("news",array("news"=>$news,"gallery_id"=>$gallery_id));
             $this->load->view("footer");
             $this->save_memcache($cache_key,$this->output->get_output());

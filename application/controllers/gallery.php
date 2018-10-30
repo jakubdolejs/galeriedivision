@@ -93,11 +93,11 @@ class Gallery extends Dg_controller {
             $header_vars["title"] = $this->lang->line("Contact");
             $this->load->view("header",$header_vars);
 
-            $this->loadConstantContact();
-            $lists = $this->cc->getLists($this->cc_access_token);
-            $lists = array_filter($lists,function($item){
-                return $item->status == "ACTIVE";
-            });
+            // $this->loadConstantContact();
+            // $lists = $this->cc->getLists($this->cc_access_token);
+            // $lists = array_filter($lists,function($item){
+            //     return $item->status == "ACTIVE";
+            // });
 
             $this->load->view("contact",array("info"=>$gallery_info,"staff"=>$gallery_staff,"hours"=>$opening_hours,"hours_microdata"=>$hours_microdata,"lists"=>$lists));
             $this->load->view("footer");
