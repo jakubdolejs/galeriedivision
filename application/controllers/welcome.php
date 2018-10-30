@@ -46,7 +46,18 @@ class Welcome extends Dg_Controller {
         $header_vars["exhibitions"] = $exhibitions;
         $this->load->view('home',$header_vars);
         $this->load->view('footer');
-	}
+    }
+    
+    public function notice() {
+        $lang = $this->config->item("language");
+        $title = "Division Gallery";
+        $text = "Division Gallery’s website is currently under reconstruction. For any questions or information, please contact the gallery directly at 514-938-3863.";
+        if ($lang == "fr") {
+            $title = "Galerie Division";
+            $text = "Le site de la Galerie Division est en reconstruction suite à des problèmes techniques.  Pour toutes questions ou demandes d’information, veuillez communiquer avec la Galerie directement au 514-938-3863.";
+        }
+        $this->load->view("under_construction_notice", array("text"=>$text,"title"=>$title));
+    }
 
     public function xml_sitemap() {
         $this->load->helper("url");
