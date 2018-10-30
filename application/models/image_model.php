@@ -266,8 +266,7 @@ class Image_model extends GD_Model {
             ->where("exists (select 1 from image_artist where image_artist.image_id = image.id and image_artist.artist_id = ".$this->db->escape($artist_id)." group by image.id)",null,false)
             ->order_by("image_gallery.priority")
             ->order_by("artist.surname, artist.name")
-            ->order_by("image.id","desc")
-            ->group_by("image.id");
+            ->order_by("image.id","desc");
         $query = $this->db->get();
         if ($query->num_rows()) {
             $images = array();
