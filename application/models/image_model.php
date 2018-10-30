@@ -257,7 +257,7 @@ class Image_model extends GD_Model {
     }
 
     public function get_artist_images_with_details($artist_id,$gallery_id) {
-        $this->db->distinct()->select("image.id, artist_id, concat(artist.name,' ',artist.surname) as 'name', work_width, work_height, work_depth, work_creation_year, lang, title, description, version",false)
+        $this->db->select("image.id, artist_id, concat(artist.name,' ',artist.surname) as 'name', work_width, work_height, work_depth, work_creation_year, lang, title, description, version",false)
             ->from("image")
             ->join("image_artist JOIN artist ON image_artist.artist_id = artist.id","image.id = image_artist.image_id","left")
             ->join("image_gallery","image_gallery.image_id = image.id")
@@ -266,7 +266,8 @@ class Image_model extends GD_Model {
             ->where("exists (select 1 from image_artist where image_artist.image_id = image.id and image_artist.artist_id = ".$this->db->escape($artist_id)." group by image.id)",null,false)
             ->order_by("image_gallery.priority")
             ->order_by("artist.surname, artist.name")
-            ->order_by("image.id","desc");
+            ->order_by("image.id","desc")
+            ->group_by("image.id");
         $query = $this->db->get();
         if ($query->num_rows()) {
             $images = array();
