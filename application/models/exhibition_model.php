@@ -98,7 +98,7 @@ class Exhibition_model extends GD_Model {
     }
 
     public function get_all_exhibition_ids() {
-        $query = $this->db->distinct()->select("exhibition.id, space.gallery_id")
+        $query = $this->db->select("exhibition.id, space.gallery_id")
             ->from("exhibition")
             ->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
             ->join("space","space.id = space_exhibition.space_id")
@@ -332,7 +332,6 @@ class Exhibition_model extends GD_Model {
 
     public function get_years($gallery_ids=null) {
         $this->db->select("date_format(start_date,'%Y') as 'start', date_format(end_date,'%Y') as 'end'",false)
-            ->distinct()
             ->from("exhibition");
         if (!empty($gallery_ids)) {
             $this->db->join("space_exhibition","space_exhibition.exhibition_id = exhibition.id")
